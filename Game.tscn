@@ -38,10 +38,12 @@ editor_draw_drag_margin = true
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("1_vjl8r")
 
-[node name="Player" parent="." node_paths=PackedStringArray("sprite", "states") instance=ExtResource("1_fjaox")]
+[node name="Player" parent="." node_paths=PackedStringArray("sprite", "states", "hurtbox", "hitbox") instance=ExtResource("1_fjaox")]
 position = Vector2(426, 177)
 sprite = NodePath("Sprite")
 states = NodePath("StateMachine")
+hurtbox = NodePath("Hurtbox")
+hitbox = NodePath("Hitbox")
 
 [node name="Hud" parent="Player" node_paths=PackedStringArray("willa_bar", "billy_bar") instance=ExtResource("5_bchxi")]
 willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
