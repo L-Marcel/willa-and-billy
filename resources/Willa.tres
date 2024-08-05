@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://dry35jjoanmai"]
+
+[ext_resource type="Script" path="res://scripts/PlayerData.gd" id="1_xlys8"]
+[ext_resource type="SpriteFrames" uid="uid://chlwjrh3q88cx" path="res://resources/WillaFrames.tres" id="2_ocby6"]
+
+[resource]
+script = ExtResource("1_xlys8")
+name = &"Willa"
+sprite_frames = ExtResource("2_ocby6")

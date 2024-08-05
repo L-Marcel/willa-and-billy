@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://5t8i2ewbxmrw"]
+
+[ext_resource type="Script" path="res://components/entities/Health.gd" id="1_it2b8"]
+[ext_resource type="Script" path="res://globals/Players.gd" id="1_rkyvk"]
+
+[node name="Players" type="Node" node_paths=PackedStringArray("willa_health", "billy_health")]
+script = ExtResource("1_rkyvk")
+willa_health = NodePath("WillaEnergy")
+billy_health = NodePath("BillyEnergy")
+
+[node name="WillaEnergy" type="Node" parent="."]
+script = ExtResource("1_it2b8")
+_total = 12.0
+_limit = 12.0
+_base = 16.0
+_invencible_duration = 0.5
+
+[node name="BillyEnergy" type="Node" parent="."]
+script = ExtResource("1_it2b8")
+_total = 24.0
+_limit = 24.0
+_base = 16.0
+_invencible_duration = 0.5

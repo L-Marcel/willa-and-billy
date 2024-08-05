@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://83r6b4d7oft8"]
+
+[ext_resource type="PackedScene" uid="uid://i8xki2p1wwxl" path="res://components/players/Player.tscn" id="1_fjaox"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_vjl8r"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_udjtv"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_jmnnf"]
+[ext_resource type="PackedScene" uid="uid://bpkae5agechp8" path="res://components/interface/Hud.tscn" id="5_bchxi"]
+
+[sub_resource type="Resource" id="Resource_1b16i"]
+script = ExtResource("4_jmnnf")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Game" type="Node2D"]
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets")]
+position = Vector2(426, 177)
+script = ExtResource("3_udjtv")
+follow_mode = 3
+follow_target = NodePath("../Player")
+follow_targets = [NodePath("../Player")]
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_1b16i")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(426, 177)
+zoom = Vector2(2, 2)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_drag_margin = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("1_vjl8r")
+
+[node name="Player" parent="." node_paths=PackedStringArray("sprite", "states") instance=ExtResource("1_fjaox")]
+position = Vector2(426, 177)
+sprite = NodePath("Sprite")
+states = NodePath("StateMachine")
+
+[node name="Hud" parent="Player" node_paths=PackedStringArray("willa_bar", "billy_bar") instance=ExtResource("5_bchxi")]
+willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
+billy_bar = NodePath("Billy/Green/Head/Info/Bar")

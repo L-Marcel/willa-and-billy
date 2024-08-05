@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpkae5agechp8"]
+
+[ext_resource type="Script" path="res://components/interface/Hud.gd" id="1_u6win"]
+[ext_resource type="PackedScene" uid="uid://b1v58qfxxbw3r" path="res://components/interface/Bar.tscn" id="2_wlwd5"]
+[ext_resource type="FontFile" uid="uid://dxsixc4mfm6gq" path="res://assets/font/PixeloidMono.ttf" id="6_gyx6s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_64qft"]
+font = ExtResource("6_gyx6s")
+font_size = 9
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar")]
+script = ExtResource("1_u6win")
+willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
+billy_bar = NodePath("Billy/Green/Head/Info/Bar")
+
+[node name="Willa" type="MarginContainer" parent="."]
+offset_right = 157.0
+offset_bottom = 29.0
+scale = Vector2(4, 4)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Header" type="HBoxContainer" parent="Willa"]
+layout_mode = 2
+alignment = 1
+
+[node name="Red" type="VBoxContainer" parent="Willa/Header"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Head" type="HBoxContainer" parent="Willa/Header/Red"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Willa/Header/Red/Head"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+stretch_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="Willa/Header/Red/Head"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Bar" parent="Willa/Header/Red/Head/Info" instance=ExtResource("2_wlwd5")]
+custom_minimum_size = Vector2(65, 6)
+layout_mode = 2
+width = 65.0
+height = 6.0
+
+[node name="Time" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = -40.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Head" type="HBoxContainer" parent="Time"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="AmmoInfo" type="Label" parent="Time/Head"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "0x"
+label_settings = SubResource("LabelSettings_64qft")
+
+[node name="Icon" type="TextureRect" parent="Time/Head"]
+layout_mode = 2
+stretch_mode = 4
+
+[node name="Billy" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+scale = Vector2(-4, 4)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Green" type="VBoxContainer" parent="Billy"]
+layout_mode = 2
+
+[node name="Head" type="HBoxContainer" parent="Billy/Green"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Icon" type="TextureRect" parent="Billy/Green/Head"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+stretch_mode = 2
+flip_h = true
+
+[node name="Info" type="VBoxContainer" parent="Billy/Green/Head"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Bar" parent="Billy/Green/Head/Info" instance=ExtResource("2_wlwd5")]
+custom_minimum_size = Vector2(65, 6)
+layout_mode = 2
+width = 65.0
+height = 6.0

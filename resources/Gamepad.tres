@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ControlData" load_steps=2 format=3 uid="uid://btgf4vyirufok"]
+
+[ext_resource type="Script" path="res://scripts/Control.gd" id="1_b6txg"]
+
+[resource]
+script = ExtResource("1_b6txg")
+left = "two_left"
+right = "two_right"
+up = "two_up"
+down = "two_down"
+run = "two_run"
+attack = "two_attack"
+interact = "two_interact"

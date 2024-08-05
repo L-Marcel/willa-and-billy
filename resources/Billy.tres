@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://4m8u1fahsxfp"]
+
+[ext_resource type="Script" path="res://scripts/PlayerData.gd" id="1_30vrm"]
+[ext_resource type="SpriteFrames" uid="uid://da1vp67jgjjob" path="res://resources/BillyFrames.tres" id="2_8s3mw"]
+
+[resource]
+script = ExtResource("1_30vrm")
+name = &"Billy"
+sprite_frames = ExtResource("2_8s3mw")
+speed = 300.0
+attack_speed = 1.4
+damage = 20.0
+chance_of_losing_havest = 0.0
+sow_productivity = 1.0
+morning_productivity = 1.0
+afternoon_productivity = 1.0
+night_productivity = 1.0
+energy_drop = 1.0
+energy_gain = 1.0
+energy_drop_on_damage = 1.0

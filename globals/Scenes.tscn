@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bvnw2i6qmtpes"]
+
+[node name="Scenes" type="ResourcePreloader"]
