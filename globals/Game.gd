@@ -50,3 +50,17 @@ func _process(_delta):
 		reset.emit();
 		start();
 		get_tree().change_scene_to_file("res://Game.tscn");
+
+func flip(node : Node, value : bool):
+	if node is Node2D || node is Control:
+		if value:
+			node.scale.y = -abs(node.scale.y);
+			node.rotation_degrees = 180;
+		else:
+			node.scale.y = abs(node.scale.y);
+			node.rotation_degrees = 0;
+func is_flipped(node : Node):
+	if node is Node2D:
+		return node.scale.y < 0 && abs(node.rotation_degrees) == 180;
+	else:
+		return false;

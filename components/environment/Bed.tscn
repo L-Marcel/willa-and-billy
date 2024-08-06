@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://cujowbvf3kb2e"]
+
+[ext_resource type="Script" path="res://components/environment/Bed.gd" id="1_lbrk7"]
+[ext_resource type="Texture2D" uid="uid://de6rrq1ir3n2e" path="res://assets/sprites/icon_willa.png" id="2_1hbso"]
+[ext_resource type="Texture2D" uid="uid://b75yvmaidctib" path="res://assets/sprites/bed.png" id="2_5wpap"]
+[ext_resource type="Script" path="res://components/entities/Interaction.gd" id="2_wp664"]
+[ext_resource type="Texture2D" uid="uid://dwb5xkry4hgjx" path="res://assets/sprites/icon_billy.png" id="3_ybmnh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h58x5"]
+atlas = ExtResource("2_5wpap")
+region = Rect2(0, 24, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55hhi"]
+atlas = ExtResource("2_5wpap")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lshdi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h58x5")
+}],
+"loop": true,
+"name": &"focused",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55hhi")
+}],
+"loop": true,
+"name": &"unfocused",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_460pd"]
+size = Vector2(20, 14)
+
+[node name="Bed" type="StaticBody2D" node_paths=PackedStringArray("sprite", "interaction", "willa_icon", "billy_icon", "willa_position", "billy_position")]
+y_sort_enabled = true
+script = ExtResource("1_lbrk7")
+sprite = NodePath("Sprite")
+interaction = NodePath("Interaction")
+willa_icon = NodePath("Control/HBoxContainer/Willa")
+billy_icon = NodePath("Control/HBoxContainer/Billy")
+willa_position = NodePath("WillaPoint")
+billy_position = NodePath("BillyPoint")
+
+[node name="Control" type="Control" parent="."]
+z_index = 4
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -26.0
+offset_right = -8.0
+offset_bottom = -26.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 7.0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Willa" type="TextureRect" parent="Control/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1hbso")
+stretch_mode = 2
+
+[node name="Billy" type="TextureRect" parent="Control/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_ybmnh")
+stretch_mode = 2
+
+[node name="Interaction" type="Node" parent="."]
+script = ExtResource("2_wp664")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_lshdi")
+animation = &"unfocused"
+offset = Vector2(0, 8)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_460pd")
+
+[node name="WillaPoint" type="Marker2D" parent="."]
+position = Vector2(0, 5)
+
+[node name="BillyPoint" type="Marker2D" parent="."]
+position = Vector2(15, -3)
+
+[connection signal="focus" from="Interaction" to="." method="_on_interaction_focus"]
+[connection signal="unfocus" from="Interaction" to="." method="_on_interaction_unfocus"]

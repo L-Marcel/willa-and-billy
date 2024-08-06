@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=4 uid="uid://d1l2bql2u7e4n"]
+
+[ext_resource type="TileSet" uid="uid://cjkp0e42yl357" path="res://resources/TileSet.tres" id="1_jidvx"]
+[ext_resource type="Script" path="res://components/environment/Home.gd" id="1_xgdfh"]
+[ext_resource type="PackedScene" uid="uid://cujowbvf3kb2e" path="res://components/environment/Bed.tscn" id="2_wvqwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2arj"]
+size = Vector2(98, 48)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_of4ch"]
+height = 20.0
+
+[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("ceils")]
+y_sort_enabled = true
+script = ExtResource("1_xgdfh")
+ceils = [NodePath("Ceil"), NodePath("OverCeil")]
+
+[node name="Zone" type="Area2D" parent="."]
+visible = false
+
+[node name="Collision" type="CollisionShape2D" parent="Zone"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_b2arj")
+
+[node name="Bed" parent="." node_paths=PackedStringArray("sprite", "interaction", "willa_icon", "billy_icon", "willa_position", "billy_position") instance=ExtResource("2_wvqwu")]
+position = Vector2(-40, -37)
+sprite = NodePath("Sprite")
+interaction = NodePath("Interaction")
+willa_icon = NodePath("Control/HBoxContainer/Willa")
+billy_icon = NodePath("Control/HBoxContainer/Billy")
+willa_position = NodePath("WillaPoint")
+billy_position = NodePath("BillyPoint")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD9//3/AAAKAAkAAAD///3/AAAKAAkAAAAAAP3/AAAKAAkAAAABAP3/AAAKAAkAAAACAP3/AAAKAAkAAAACAP7/AAAKAAkAAAABAP7/AAAKAAkAAAAAAP7/AAAKAAkAAAD///7/AAAKAAkAAAD+//7/AAAKAAkAAAD9//7/AAAKAAkAAAD+//3/AAAKAAkAAAD9////AAAKAAkAAAD+////AAAKAAkAAAD/////AAANAAsAAAAAAP//AAAKAAkAAAABAP//AAAKAAkAAAACAP//AAAKAAkAAAA=")
+tile_set = ExtResource("1_jidvx")
+
+[node name="Objects" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAEAP3/AAAoABMAAAAEAP7/AAAoABQAAAAEAP//AAAoABUAAAAFAP3/AAApABMAAAAFAP7/AAApABQAAAAFAP//AAApABUAAAA=")
+tile_set = ExtResource("1_jidvx")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAP//AAAFAAoAAAD+////AAAFAAoAAAABAP//AAAFAAoAAAACAP//AAAFAAoAAAD/////AAAMAA0AAAD8////AAAPAA0AAAADAP//AAARAA0AAAD9////AAAFAAoAAAD8//7/AAAGAAkAAAD8//3/AAAGAAkAAAD8//z/AAAIAAwAAAADAP7/AAADAA0AAAADAP3/AAADAA0AAAADAPz/AAAEAA0AAAD9//z/AAAEAAwAAAD+//z/AAAEAAwAAAD///z/AAAEAAwAAAAAAPz/AAAEAAwAAAABAPz/AAAEAAwAAAACAPz/AAAEAAwAAAA=")
+tile_set = ExtResource("1_jidvx")
+
+[node name="Ceil" type="TileMapLayer" parent="."]
+visible = false
+z_index = 2
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD8//v/AAAPAAkAAAD8//z/AAAPAAoAAAD8//3/AAAPAAsAAAD8//7/AAAPAAwAAAD9//v/AAAQAAkAAAD9//z/AAASAAoAAAD9//3/AAASAAoAAAD9//7/AAAQAAwAAAD9////AAAeAA8AAAACAPv/AAAQAAkAAAACAPz/AAASAAoAAAACAP3/AAASAAoAAAACAP7/AAAQAAwAAAACAP//AAAeAA8AAAADAPv/AAARAAkAAAADAPz/AAARAAoAAAADAP3/AAARAAsAAAADAP7/AAARAAwAAAADAP//AAAfAA8AAAD+//z/AAASAAoAAAD+//3/AAASAAoAAAD///z/AAASAAoAAAD///3/AAASAAoAAAAAAPz/AAASAAoAAAAAAP3/AAASAAoAAAABAPz/AAASAAoAAAABAP3/AAASAAoAAAD+//7/AAAQAAwAAAD+////AAAeAA8AAAD///7/AAAQAAwAAAAAAP7/AAAQAAwAAAABAP7/AAAQAAwAAAD+//v/AAAQAAkAAAD///v/AAAQAAkAAAAAAPv/AAAQAAkAAAABAPv/AAAQAAkAAAD/////AAAeAA8AAAAAAP//AAAeAA8AAAABAP//AAAeAA8AAAD8////AAAdAA8AAAA=")
+tile_set = ExtResource("1_jidvx")
+
+[node name="OverCeil" type="TileMapLayer" parent="."]
+z_index = 2
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAACAPz/AAAdAAUAAAA=")
+tile_set = ExtResource("1_jidvx")
+
+[node name="OverWall" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAABAP//AAAOAA0AAAA=")
+tile_set = ExtResource("1_jidvx")
+
+[node name="WallsCollision" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(49, -41, 49, -9, 0, -9, 0, 0, 53, 0, 53, -57, -54, -57, -54, 0, -16, 0, -16, -9, -49, -9, -49, -37, -33, -48, -23.625, -48, 33, -48)
+
+[node name="WellCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(80, -17)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_of4ch")
+
+[connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
+[connection signal="body_exited" from="Zone" to="." method="_on_zone_body_exited"]

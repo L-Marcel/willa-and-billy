@@ -1,14 +1,11 @@
 @tool
 class_name Hurtbox
-extends CollisionShape2D
+extends Area2D
 
 @export var health : Health:
 	set(value):
 		health = value;
 		update_configuration_warnings();
-
-func _ready():
-	shape = shape.duplicate(true);
 
 func _get_configuration_warnings():
 	var errors : Array[String] = [];

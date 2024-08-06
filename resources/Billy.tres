@@ -7,7 +7,7 @@
 script = ExtResource("1_30vrm")
 name = &"Billy"
 sprite_frames = ExtResource("2_8s3mw")
-speed = 300.0
+speed = 100.0
 attack_speed = 1.4
 damage = 20.0
 chance_of_losing_havest = 0.0

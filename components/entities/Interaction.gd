@@ -3,19 +3,25 @@ class_name Interaction
 extends Node
 
 var enabled = true;
-var focused = false;
+var focused = 0;
 
 signal action(by : Node);
 signal focus;
 signal unfocus;
 
-func _ready():
-	focus.connect(_on_focus);
-	unfocus.connect(_on_unfocus);
-func _on_focus():
-	focused = true;
-func _on_unfocus():
-	focused = false;
+func is_focused():
+	return focused > 0;
+
+func emit_focus():
+	if focused > 0: focus.emit();
+	else: unfocus.emit();
+func remove_focus():
+	focused -= 1;
+	emit_focus();
+func add_focus():
+	focused += 1;
+	emit_focus();
+
 func is_possible():
 	return action.get_connections().size() == 1 && enabled;
 func registry(callable : Callable):

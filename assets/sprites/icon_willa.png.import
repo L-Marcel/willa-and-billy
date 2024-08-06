@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duh4pyi0a108l"
-path="res://.godot/imported/billy-Sheet.png-fba81834c5c96e16720c45034c5ab155.ctex"
+uid="uid://de6rrq1ir3n2e"
+path="res://.godot/imported/icon_willa.png-4dc74fd567979ada4e231fd74cf2c645.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/billy-Sheet.png"
-dest_files=["res://.godot/imported/billy-Sheet.png-fba81834c5c96e16720c45034c5ab155.ctex"]
+source_file="res://assets/sprites/icon_willa.png"
+dest_files=["res://.godot/imported/icon_willa.png-4dc74fd567979ada4e231fd74cf2c645.ctex"]
 
 [params]
 

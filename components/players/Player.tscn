@@ -1,25 +1,29 @@
-[gd_scene load_steps=146 format=3 uid="uid://i8xki2p1wwxl"]
+[gd_scene load_steps=157 format=3 uid="uid://i8xki2p1wwxl"]
 
 [ext_resource type="Script" path="res://components/players/Player.gd" id="1_1p4qs"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_bqoxs"]
 [ext_resource type="Resource" uid="uid://4m8u1fahsxfp" path="res://resources/Billy.tres" id="2_kyuc1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_8k2du"]
 [ext_resource type="Resource" uid="uid://bxqvmnm521r0d" path="res://resources/Keyboard.tres" id="3_n0s5g"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_dmfve"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="4_erb25"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="4_jxjrl"]
 [ext_resource type="SpriteFrames" uid="uid://da1vp67jgjjob" path="res://resources/BillyFrames.tres" id="5_k7h2w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_isjbp"]
+[ext_resource type="Script" path="res://components/entities/Actor.gd" id="8_ehu42"]
 [ext_resource type="Script" path="res://components/entities/Hurtbox.gd" id="9_4fn8f"]
 [ext_resource type="Script" path="res://components/entities/Hitbox.gd" id="10_wlq5f"]
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="10_y5764"]
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="11_oau4q"]
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="11_t4x74"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnmj5"]
-radius = 1.0
-height = 10.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5an6f"]
+radius = 2.0
+height = 14.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdvto"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0anfa"]
+radius = 5.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfktg"]
 radius = 8.0
 height = 20.0
 
@@ -29,7 +33,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_jldju"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_pikdl")
 debug_color = Color(0, 0, 0, 1)
@@ -40,7 +44,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_3y8j2"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_j6s01")
 debug_color = Color(0, 0, 0, 1)
@@ -51,7 +55,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_iquhd"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -9)
+position = Vector2(-1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_x4sa4")
 debug_color = Color(0, 0, 0, 1)
@@ -62,7 +66,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_mccn3"]
 script = ExtResource("11_oau4q")
-position = Vector2(-2, -9)
+position = Vector2(-2, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_813yq")
 debug_color = Color(0, 0, 0, 1)
@@ -73,7 +77,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_ay1yr"]
 script = ExtResource("11_oau4q")
-position = Vector2(1, -9)
+position = Vector2(1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_543kv")
 debug_color = Color(0, 0, 0, 1)
@@ -84,7 +88,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_c7cgb"]
 script = ExtResource("11_oau4q")
-position = Vector2(1, -9)
+position = Vector2(1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_jjsf3")
 debug_color = Color(0, 0, 0, 1)
@@ -95,7 +99,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_jwsyb"]
 script = ExtResource("11_oau4q")
-position = Vector2(1, -9)
+position = Vector2(1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_cuv84")
 debug_color = Color(0, 0, 0, 1)
@@ -106,7 +110,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_pg5jv"]
 script = ExtResource("11_oau4q")
-position = Vector2(2, -9)
+position = Vector2(2, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_5ba76")
 debug_color = Color(0, 0, 0, 1)
@@ -117,7 +121,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_dpy2j"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_xory8")
 debug_color = Color(0, 0, 0, 1)
@@ -128,7 +132,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_h6gmj"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_v3muk")
 debug_color = Color(0, 0, 0, 1)
@@ -139,7 +143,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_0drit"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_gboi3")
 debug_color = Color(0, 0, 0, 1)
@@ -150,7 +154,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_vjykd"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -10)
+position = Vector2(-1, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_qc3q3")
 debug_color = Color(0, 0, 0, 1)
@@ -161,7 +165,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_r2pa5"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -10)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_jnkqg")
 debug_color = Color(0, 0, 0, 1)
@@ -172,7 +176,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_wwvao"]
 script = ExtResource("11_oau4q")
-position = Vector2(1, -9)
+position = Vector2(1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_rkor5")
 debug_color = Color(0, 0, 0, 1)
@@ -183,7 +187,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_wlvlx"]
 script = ExtResource("11_oau4q")
-position = Vector2(1, -9)
+position = Vector2(1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_ec6ao")
 debug_color = Color(0, 0, 0, 1)
@@ -194,7 +198,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_f2u67"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_g2xgc")
 debug_color = Color(0, 0, 0, 1)
@@ -205,7 +209,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_1v00t"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_86403")
 debug_color = Color(0, 0, 0, 1)
@@ -216,7 +220,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_n86b7"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_e7cmf")
 debug_color = Color(0, 0, 0, 1)
@@ -227,7 +231,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_20oa1"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -9)
+position = Vector2(-1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_mqkxc")
 debug_color = Color(0, 0, 0, 1)
@@ -238,7 +242,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_8dcw8"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -9)
+position = Vector2(-1, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_cikec")
 debug_color = Color(0, 0, 0, 1)
@@ -249,7 +253,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_b4pfe"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -9)
+position = Vector2(-1, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_lnj6a")
 debug_color = Color(0, 0, 0, 1)
@@ -260,7 +264,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_e4tul"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -9)
+position = Vector2(-1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_8e7jl")
 debug_color = Color(0, 0, 0, 1)
@@ -271,7 +275,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_8tuh4"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_yo2sq")
 debug_color = Color(0, 0, 0, 1)
@@ -282,7 +286,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_e6lw8"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_qkk4j")
 debug_color = Color(0, 0, 0, 1)
@@ -293,7 +297,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_hmk86"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_hhlp7")
 debug_color = Color(0, 0, 0, 1)
@@ -304,7 +308,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_1e7h8"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_nnhne")
 debug_color = Color(0, 0, 0, 1)
@@ -315,7 +319,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_swmo7"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_8peh6")
 debug_color = Color(0, 0, 0, 1)
@@ -326,7 +330,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_jk54b"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_u2tyw")
 debug_color = Color(0, 0, 0, 1)
@@ -337,7 +341,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_0wht2"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_orkvw")
 debug_color = Color(0, 0, 0, 1)
@@ -348,7 +352,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_jkodv"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_fgmjq")
 debug_color = Color(0, 0, 0, 1)
@@ -359,7 +363,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_28lt4"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_tma6e")
 debug_color = Color(0, 0, 0, 1)
@@ -370,7 +374,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_prvbe"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_oa8tp")
 debug_color = Color(0, 0, 0, 1)
@@ -381,7 +385,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_ktolt"]
 script = ExtResource("11_oau4q")
-position = Vector2(-1, -9)
+position = Vector2(-1, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_rnuja")
 debug_color = Color(0, 0, 0, 1)
@@ -392,7 +396,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_p7k8u"]
 script = ExtResource("11_oau4q")
-position = Vector2(-2, -9)
+position = Vector2(-2, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_h83p8")
 debug_color = Color(0, 0, 0, 1)
@@ -403,7 +407,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_qyj5x"]
 script = ExtResource("11_oau4q")
-position = Vector2(-2, -9)
+position = Vector2(-2, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_lsk70")
 debug_color = Color(0, 0, 0, 1)
@@ -414,7 +418,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_3pv7y"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_3r56x")
 debug_color = Color(0, 0, 0, 1)
@@ -425,7 +429,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_dto8s"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_tpfen")
 debug_color = Color(0, 0, 0, 1)
@@ -436,7 +440,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_phnlw"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_vdehx")
 debug_color = Color(0, 0, 0, 1)
@@ -447,7 +451,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_rpogy"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_ta0r4")
 debug_color = Color(0, 0, 0, 1)
@@ -458,7 +462,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_4ms0c"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_iokrg")
 debug_color = Color(0, 0, 0, 1)
@@ -469,7 +473,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_bnuae"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_hhp8n")
 debug_color = Color(0, 0, 0, 1)
@@ -480,7 +484,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_fpyv3"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_dvyds")
 debug_color = Color(0, 0, 0, 1)
@@ -491,7 +495,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_syipq"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_7fysx")
 debug_color = Color(0, 0, 0, 1)
@@ -502,7 +506,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_rbhva"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_knwft")
 debug_color = Color(0, 0, 0, 1)
@@ -513,7 +517,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_gw4jp"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_c1m5m")
 debug_color = Color(0, 0, 0, 1)
@@ -524,7 +528,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_8m2fh"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_br2if")
 debug_color = Color(0, 0, 0, 1)
@@ -535,7 +539,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_gs04f"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_2vaqx")
 debug_color = Color(0, 0, 0, 1)
@@ -546,7 +550,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_ng51a"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_vlp5g")
 debug_color = Color(0, 0, 0, 1)
@@ -557,7 +561,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_rf86c"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_k8vv6")
 debug_color = Color(0, 0, 0, 1)
@@ -568,7 +572,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_sgssx"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_iwyyx")
 debug_color = Color(0, 0, 0, 1)
@@ -579,7 +583,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_p3wfv"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -10)
+position = Vector2(0, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_hgyg7")
 debug_color = Color(0, 0, 0, 1)
@@ -590,7 +594,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_gvchk"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -11)
+position = Vector2(0, -2)
 disabled = false
 shape = SubResource("CapsuleShape2D_a8teq")
 debug_color = Color(0, 0, 0, 1)
@@ -601,7 +605,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_4rn3h"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_yldnk")
 debug_color = Color(0, 0, 0, 1)
@@ -612,7 +616,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_rww74"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_pngaw")
 debug_color = Color(0, 0, 0, 1)
@@ -623,7 +627,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_fxtu3"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -10)
+position = Vector2(0, -1)
 disabled = false
 shape = SubResource("CapsuleShape2D_xbh2p")
 debug_color = Color(0, 0, 0, 1)
@@ -634,7 +638,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_crra7"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -11)
+position = Vector2(0, -2)
 disabled = false
 shape = SubResource("CapsuleShape2D_atyxg")
 debug_color = Color(0, 0, 0, 1)
@@ -645,7 +649,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_v0fub"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_1j0fv")
 debug_color = Color(0, 0, 0, 1)
@@ -656,7 +660,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_wvsdf"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_p0dna")
 debug_color = Color(0, 0, 0, 1)
@@ -667,7 +671,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_2xorf"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_5hvnd")
 debug_color = Color(0, 0, 0, 1)
@@ -678,7 +682,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_se7aa"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_7qi0r")
 debug_color = Color(0, 0, 0, 1)
@@ -689,7 +693,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_tmn37"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 1)
 disabled = false
 shape = SubResource("CapsuleShape2D_saljm")
 debug_color = Color(0, 0, 0, 1)
@@ -700,7 +704,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_0dl8y"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_v7hn0")
 debug_color = Color(0, 0, 0, 1)
@@ -711,7 +715,7 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_e2vaj"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_txbns")
 debug_color = Color(0, 0, 0, 1)
@@ -722,9 +726,64 @@ height = 20.0
 
 [sub_resource type="Resource" id="Resource_66t5p"]
 script = ExtResource("11_oau4q")
-position = Vector2(0, -9)
+position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_0oirl")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkyps"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_1phcf"]
+script = ExtResource("11_oau4q")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_qkyps")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t7jo8"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_3ac7i"]
+script = ExtResource("11_oau4q")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_t7jo8")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_csw1d"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_2h5rr"]
+script = ExtResource("11_oau4q")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_csw1d")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8k343"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_0y6vu"]
+script = ExtResource("11_oau4q")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_8k343")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hije"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_436g3"]
+script = ExtResource("11_oau4q")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_4hije")
 debug_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_kibhp"]
@@ -736,27 +795,25 @@ data = {
 "hurt": [SubResource("Resource_prvbe"), SubResource("Resource_ktolt"), SubResource("Resource_p7k8u"), SubResource("Resource_qyj5x"), SubResource("Resource_3pv7y"), SubResource("Resource_dto8s"), SubResource("Resource_phnlw"), SubResource("Resource_rpogy")],
 "idle": [SubResource("Resource_4ms0c"), SubResource("Resource_bnuae"), SubResource("Resource_fpyv3"), SubResource("Resource_syipq"), SubResource("Resource_rbhva"), SubResource("Resource_gw4jp"), SubResource("Resource_8m2fh"), SubResource("Resource_gs04f"), SubResource("Resource_ng51a")],
 "run": [SubResource("Resource_rf86c"), SubResource("Resource_sgssx"), SubResource("Resource_p3wfv"), SubResource("Resource_gvchk"), SubResource("Resource_4rn3h"), SubResource("Resource_rww74"), SubResource("Resource_fxtu3"), SubResource("Resource_crra7")],
-"walk": [SubResource("Resource_v0fub"), SubResource("Resource_wvsdf"), SubResource("Resource_2xorf"), SubResource("Resource_se7aa"), SubResource("Resource_tmn37"), SubResource("Resource_0dl8y"), SubResource("Resource_e2vaj"), SubResource("Resource_66t5p")]
+"walk": [SubResource("Resource_v0fub"), SubResource("Resource_wvsdf"), SubResource("Resource_2xorf"), SubResource("Resource_se7aa"), SubResource("Resource_tmn37"), SubResource("Resource_0dl8y"), SubResource("Resource_e2vaj"), SubResource("Resource_66t5p")],
+"watering": [SubResource("Resource_1phcf"), SubResource("Resource_3ac7i"), SubResource("Resource_2h5rr"), SubResource("Resource_0y6vu"), SubResource("Resource_436g3")]
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "states", "hurtbox", "hitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("actor", "collisions", "sprite", "states", "hurtbox", "hitbox")]
+y_sort_enabled = true
+motion_mode = 1
 script = ExtResource("1_1p4qs")
 data = ExtResource("2_kyuc1")
 control = ExtResource("3_n0s5g")
+actor = NodePath("Actor")
+collisions = [NodePath("Collision"), NodePath("Actor/Collision"), NodePath("Hurtbox/Collision")]
 sprite = NodePath("Sprite")
 states = NodePath("StateMachine")
 hurtbox = NodePath("Hurtbox")
 hitbox = NodePath("Hitbox")
 
-[node name="StateChartDebugger" parent="." instance=ExtResource("4_erb25")]
-offset_left = -164.0
-offset_top = -162.0
-offset_right = 187.0
-offset_bottom = -36.0
-initial_node_to_watch = NodePath("../StateMachine")
-
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_bqoxs")
+script = ExtResource("4_jxjrl")
 
 [node name="Root" type="Node" parent="StateMachine"]
 script = ExtResource("3_8k2du")
@@ -807,6 +864,12 @@ to = NodePath("../../Doing")
 event = &"to_doing"
 delay_in_seconds = "0.0"
 
+[node name="ToSleeping" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Sleeping")
+event = &"to_sleeping"
+delay_in_seconds = "0.0"
+
 [node name="Walk" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -850,6 +913,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_isjbp")
 to = NodePath("../../Doing")
 event = &"to_doing"
+delay_in_seconds = "0.0"
+
+[node name="ToSleeping" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Sleeping")
+event = &"to_sleeping"
 delay_in_seconds = "0.0"
 
 [node name="Run" type="Node" parent="StateMachine/Root"]
@@ -897,6 +966,12 @@ to = NodePath("../../Doing")
 event = &"to_doing"
 delay_in_seconds = "0.0"
 
+[node name="ToSleeping" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Sleeping")
+event = &"to_sleeping"
+delay_in_seconds = "0.0"
+
 [node name="Attack" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -923,7 +998,7 @@ delay_in_seconds = "0.0"
 
 [node name="ToHurt" type="Node" parent="StateMachine/Root/Hurt"]
 script = ExtResource("7_isjbp")
-to = NodePath("../../Hurt")
+to = NodePath("..")
 event = &"to_hurt"
 delay_in_seconds = "0.0"
 
@@ -945,26 +1020,20 @@ delay_in_seconds = "0.0"
 [node name="Dig" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
-[node name="ToIdle" type="Node" parent="StateMachine/Root/Dig"]
-script = ExtResource("7_isjbp")
-to = NodePath("../../Idle")
-event = &"to_idle"
-delay_in_seconds = "0.0"
-
 [node name="ToHurt" type="Node" parent="StateMachine/Root/Dig"]
 script = ExtResource("7_isjbp")
 to = NodePath("../../Hurt")
 event = &"to_hurt"
 delay_in_seconds = "0.0"
 
-[node name="Doing" type="Node" parent="StateMachine/Root"]
-script = ExtResource("4_dmfve")
-
-[node name="ToIdle" type="Node" parent="StateMachine/Root/Doing"]
+[node name="Stop" type="Node" parent="StateMachine/Root/Dig"]
 script = ExtResource("7_isjbp")
 to = NodePath("../../Idle")
-event = &"to_idle"
+event = &"stop"
 delay_in_seconds = "0.0"
+
+[node name="Doing" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_dmfve")
 
 [node name="ToHurt" type="Node" parent="StateMachine/Root/Doing"]
 script = ExtResource("7_isjbp")
@@ -972,20 +1041,45 @@ to = NodePath("../../Hurt")
 event = &"to_hurt"
 delay_in_seconds = "0.0"
 
+[node name="Stop" type="Node" parent="StateMachine/Root/Doing"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Idle")
+event = &"stop"
+delay_in_seconds = "0.0"
+
+[node name="Sleeping" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_dmfve")
+
+[node name="Stop" type="Node" parent="StateMachine/Root/Sleeping"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Idle")
+event = &"stop"
+delay_in_seconds = "0.0"
+
 [node name="Collision" type="CollisionShape2D" parent="."]
 rotation = -1.5708
-shape = SubResource("CapsuleShape2D_nnmj5")
+shape = SubResource("CapsuleShape2D_5an6f")
 
-[node name="Hurtbox" type="CollisionShape2D" parent="."]
+[node name="Actor" type="Area2D" parent="."]
+script = ExtResource("8_ehu42")
+
+[node name="Collision" type="CollisionShape2D" parent="Actor"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_0anfa")
+debug_color = Color(0, 0.643161, 0.305056, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_fdvto")
-debug_color = Color(0, 0.628329, 0.493411, 0.42)
 script = ExtResource("9_4fn8f")
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_cfktg")
+debug_color = Color(0, 0.628329, 0.493411, 0.42)
 
 [node name="AnimatedHurtbox" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
 script = ExtResource("10_y5764")
 animated_sprite = NodePath("../Sprite")
-collision_shape = NodePath("../Hurtbox")
+collision_shape = NodePath("../Hurtbox/Collision")
 shape_frames = SubResource("Resource_kibhp")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
@@ -1019,3 +1113,6 @@ frame = 5
 [connection signal="state_processing" from="StateMachine/Root/Dig" to="." method="_on_dig_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Doing" to="." method="_on_doing_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Doing" to="." method="_on_doing_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_entered"]
+[connection signal="state_exited" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_exited"]
+[connection signal="state_processing" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_processing"]

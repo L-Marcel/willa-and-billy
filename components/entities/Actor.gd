@@ -33,13 +33,6 @@ func interact_with_nearest(node : Node2D):
 		var interaction = interactions[nearest] as Interaction;
 		interaction.action.emit(node);
 
-func emit_interactions_signals():
-	var nearest : Interaction = get_nearest_interaction(get_parent());
-	for key in interactions:
-		interactions[key].unfocus.emit();
-	if nearest && enabled:
-		nearest.focus.emit();
-
 func _ready():
 	monitoring = true;
 	monitorable = true;
@@ -50,19 +43,22 @@ func _ready():
 
 func _on_body_entered(body):
 	var skip = ignore.has(body);
-	if !skip:
-		if body.has_node("Interaction"):
-			var interaction = body.get_node("Interaction");
-			if interaction is Interaction:
-				interactions[body] = interaction;
-				body.tree_exiting.connect(_on_body_exited.bind(body));
-		emit_interactions_signals();
+	if !skip && body.has_node("Interaction"):
+		var interaction = body.get_node("Interaction");
+		if interaction is Interaction:
+			var old_nearest : Interaction = get_nearest_interaction(get_parent());
+			interactions[body] = interaction;
+			body.tree_exiting.connect(_on_body_exited.bind(body));
+			var nearest : Interaction = get_nearest_interaction(get_parent());
+			print(old_nearest, " ", nearest);
+			if nearest == interaction && nearest:
+				nearest.add_focus();
+				if old_nearest: old_nearest.remove_focus();
 
 func _on_body_exited(body):
 	var skip = ignore.has(body);
-	if !skip:
-		if interactions.has(body) && !skip:
-			interactions[body].unfocus.emit();
-			body.tree_exiting.disconnect(_on_body_exited);
-			interactions.erase(body);
-		emit_interactions_signals();
+	if interactions.has(body) && !skip:
+		interactions[body].remove_focus();
+		body.tree_exiting.disconnect(_on_body_exited);
+		print(interactions[body]);
+		interactions.erase(body);
