@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://p3414nx00uw8"]
+
+[ext_resource type="Texture2D" uid="uid://cgiflqxlu77mo" path="res://assets/sprites/water_wel.png" id="1_ing7v"]
+[ext_resource type="Script" path="res://components/environment/WaterWell.gd" id="1_sfn7a"]
+[ext_resource type="Script" path="res://components/entities/Interaction.gd" id="2_5fwv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6a8q"]
+atlas = ExtResource("1_ing7v")
+region = Rect2(0, 50, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m2f7"]
+atlas = ExtResource("1_ing7v")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqdum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6a8q")
+}],
+"loop": true,
+"name": &"focused",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m2f7")
+}],
+"loop": true,
+"name": &"unfocused",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_of4ch"]
+height = 20.0
+
+[node name="WaterWell" type="StaticBody2D" node_paths=PackedStringArray("sprite", "interaction")]
+y_sort_enabled = true
+script = ExtResource("1_sfn7a")
+sprite = NodePath("Sprite")
+interaction = NodePath("Interaction")
+
+[node name="Interaction" type="Node" parent="."]
+script = ExtResource("2_5fwv5")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_xqdum")
+animation = &"unfocused"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_of4ch")
+
+[connection signal="focus" from="Interaction" to="." method="_on_interaction_focus"]
+[connection signal="unfocus" from="Interaction" to="." method="_on_interaction_unfocus"]

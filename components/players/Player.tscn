@@ -1061,6 +1061,8 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_5an6f")
 
 [node name="Actor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("8_ehu42")
 
 [node name="Collision" type="CollisionShape2D" parent="Actor"]
@@ -1094,8 +1096,8 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("5_k7h2w")
-animation = &"attack"
-frame = 5
+animation = &"dig"
+frame = 2
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]

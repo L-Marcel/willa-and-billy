@@ -5,6 +5,12 @@ extends Node
 var willa : Player;
 var billy : Player;
 
+signal resources_changed;
+var water : int = 0 :
+	set(value):
+		water = value;
+		resources_changed.emit();
+
 func _ready():
 	Game.reset.connect(reset);
 

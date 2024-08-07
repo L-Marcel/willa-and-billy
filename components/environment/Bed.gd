@@ -10,6 +10,7 @@ extends StaticBody2D
 var players : Array[Player] = [];
 
 func _ready():
+	sprite.play("unfocused");
 	interaction.registry(sleep);
 
 func update():

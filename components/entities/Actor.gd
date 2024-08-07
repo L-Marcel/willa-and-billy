@@ -5,6 +5,7 @@ extends Area2D
 var interactions : Dictionary;
 var enabled : bool = true;
 var ignore : Array[Node2D] = [];
+var target : Interaction;
 
 func get_nearest_interaction_body(node : Node2D):
 	var nearest : Node2D = null;
@@ -41,6 +42,13 @@ func _ready():
 	body_exited.connect(_on_body_exited);
 	ignore.append(get_parent());
 
+func _process(_delta):
+	var nearest : Interaction = get_nearest_interaction(get_parent());
+	if nearest != target:
+		if target: target.remove_focus();
+		if nearest: nearest.add_focus();
+		target = nearest;
+
 func _on_body_entered(body):
 	var skip = ignore.has(body);
 	if !skip && body.has_node("Interaction"):
@@ -50,15 +58,14 @@ func _on_body_entered(body):
 			interactions[body] = interaction;
 			body.tree_exiting.connect(_on_body_exited.bind(body));
 			var nearest : Interaction = get_nearest_interaction(get_parent());
-			print(old_nearest, " ", nearest);
 			if nearest == interaction && nearest:
-				nearest.add_focus();
 				if old_nearest: old_nearest.remove_focus();
+				nearest.add_focus();
+				target = nearest;
 
 func _on_body_exited(body):
 	var skip = ignore.has(body);
 	if interactions.has(body) && !skip:
 		interactions[body].remove_focus();
 		body.tree_exiting.disconnect(_on_body_exited);
-		print(interactions[body]);
 		interactions.erase(body);

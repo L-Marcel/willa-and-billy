@@ -1,17 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpkae5agechp8"]
+[gd_scene load_steps=8 format=3 uid="uid://bpkae5agechp8"]
 
 [ext_resource type="Script" path="res://components/interface/Hud.gd" id="1_u6win"]
 [ext_resource type="PackedScene" uid="uid://b1v58qfxxbw3r" path="res://components/interface/Bar.tscn" id="2_wlwd5"]
+[ext_resource type="Texture2D" uid="uid://7araw23t86p0" path="res://assets/sprites/drop.png" id="4_gdoga"]
 [ext_resource type="FontFile" uid="uid://dxsixc4mfm6gq" path="res://assets/font/PixeloidMono.ttf" id="6_gyx6s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_64qft"]
 font = ExtResource("6_gyx6s")
 font_size = 9
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar")]
+[sub_resource type="Gradient" id="Gradient_6l51h"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.115108, 0.971223, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.12, 0.12, 0.12, 0, 0, 0, 0, 0.486275, 0, 0, 0, 0.486275)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c03qh"]
+gradient = SubResource("Gradient_6l51h")
+height = 72
+fill_to = Vector2(0, 1)
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "water")]
 script = ExtResource("1_u6win")
 willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
 billy_bar = NodePath("Billy/Green/Head/Info/Bar")
+water = NodePath("Footer/Head/Water")
 
 [node name="Willa" type="MarginContainer" parent="."]
 offset_right = 157.0
@@ -50,11 +62,9 @@ width = 65.0
 height = 6.0
 
 [node name="Time" type="MarginContainer" parent="."]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_right = -40.0
 grow_horizontal = 0
 scale = Vector2(4, 4)
 theme_override_constants/margin_left = 4
@@ -110,3 +120,45 @@ custom_minimum_size = Vector2(65, 6)
 layout_mode = 2
 width = 65.0
 height = 6.0
+
+[node name="FooterGradient" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 72)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_c03qh")
+
+[node name="Footer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Head" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Footer/Head"]
+layout_mode = 2
+texture = ExtResource("4_gdoga")
+stretch_mode = 4
+
+[node name="Water" type="Label" parent="Footer/Head"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "x0"
+label_settings = SubResource("LabelSettings_64qft")

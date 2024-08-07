@@ -16,10 +16,10 @@ func emit_focus():
 	if focused > 0: focus.emit();
 	else: unfocus.emit();
 func remove_focus():
-	focused -= 1;
+	focused = clamp(focused - 1, 0, 2);
 	emit_focus();
 func add_focus():
-	focused += 1;
+	focused = clamp(focused + 1, 0, 2);
 	emit_focus();
 
 func is_possible():

@@ -1,0 +1,179 @@
+[gd_scene load_steps=17 format=3 uid="uid://dcyvvii2ca156"]
+
+[ext_resource type="Script" path="res://components/environment/Spot.gd" id="1_hothl"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="1_ipks8"]
+[ext_resource type="Texture2D" uid="uid://dugtobavwfxso" path="res://assets/sprites/spot.png" id="1_xijyv"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_1ucuv"]
+[ext_resource type="Script" path="res://components/entities/Interaction.gd" id="2_ahl32"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_p1x0s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_8hp16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1otoj"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 108, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5hlt"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq1ca"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 18, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d56h2"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 72, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbvg1"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 90, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb37d"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 36, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8otm"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 54, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4j8k4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1otoj")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5hlt")
+}],
+"loop": true,
+"name": &"initial",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq1ca")
+}],
+"loop": true,
+"name": &"initial_focused",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d56h2")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbvg1")
+}],
+"loop": true,
+"name": &"opened_focused",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb37d")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8otm")
+}],
+"loop": true,
+"name": &"opening_focused",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vb7f"]
+radius = 7.5
+
+[node name="Spot" type="StaticBody2D" node_paths=PackedStringArray("interaction", "sprite", "states", "left", "right")]
+z_index = -1
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_hothl")
+interaction = NodePath("Interaction")
+sprite = NodePath("Sprite")
+states = NodePath("StateMachine")
+left = NodePath("Left")
+right = NodePath("Right")
+
+[node name="Interaction" type="Node" parent="."]
+script = ExtResource("2_ahl32")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_ipks8")
+
+[node name="Root" type="Node" parent="StateMachine"]
+script = ExtResource("2_1ucuv")
+initial_state = NodePath("Initial")
+
+[node name="Initial" type="Node" parent="StateMachine/Root"]
+script = ExtResource("3_p1x0s")
+
+[node name="ToOpening" type="Node" parent="StateMachine/Root/Initial"]
+script = ExtResource("6_8hp16")
+to = NodePath("../../Opening")
+event = &"to_opening"
+delay_in_seconds = "0.0"
+
+[node name="Opening" type="Node" parent="StateMachine/Root"]
+script = ExtResource("3_p1x0s")
+
+[node name="ToOpened" type="Node" parent="StateMachine/Root/Opening"]
+script = ExtResource("6_8hp16")
+to = NodePath("../../Opened")
+event = &"to_opened"
+delay_in_seconds = "0.0"
+
+[node name="Opened" type="Node" parent="StateMachine/Root"]
+script = ExtResource("3_p1x0s")
+
+[node name="ToClosed" type="Node" parent="StateMachine/Root/Opened"]
+script = ExtResource("6_8hp16")
+to = NodePath("../../Closed")
+event = &"to_closed"
+delay_in_seconds = "0.0"
+
+[node name="Closed" type="Node" parent="StateMachine/Root"]
+script = ExtResource("3_p1x0s")
+
+[node name="ToInitial" type="Node" parent="StateMachine/Root/Closed"]
+script = ExtResource("6_8hp16")
+to = NodePath("../../Initial")
+event = &"to_initial"
+delay_in_seconds = "0.0"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4j8k4")
+animation = &"initial"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_0vb7f")
+
+[node name="Right" type="Marker2D" parent="."]
+position = Vector2(14, 0)
+
+[node name="Left" type="Marker2D" parent="."]
+position = Vector2(-14, 0)
+
+[connection signal="focus" from="Interaction" to="." method="_on_interaction_focus"]
+[connection signal="unfocus" from="Interaction" to="." method="_on_interaction_unfocus"]
+[connection signal="state_entered" from="StateMachine/Root/Initial" to="." method="_on_inital_state_entered"]
+[connection signal="state_entered" from="StateMachine/Root/Opening" to="." method="_on_opening_state_entered"]
+[connection signal="state_entered" from="StateMachine/Root/Opened" to="." method="_on_opened_state_entered"]
+[connection signal="state_entered" from="StateMachine/Root/Closed" to="." method="_on_closed_state_entered"]

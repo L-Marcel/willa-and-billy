@@ -51,9 +51,9 @@ func _process(_delta):
 		start();
 		get_tree().change_scene_to_file("res://Game.tscn");
 
-func flip(node : Node, value : bool):
+func flip(node : Node, left : bool):
 	if node is Node2D || node is Control:
-		if value:
+		if left:
 			node.scale.y = -abs(node.scale.y);
 			node.rotation_degrees = 180;
 		else:

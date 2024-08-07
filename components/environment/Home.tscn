@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://d1l2bql2u7e4n"]
+[gd_scene load_steps=5 format=4 uid="uid://d1l2bql2u7e4n"]
 
 [ext_resource type="TileSet" uid="uid://cjkp0e42yl357" path="res://resources/TileSet.tres" id="1_jidvx"]
 [ext_resource type="Script" path="res://components/environment/Home.gd" id="1_xgdfh"]
@@ -7,13 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2arj"]
 size = Vector2(98, 48)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_of4ch"]
-height = 20.0
-
-[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("ceils")]
+[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("layers")]
 y_sort_enabled = true
 script = ExtResource("1_xgdfh")
-ceils = [NodePath("Ceil"), NodePath("OverCeil")]
+layers = [NodePath("Ceil"), NodePath("OverCeil")]
 
 [node name="Zone" type="Area2D" parent="."]
 visible = false
@@ -38,7 +35,6 @@ tile_set = ExtResource("1_jidvx")
 
 [node name="Objects" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAP3/AAAoABMAAAAEAP7/AAAoABQAAAAEAP//AAAoABUAAAAFAP3/AAApABMAAAAFAP7/AAApABQAAAAFAP//AAApABUAAAA=")
 tile_set = ExtResource("1_jidvx")
 
 [node name="Walls" type="TileMapLayer" parent="."]
@@ -47,7 +43,6 @@ tile_map_data = PackedByteArray("AAAAAP//AAAFAAoAAAD+////AAAFAAoAAAABAP//AAAFAAo
 tile_set = ExtResource("1_jidvx")
 
 [node name="Ceil" type="TileMapLayer" parent="."]
-visible = false
 z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD8//v/AAAPAAkAAAD8//z/AAAPAAoAAAD8//3/AAAPAAsAAAD8//7/AAAPAAwAAAD9//v/AAAQAAkAAAD9//z/AAASAAoAAAD9//3/AAASAAoAAAD9//7/AAAQAAwAAAD9////AAAeAA8AAAACAPv/AAAQAAkAAAACAPz/AAASAAoAAAACAP3/AAASAAoAAAACAP7/AAAQAAwAAAACAP//AAAeAA8AAAADAPv/AAARAAkAAAADAPz/AAARAAoAAAADAP3/AAARAAsAAAADAP7/AAARAAwAAAADAP//AAAfAA8AAAD+//z/AAASAAoAAAD+//3/AAASAAoAAAD///z/AAASAAoAAAD///3/AAASAAoAAAAAAPz/AAASAAoAAAAAAP3/AAASAAoAAAABAPz/AAASAAoAAAABAP3/AAASAAoAAAD+//7/AAAQAAwAAAD+////AAAeAA8AAAD///7/AAAQAAwAAAAAAP7/AAAQAAwAAAABAP7/AAAQAAwAAAD+//v/AAAQAAkAAAD///v/AAAQAAkAAAAAAPv/AAAQAAkAAAABAPv/AAAQAAkAAAD/////AAAeAA8AAAAAAP//AAAeAA8AAAABAP//AAAeAA8AAAD8////AAAdAA8AAAA=")
@@ -67,12 +62,6 @@ tile_set = ExtResource("1_jidvx")
 [node name="WallsCollision" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(49, -41, 49, -9, 0, -9, 0, 0, 53, 0, 53, -57, -54, -57, -54, 0, -16, 0, -16, -9, -49, -9, -49, -37, -33, -48, -23.625, -48, 33, -48)
-
-[node name="WellCollision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(80, -17)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_of4ch")
 
 [connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
 [connection signal="body_exited" from="Zone" to="." method="_on_zone_body_exited"]
