@@ -19,9 +19,7 @@ func use(by : Node):
 		match states.get_state():
 			"initial":
 				states.send_event("to_opening");
-				var left_distance = by.global_position.distance_to(left.global_position);
-				var right_distance = by.global_position.distance_to(right.global_position);
-				if left_distance > right_distance: by.dig(self, right.global_position);
+				if Game.is_flipped(by): by.dig(self, right.global_position);
 				else: by.dig(self, left.global_position);
 
 func update_sprite():

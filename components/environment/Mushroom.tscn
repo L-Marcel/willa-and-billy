@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://px1dinkvqr2v"]
+
+[ext_resource type="Texture2D" uid="uid://b7l51aclwhcbn" path="res://assets/sprites/mushroom.png" id="1_cnkdl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h41kd"]
+radius = 6.0
+
+[node name="Mushroom" type="StaticBody2D"]
+disable_mode = 1
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_cnkdl")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h41kd")

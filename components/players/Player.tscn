@@ -21,7 +21,7 @@ height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0anfa"]
 radius = 5.0
-height = 24.0
+height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfktg"]
 radius = 8.0
@@ -1061,11 +1061,13 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_5an6f")
 
 [node name="Actor" type="Area2D" parent="."]
+position = Vector2(11, 0)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("8_ehu42")
 
 [node name="Collision" type="CollisionShape2D" parent="Actor"]
+position = Vector2(-11, 0)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_0anfa")
 debug_color = Color(0, 0.643161, 0.305056, 0.42)
