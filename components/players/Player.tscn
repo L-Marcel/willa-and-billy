@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://bxqvmnm521r0d" path="res://resources/Keyboard.tres" id="3_n0s5g"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_dmfve"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="4_jxjrl"]
-[ext_resource type="SpriteFrames" uid="uid://da1vp67jgjjob" path="res://resources/BillyFrames.tres" id="5_k7h2w"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_isjbp"]
 [ext_resource type="Script" path="res://components/entities/Actor.gd" id="8_ehu42"]
 [ext_resource type="Script" path="res://components/entities/Hurtbox.gd" id="9_4fn8f"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="10_y5764"]
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="11_oau4q"]
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="11_t4x74"]
+[ext_resource type="SpriteFrames" uid="uid://chlwjrh3q88cx" path="res://resources/WillaFrames.tres" id="14_ksjqj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5an6f"]
 radius = 2.0
@@ -1097,9 +1097,8 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
-sprite_frames = ExtResource("5_k7h2w")
-animation = &"dig"
-frame = 2
+sprite_frames = ExtResource("14_ksjqj")
+animation = &"attack"
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]

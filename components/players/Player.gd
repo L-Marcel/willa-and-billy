@@ -26,10 +26,8 @@ func _ready():
 func flip(left : bool):
 	Game.flip(self, left);
 
-func move(
-	run : bool = false, 
-	direction : Vector2 = Input.get_vector(control.left, control.right, control.up, control.down)
-) -> bool:
+func move(run : bool = false) -> bool:
+	var direction = Input.get_vector(control.left, control.right, control.up, control.down);
 	if direction:
 		velocity = direction * data.speed * (1.5 if run else 1.0);
 		flip(direction.x < 0);
@@ -45,10 +43,21 @@ func move(
 	else:
 		states.send_event("to_idle");
 		return false;
-func follow(at_position : Vector2 = move_to):
-	var movement = at_position - global_position;
-	move(false, movement.normalized() * min(movement.length(), 1));
-	
+func follow(delta : float, at_position : Vector2 = move_to):
+	var diference = at_position - global_position;
+	var run = Input.is_action_pressed(control.run);
+	var bonus = 1.5 if run else 1.0;
+	var direction = diference.normalized();
+	if direction:
+		velocity = direction * data.speed * bonus;
+		if diference.length() <= (velocity * delta).length():
+			velocity = (diference / delta) if delta != 0 else Vector2.ZERO;
+		flip(velocity.x < 0);
+		if run && sprite.animation != "run": sprite.play("run");
+		elif !run && sprite.animation != "walk": sprite.play("walk");
+	else:
+		velocity = Vector2.ZERO;
+		sprite.play("idle");
 func attack() -> bool:
 	if Input.is_action_pressed(control.attack):
 		states.send_event("to_attack");
@@ -116,7 +125,7 @@ func _on_run_state_processing(_delta):
 	move(true);
 func _on_attack_state_processing(_delta):
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
-	hitbox.disabled = sprite.frame != 5;
+	hitbox.disabled = sprite.frame != 6;
 	var finished = !sprite.is_playing();
 	if finished && !attack(): states.send_event("to_idle");
 	elif finished: sprite.play("attack");
@@ -126,14 +135,16 @@ func _on_watering_state_processing(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
 	pass;
 func _on_dig_state_processing(delta):
-	if !move_to.is_equal_approx(global_position):
-		follow();
+	if move_to != global_position:
+		follow(delta);
 		return;
 	elif sprite.animation != "dig" && spot:
+		velocity = Vector2.ZERO;
 		flip(spot.global_position.x < global_position.x);
 		sprite.play("dig");
-	
-	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
+	if spot && spot.states.get_state() == "initial" && sprite.frame == 4:
+		spot.states.send_event("to_opening");
+		return;
 	if spot && spot.states.get_state() == "opening" && sprite.frame == 7:
 		spot.progress += get_productivity() * 5 * delta;
 		if spot.progress == 1.0:

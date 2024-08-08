@@ -294,6 +294,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_w7igt")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_w7igt")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0pmk3")
 }, {
 "duration": 1.0,
@@ -335,6 +338,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_ma7ct")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ma7ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma7ct")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_84jle")
 }, {
 "duration": 1.0,
@@ -357,7 +366,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dig",
-"speed": 9.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -18,7 +18,6 @@ func use(by : Node):
 	if by is Player:
 		match states.get_state():
 			"initial":
-				states.send_event("to_opening");
 				if Game.is_flipped(by): by.dig(self, right.global_position);
 				else: by.dig(self, left.global_position);
 
