@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://7pduy73gychv"]
+[gd_scene load_steps=8 format=3 uid="uid://7pduy73gychv"]
 
 [ext_resource type="FontFile" uid="uid://lpgtbhgxnix8" path="res://assets/font/PixeloidSans-Bold.ttf" id="1_0roo2"]
 [ext_resource type="Script" path="res://globals/Game.gd" id="1_ffpfp"]
 [ext_resource type="FontFile" uid="uid://cxvjks6oj5ios" path="res://assets/font/PixeloidSans.ttf" id="2_3kfj7"]
+[ext_resource type="PackedScene" uid="uid://bpkae5agechp8" path="res://components/interface/Hud.tscn" id="2_p23xi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7ghc"]
 font = ExtResource("1_0roo2")
@@ -23,6 +24,11 @@ control = NodePath("Control")
 description_label = NodePath("Control/Margin/Center/Body/Description")
 tip_label = NodePath("Control/Margin/Center/Body/Tip")
 title_label = NodePath("Control/Margin/Center/Title")
+
+[node name="Hud" parent="." node_paths=PackedStringArray("willa_bar", "billy_bar", "water") instance=ExtResource("2_p23xi")]
+willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
+billy_bar = NodePath("Billy/Green/Head/Info/Bar")
+water = NodePath("Footer/Head/Water")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

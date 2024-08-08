@@ -5,6 +5,7 @@ extends Character
 @export var control : ControlData;
 @export var actor : Actor;
 @export var collisions : Array[CollisionShape2D];
+var productivity : float = 1.0;
 var action_progress : float = 0;
 var action : String = "";
 var move_to : Vector2;
@@ -22,6 +23,7 @@ func _ready():
 	else: 
 		health = Players.billy_health;
 		Players.billy = self;
+	Game.clock.stage_changed.connect(_on_stage_changed);
 	
 func flip(left : bool):
 	Game.flip(self, left);
@@ -66,13 +68,12 @@ func attack() -> bool:
 func interact():
 	if Input.is_action_just_pressed(control.interact):
 		actor.interact_with_nearest(self);
-func get_productivity():
-	return data.afternoon_productivity;
 	
 #region Actions
 func stop():
 	action_progress = 0;
 	action = "";
+	move_to = Vector2.ZERO;
 	spot = null;
 	states.send_event("stop");
 func sleep():
@@ -83,6 +84,7 @@ func collect_water():
 		states.send_event("to_doing");
 func dig(at : Spot, at_position : Vector2):
 	spot = at;
+	spot.opened.connect(_on_spot_opened);
 	move_to = at_position;
 	states.send_event("to_dig");
 #endregion
@@ -135,6 +137,7 @@ func _on_watering_state_processing(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
 	pass;
 func _on_dig_state_processing(delta):
+	interact();
 	if move_to != global_position:
 		follow(delta);
 		return;
@@ -146,15 +149,10 @@ func _on_dig_state_processing(delta):
 		spot.states.send_event("to_opening");
 		return;
 	if spot && spot.states.get_state() == "opening" && sprite.frame == 7:
-		spot.progress += get_productivity() * 5 * delta;
-		if spot.progress == 1.0:
-			spot.progress = 0;
-			spot.states.send_event("to_opened");
-			await sprite.animation_looped;
-			stop();
+		spot.progress += productivity * 5 * delta;
 func _on_doing_state_processing(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
-	action_progress += get_productivity() * 0.5 * delta;
+	action_progress += productivity * 0.5 * delta;
 	if action_progress >= 1.0:
 		action_progress -= 1.0;
 		match action:
@@ -165,3 +163,19 @@ func _on_doing_state_processing(delta):
 	interact();
 func _on_sleeping_state_processing(delta):
 	interact();
+
+func _on_stage_changed(stage : Clock.DayStage):
+	match stage:
+		Clock.DayStage.DAWN:
+			productivity = data.night_productivity;
+		Clock.DayStage.MORNING:
+			productivity = data.morning_productivity;
+		Clock.DayStage.AFTERNOON:
+			productivity = data.morning_productivity;
+		Clock.DayStage.EVENING:
+			productivity = data.night_productivity;
+		Clock.DayStage.NIGHT:
+			productivity = data.night_productivity;
+func _on_spot_opened():
+	await sprite.animation_looped;
+	stop();

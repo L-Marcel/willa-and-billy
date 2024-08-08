@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var tip_label : Label;
 @export var title_label : Label;
 var can_reset : bool = false;
+var clock : Clock = Clock.new();
 
 signal reset;
 

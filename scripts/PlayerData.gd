@@ -11,7 +11,6 @@ extends Resource
 @export var chance_of_losing_havest : float = 0.00;
 @export var sow_productivity : float = 1.0;
 @export var morning_productivity : float = 1.0;
-@export var afternoon_productivity : float = 1.0;
 @export var night_productivity : float = 1.0;
 @export var energy_drop : float = 1.0;
 @export var energy_gain : float = 1.0;

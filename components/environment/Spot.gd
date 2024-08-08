@@ -7,19 +7,29 @@ extends StaticBody2D
 @export var left : Marker2D;
 @export var right : Marker2D;
 
+signal opened;
+
 var progress : float = 0 :
 	set(value):
 		progress = clamp(value, 0, 1);
+		if progress == 1.0:
+			opened.emit();
+			progress = 0;
+			states.send_event("to_opened");
 
 func _ready():
 	interaction.registry(use);
 
 func use(by : Node):
-	if by is Player:
+	if by is Player && by.states.get_state() != "dig":
 		match states.get_state():
-			"initial":
+			"closed":
+				pass;
+			_:
 				if Game.is_flipped(by): by.dig(self, right.global_position);
 				else: by.dig(self, left.global_position);
+	elif by is Player:
+		by.stop();
 
 func update_sprite():
 	var state = states.get_state();

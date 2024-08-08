@@ -1,29 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpkae5agechp8"]
+[gd_scene load_steps=11 format=3 uid="uid://bpkae5agechp8"]
 
 [ext_resource type="Script" path="res://components/interface/Hud.gd" id="1_u6win"]
+[ext_resource type="Texture2D" uid="uid://hhjscotmuk5h" path="res://assets/sprites/moon.png" id="2_l07tq"]
 [ext_resource type="PackedScene" uid="uid://b1v58qfxxbw3r" path="res://components/interface/Bar.tscn" id="2_wlwd5"]
+[ext_resource type="Texture2D" uid="uid://caap2fue7fnbt" path="res://assets/sprites/footer.png" id="4_22wms"]
 [ext_resource type="Texture2D" uid="uid://7araw23t86p0" path="res://assets/sprites/drop.png" id="4_gdoga"]
+[ext_resource type="Texture2D" uid="uid://8d5rboun76cr" path="res://assets/sprites/sun.png" id="4_ic5en"]
+[ext_resource type="Texture2D" uid="uid://dqoo74te80on7" path="res://assets/sprites/dawn.png" id="4_ltjl1"]
+[ext_resource type="Texture2D" uid="uid://cxosexrkxr27r" path="res://assets/sprites/evening.png" id="5_kbocs"]
 [ext_resource type="FontFile" uid="uid://dxsixc4mfm6gq" path="res://assets/font/PixeloidMono.ttf" id="6_gyx6s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_64qft"]
 font = ExtResource("6_gyx6s")
 font_size = 9
 
-[sub_resource type="Gradient" id="Gradient_6l51h"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.115108, 0.971223, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.12, 0.12, 0.12, 0, 0, 0, 0, 0.486275, 0, 0, 0, 0.486275)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_c03qh"]
-gradient = SubResource("Gradient_6l51h")
-height = 72
-fill_to = Vector2(0, 1)
-
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "water")]
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "date", "time", "time_icon", "water")]
 script = ExtResource("1_u6win")
 willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
 billy_bar = NodePath("Billy/Green/Head/Info/Bar")
-water = NodePath("Footer/Head/Water")
+date = NodePath("FooterLeft/Info/Left/Calendar/Date")
+time = NodePath("FooterLeft/Info/Margin/Clock/Time")
+time_icon = NodePath("FooterLeft/Info/Margin/Clock/Icon")
+water = NodePath("")
+night = ExtResource("2_l07tq")
+dawn = ExtResource("4_ltjl1")
+day = ExtResource("4_ic5en")
+evening = ExtResource("5_kbocs")
 
 [node name="Willa" type="MarginContainer" parent="."]
 offset_right = 157.0
@@ -61,32 +63,6 @@ layout_mode = 2
 width = 65.0
 height = 6.0
 
-[node name="Time" type="MarginContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-grow_horizontal = 0
-scale = Vector2(4, 4)
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="Head" type="HBoxContainer" parent="Time"]
-layout_mode = 2
-theme_override_constants/separation = 1
-alignment = 1
-
-[node name="AmmoInfo" type="Label" parent="Time/Head"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "0x"
-label_settings = SubResource("LabelSettings_64qft")
-
-[node name="Icon" type="TextureRect" parent="Time/Head"]
-layout_mode = 2
-stretch_mode = 4
-
 [node name="Billy" type="MarginContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -122,23 +98,91 @@ width = 65.0
 height = 6.0
 
 [node name="FooterGradient" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(0, 72)
+custom_minimum_size = Vector2(0, 80)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -64.0
+offset_top = -120.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_c03qh")
+texture = ExtResource("4_22wms")
 
-[node name="Footer" type="MarginContainer" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="FooterRight" type="MarginContainer" parent="."]
+layout_direction = 3
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_bottom = -50.0
+offset_top = -19.0
+offset_right = 77.0
+grow_vertical = 0
+scale = Vector2(-4, 4)
+pivot_offset = Vector2(15, 19)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Center" type="HBoxContainer" parent="FooterRight"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Water2" type="HBoxContainer" parent="FooterRight/Center"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Water" type="Label" parent="FooterRight/Center/Water2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "x0"
+label_settings = SubResource("LabelSettings_64qft")
+
+[node name="Icon" type="TextureRect" parent="FooterRight/Center/Water2"]
+layout_mode = 2
+texture = ExtResource("4_gdoga")
+stretch_mode = 4
+
+[node name="Water3" type="HBoxContainer" parent="FooterRight/Center"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Water" type="Label" parent="FooterRight/Center/Water3"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "x0"
+label_settings = SubResource("LabelSettings_64qft")
+
+[node name="Icon" type="TextureRect" parent="FooterRight/Center/Water3"]
+layout_mode = 2
+texture = ExtResource("4_gdoga")
+stretch_mode = 4
+
+[node name="Water4" type="HBoxContainer" parent="FooterRight/Center"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Water" type="Label" parent="FooterRight/Center/Water4"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "x0"
+label_settings = SubResource("LabelSettings_64qft")
+
+[node name="Icon" type="TextureRect" parent="FooterRight/Center/Water4"]
+layout_mode = 2
+texture = ExtResource("4_gdoga")
+stretch_mode = 4
+
+[node name="FooterLeft" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -76.0
+offset_right = -864.0
+offset_bottom = -57.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(4, 4)
@@ -147,18 +191,44 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Head" type="HBoxContainer" parent="Footer"]
+[node name="Info" type="HBoxContainer" parent="FooterLeft"]
 layout_mode = 2
-theme_override_constants/separation = 1
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="Footer/Head"]
+[node name="Margin" type="MarginContainer" parent="FooterLeft/Info"]
 layout_mode = 2
-texture = ExtResource("4_gdoga")
+theme_override_constants/margin_top = -9
+theme_override_constants/margin_right = -54
+
+[node name="Clock" type="HBoxContainer" parent="FooterLeft/Info/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="FooterLeft/Info/Margin/Clock"]
+layout_mode = 2
+texture = ExtResource("4_ltjl1")
 stretch_mode = 4
 
-[node name="Water" type="Label" parent="Footer/Head"]
+[node name="Time" type="Label" parent="FooterLeft/Info/Margin/Clock"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 0
-text = "x0"
+text = "00:00"
 label_settings = SubResource("LabelSettings_64qft")
+
+[node name="Left" type="HBoxContainer" parent="FooterLeft/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Calendar" type="HBoxContainer" parent="FooterLeft/Info/Left"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Date" type="Label" parent="FooterLeft/Info/Left/Calendar"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "DIAS 01"
+label_settings = SubResource("LabelSettings_64qft")
+vertical_alignment = 1
