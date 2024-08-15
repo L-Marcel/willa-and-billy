@@ -20,15 +20,21 @@ font_size = 36
 [node name="Game" type="CanvasLayer" node_paths=PackedStringArray("control", "description_label", "tip_label", "title_label")]
 process_mode = 3
 script = ExtResource("1_ffpfp")
+clock_speed = 16.0
 control = NodePath("Control")
 description_label = NodePath("Control/Margin/Center/Body/Description")
 tip_label = NodePath("Control/Margin/Center/Body/Tip")
 title_label = NodePath("Control/Margin/Center/Title")
 
-[node name="Hud" parent="." node_paths=PackedStringArray("willa_bar", "billy_bar", "water") instance=ExtResource("2_p23xi")]
+[node name="Hud" parent="." node_paths=PackedStringArray("willa_bar", "billy_bar", "date", "time", "time_icon", "water", "seeds", "potatoes") instance=ExtResource("2_p23xi")]
 willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
 billy_bar = NodePath("Billy/Green/Head/Info/Bar")
-water = NodePath("Footer/Head/Water")
+date = NodePath("FooterLeft/Info/Left/Calendar/Date")
+time = NodePath("FooterLeft/Info/Margin/Clock/Time")
+time_icon = NodePath("FooterLeft/Info/Margin/Clock/Icon")
+water = NodePath("FooterRight/Center/Water/Water")
+seeds = NodePath("FooterRight/Center/Seeds/Seeds")
+potatoes = NodePath("FooterRight/Center/Potatoes/Potatoes")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

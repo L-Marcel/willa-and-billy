@@ -3,7 +3,7 @@ class_name World
 extends Node2D
 
 #region Editor
-var clock : Clock = Clock.new();
+var clock : Clock = Clock.new(1, 6);
 @export var clock_in_editor : bool = false;
 @export var clock_speed : float = 1.0;
 @export var time : String;
@@ -51,7 +51,7 @@ func _ready():
 	canvas_modulate.color = sky_color;
 func _process(delta):
 	if !Engine.is_editor_hint() || clock_in_editor:
-		clock.step(delta * clock_speed);
+		clock.step(delta * (clock_speed if !Engine.is_editor_hint() else Game.clock_speed));
 		day = clock.get_day_progress();
 		var current_time = clock.get_time_by_progress(day);
 		time = "%s : %s" % [current_time["hours"], current_time["minutes"]];
@@ -59,6 +59,8 @@ func _process(delta):
 		var current_time = clock.get_time_by_progress(day);
 		time = "%s : %s" % [current_time["hours"], current_time["minutes"]];
 		clock.reset();
+		clock.hours = 6;
+		clock.days = 1;
 		clock.hours = current_time["hours"];
 		clock.minutes = current_time["minutes"];
 		clock.step(0);

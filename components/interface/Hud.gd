@@ -7,6 +7,8 @@ extends CanvasLayer
 @export var time : Label;
 @export var time_icon : TextureRect;
 @export var water : Label;
+@export var seeds : Label;
+@export var potatoes : Label;
 
 @export var night : Texture;
 @export var dawn : Texture;
@@ -18,8 +20,9 @@ func _ready():
 	Players.billy_health.changed.connect(billy_bar.update);
 	Players.resources_changed.connect(_on_resources_changed);
 	Game.clock.stage_changed.connect(_on_stage_changed);
+	_on_resources_changed();
 
-func _process(delta):
+func _process(_delta):
 	time.text = "%02d:%02d" % [Game.clock.hours, Game.clock.minutes];
 	date.text = "DIA %02d" % [Game.clock.days];
 
@@ -35,3 +38,5 @@ func _on_stage_changed(stage : Clock.DayStage):
 			time_icon.texture = day;
 func _on_resources_changed():
 	water.text = "x" + str(Players.water);
+	seeds.text = "x" + str(Players.seeds);
+	potatoes.text = "x" + str(Players.potatoes);

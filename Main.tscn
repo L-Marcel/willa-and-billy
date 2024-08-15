@@ -21,13 +21,14 @@ ease = 2
 y_sort_enabled = true
 script = ExtResource("1_hufbt")
 clock_speed = 4.0
-time = "0 : 0"
-stage = 4
-sky_color = Color(0.411765, 0.309804, 0.384314, 1)
+time = "11 : 52"
+stage = 1
+day = 0.495
+sky_color = Color(0.780392, 0.862745, 0.815686, 1)
 
 [node name="Modulate" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
-color = Color(0.411797, 0.310306, 0.384626, 1)
+color = Color(0.780392, 0.862745, 0.815686, 1)
 
 [node name="Limits" type="StaticBody2D" parent="."]
 disable_mode = 1

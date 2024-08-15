@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcyvvii2ca156"]
+[gd_scene load_steps=19 format=3 uid="uid://dcyvvii2ca156"]
 
 [ext_resource type="Script" path="res://components/environment/Spot.gd" id="1_hothl"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="1_ipks8"]
@@ -11,6 +11,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_1otoj"]
 atlas = ExtResource("1_xijyv")
 region = Rect2(0, 108, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv6dm"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 126, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5hlt"]
 atlas = ExtResource("1_xijyv")
@@ -36,6 +40,10 @@ region = Rect2(0, 36, 16, 16)
 atlas = ExtResource("1_xijyv")
 region = Rect2(0, 54, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2pno"]
+atlas = ExtResource("1_xijyv")
+region = Rect2(0, 144, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4j8k4"]
 animations = [{
 "frames": [{
@@ -44,6 +52,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv6dm")
+}],
+"loop": true,
+"name": &"closed_focused",
 "speed": 5.0
 }, {
 "frames": [{
@@ -93,12 +109,20 @@ animations = [{
 "loop": true,
 "name": &"opening_focused",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2pno")
+}],
+"loop": true,
+"name": &"wet",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vb7f"]
 radius = 7.5
 
-[node name="Spot" type="StaticBody2D" node_paths=PackedStringArray("interaction", "sprite", "states", "left", "right")]
+[node name="Spot" type="StaticBody2D" node_paths=PackedStringArray("interaction", "sprite", "states", "left", "right", "center")]
 z_index = -1
 y_sort_enabled = true
 collision_layer = 2
@@ -109,6 +133,7 @@ sprite = NodePath("Sprite")
 states = NodePath("StateMachine")
 left = NodePath("Left")
 right = NodePath("Right")
+center = NodePath("Center")
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource("2_ahl32")
@@ -156,14 +181,32 @@ to = NodePath("../../Initial")
 event = &"to_initial"
 delay_in_seconds = "0.0"
 
+[node name="ToWet" type="Node" parent="StateMachine/Root/Closed"]
+script = ExtResource("6_8hp16")
+to = NodePath("../../Wet")
+event = &"to_wet"
+delay_in_seconds = "0.0"
+
+[node name="Wet" type="Node" parent="StateMachine/Root"]
+script = ExtResource("3_p1x0s")
+
+[node name="ToClosed" type="Node" parent="StateMachine/Root/Wet"]
+script = ExtResource("6_8hp16")
+to = NodePath("../../Closed")
+event = &"to_closed"
+delay_in_seconds = "0.0"
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4j8k4")
-animation = &"initial"
+animation = &"closed_focused"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_0vb7f")
+
+[node name="Center" type="Marker2D" parent="."]
+position = Vector2(0, -3)
 
 [node name="Right" type="Marker2D" parent="."]
 position = Vector2(14, 0)
@@ -177,3 +220,5 @@ position = Vector2(-14, 0)
 [connection signal="state_entered" from="StateMachine/Root/Opening" to="." method="_on_opening_state_entered"]
 [connection signal="state_entered" from="StateMachine/Root/Opened" to="." method="_on_opened_state_entered"]
 [connection signal="state_entered" from="StateMachine/Root/Closed" to="." method="_on_closed_state_entered"]
+[connection signal="state_entered" from="StateMachine/Root/Wet" to="." method="_on_wet_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Wet" to="." method="_on_wet_state_processing"]

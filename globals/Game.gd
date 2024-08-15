@@ -1,11 +1,13 @@
 extends CanvasLayer
 
+@export var clock_speed : float = 4.0;
 @export var control : Control;
 @export var description_label : Label;
 @export var tip_label : Label;
 @export var title_label : Label;
+
 var can_reset : bool = false;
-var clock : Clock = Clock.new();
+var clock : Clock = Clock.new(1, 6);
 
 signal reset;
 

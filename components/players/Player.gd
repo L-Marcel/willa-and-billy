@@ -68,6 +68,8 @@ func attack() -> bool:
 func interact():
 	if Input.is_action_just_pressed(control.interact):
 		actor.interact_with_nearest(self);
+		return true;
+	return false;
 	
 #region Actions
 func stop():
@@ -87,6 +89,10 @@ func dig(at : Spot, at_position : Vector2):
 	spot.opened.connect(_on_spot_opened);
 	move_to = at_position;
 	states.send_event("to_dig");
+func water_plants(at : Spot, at_position : Vector2):
+	spot = at;
+	move_to = at_position;
+	states.send_event("to_watering");
 #endregion
 
 func _physics_process(_delta):
@@ -103,7 +109,7 @@ func _on_attack_state_entered():
 func _on_hurt_state_entered():
 	sprite.play("hurt");
 func _on_watering_state_entered():
-	sprite.play("watering");
+	sprite.play("walk");
 func _on_dig_state_entered():
 	sprite.play("walk");
 func _on_doing_state_entered():
@@ -134,10 +140,19 @@ func _on_attack_state_processing(_delta):
 func _on_hurt_state_processing(delta):
 	pass;
 func _on_watering_state_processing(delta):
-	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
-	pass;
+	if interact(): return;
+	if move_to != global_position:
+		follow(delta);
+		return;
+	elif sprite.animation != "watering" && spot:
+		velocity = Vector2.ZERO;
+		flip(spot.global_position.x < global_position.x);
+		sprite.play("watering");
+	if spot && spot.states.get_state() == "closed" && sprite.frame == 4:
+		spot.states.send_event("to_wet");
+		stop();
 func _on_dig_state_processing(delta):
-	interact();
+	if interact(): return;
 	if move_to != global_position:
 		follow(delta);
 		return;

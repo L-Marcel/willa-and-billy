@@ -19,10 +19,14 @@ var stage : DayStage = DayStage.DAWN :
 			stage_changed.emit(stage);
 var seconds : float = 0;
 var minutes : int = 0;
-var hours : int = 6;
-var days : int = 1;
+var hours : int = 0;
+var days : int = 0;
 var years : int = 0;
 #endregion
+
+func _init(days : int = 0, hours : int = 0):
+	self.days = days;
+	self.hours = hours;
 
 func step(delta : float = 1.0):
 	seconds += 60 * delta;
@@ -67,7 +71,7 @@ func has_sun():
 func reset():
 	seconds = 0;
 	minutes = 0;
-	hours = 6;
+	hours = 0;
 	days = 0;
 	years = 0;
 #endregion

@@ -13,7 +13,6 @@ damage = 20.0
 chance_of_losing_havest = 0.0
 sow_productivity = 1.0
 morning_productivity = 1.0
-afternoon_productivity = 1.0
 night_productivity = 1.0
 energy_drop = 1.0
 energy_gain = 1.0

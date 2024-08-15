@@ -1005,16 +1005,16 @@ delay_in_seconds = "0.0"
 [node name="Watering" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
-[node name="ToIdle" type="Node" parent="StateMachine/Root/Watering"]
-script = ExtResource("7_isjbp")
-to = NodePath("../../Idle")
-event = &"to_idle"
-delay_in_seconds = "0.0"
-
 [node name="ToHurt" type="Node" parent="StateMachine/Root/Watering"]
 script = ExtResource("7_isjbp")
 to = NodePath("../../Hurt")
 event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="Stop" type="Node" parent="StateMachine/Root/Watering"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Idle")
+event = &"stop"
 delay_in_seconds = "0.0"
 
 [node name="Dig" type="Node" parent="StateMachine/Root"]
@@ -1098,7 +1098,7 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("14_ksjqj")
-animation = &"attack"
+animation = &"watering"
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]
