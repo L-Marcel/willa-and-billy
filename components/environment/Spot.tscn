@@ -134,7 +134,6 @@ states = NodePath("StateMachine")
 left = NodePath("Left")
 right = NodePath("Right")
 center = NodePath("Center")
-initial_grow_level = 1.0
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource("2_ahl32")
