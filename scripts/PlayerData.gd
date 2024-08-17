@@ -6,7 +6,7 @@ extends Resource
 
 @export_group("atributes")
 @export var speed : float = 300;
-@export var attack_speed : float = 1.4;
+@export var plant_speed : float = 1.0;
 @export var damage : float = 20.0;
 @export var chance_of_losing_havest : float = 0.00;
 @export var sow_productivity : float = 1.0;

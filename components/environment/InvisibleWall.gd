@@ -14,7 +14,7 @@ extends StaticBody2D
 		if collision:
 			collision.shape.size.x = width;
 
-func _ready():
+func _ready() -> void:
 	collision.shape = collision.shape.duplicate();
 	collision.shape.size.x = width;
 	collision.shape.size.y = height;

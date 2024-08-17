@@ -870,6 +870,12 @@ to = NodePath("../../Sleeping")
 event = &"to_sleeping"
 delay_in_seconds = "0.0"
 
+[node name="Kill" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
 [node name="Walk" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -919,6 +925,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_isjbp")
 to = NodePath("../../Sleeping")
 event = &"to_sleeping"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
 delay_in_seconds = "0.0"
 
 [node name="Run" type="Node" parent="StateMachine/Root"]
@@ -972,6 +984,12 @@ to = NodePath("../../Sleeping")
 event = &"to_sleeping"
 delay_in_seconds = "0.0"
 
+[node name="Kill" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
 [node name="Attack" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -985,6 +1003,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_isjbp")
 to = NodePath("../../Hurt")
 event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Attack"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
 delay_in_seconds = "0.0"
 
 [node name="Hurt" type="Node" parent="StateMachine/Root"]
@@ -1002,6 +1026,12 @@ to = NodePath("..")
 event = &"to_hurt"
 delay_in_seconds = "0.0"
 
+[node name="Kill" type="Node" parent="StateMachine/Root/Hurt"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
 [node name="Watering" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -1015,6 +1045,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("7_isjbp")
 to = NodePath("../../Idle")
 event = &"stop"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Watering"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
 delay_in_seconds = "0.0"
 
 [node name="Dig" type="Node" parent="StateMachine/Root"]
@@ -1032,6 +1068,12 @@ to = NodePath("../../Idle")
 event = &"stop"
 delay_in_seconds = "0.0"
 
+[node name="Kill" type="Node" parent="StateMachine/Root/Dig"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
 [node name="Doing" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -1047,6 +1089,12 @@ to = NodePath("../../Idle")
 event = &"stop"
 delay_in_seconds = "0.0"
 
+[node name="Kill" type="Node" parent="StateMachine/Root/Doing"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
 [node name="Sleeping" type="Node" parent="StateMachine/Root"]
 script = ExtResource("4_dmfve")
 
@@ -1055,6 +1103,15 @@ script = ExtResource("7_isjbp")
 to = NodePath("../../Idle")
 event = &"stop"
 delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Sleeping"]
+script = ExtResource("7_isjbp")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Death" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_dmfve")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 rotation = -1.5708
@@ -1098,7 +1155,7 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("14_ksjqj")
-animation = &"watering"
+animation = &"death"
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]
@@ -1115,7 +1172,9 @@ animation = &"watering"
 [connection signal="state_entered" from="StateMachine/Root/Dig" to="." method="_on_dig_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Dig" to="." method="_on_dig_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Doing" to="." method="_on_doing_state_entered"]
+[connection signal="state_exited" from="StateMachine/Root/Doing" to="." method="_on_doing_state_exited"]
 [connection signal="state_processing" from="StateMachine/Root/Doing" to="." method="_on_doing_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_entered"]
 [connection signal="state_exited" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_exited"]
 [connection signal="state_processing" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Death" to="." method="_on_death_state_entered"]

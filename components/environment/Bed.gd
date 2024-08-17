@@ -9,11 +9,11 @@ extends StaticBody2D
 
 var players : Array[Player] = [];
 
-func _ready():
+func _ready() -> void:
 	sprite.play("unfocused");
 	interaction.registry(sleep);
 
-func update():
+func update() -> void:
 	willa_icon.visible = false;
 	billy_icon.visible = false;
 	for player in players:
@@ -23,7 +23,7 @@ func update():
 		else:
 			billy_icon.visible = true;
 			player.global_position = billy_position.global_position;
-func sleep(by : Node):
+func sleep(by : Node) -> void:
 	if by is Player && by.states.get_state() != "sleeping":
 		players.append(by);
 		by.sleep();
@@ -38,7 +38,7 @@ func sleep(by : Node):
 		interaction.add_focus();
 	update();
 
-func _on_interaction_focus():
+func _on_interaction_focus() -> void:
 	sprite.play("focused");
-func _on_interaction_unfocus():
+func _on_interaction_unfocus() -> void:
 	sprite.play("unfocused");

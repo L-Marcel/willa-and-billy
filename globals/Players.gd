@@ -19,9 +19,9 @@ var potatoes : int = 0 :
 		potatoes = value;
 		resources_changed.emit();
 
-func _ready():
+func _ready() -> void:
 	Game.reset.connect(reset);
 
-func reset():
+func reset() -> void:
 	willa_health.reset();
 	billy_health.reset();

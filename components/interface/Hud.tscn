@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpkae5agechp8"]
+[gd_scene load_steps=15 format=3 uid="uid://bpkae5agechp8"]
 
 [ext_resource type="Script" path="res://components/interface/Hud.gd" id="1_u6win"]
 [ext_resource type="Texture2D" uid="uid://hhjscotmuk5h" path="res://assets/sprites/moon.png" id="2_l07tq"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://8d5rboun76cr" path="res://assets/sprites/sun.png" id="4_ic5en"]
 [ext_resource type="Texture2D" uid="uid://dqoo74te80on7" path="res://assets/sprites/dawn.png" id="4_ltjl1"]
 [ext_resource type="Texture2D" uid="uid://cxosexrkxr27r" path="res://assets/sprites/evening.png" id="5_kbocs"]
+[ext_resource type="Texture2D" uid="uid://cp5id3p3ynn0s" path="res://assets/sprites/willa_icon.png" id="6_0choy"]
 [ext_resource type="FontFile" uid="uid://dxsixc4mfm6gq" path="res://assets/font/PixeloidMono.ttf" id="6_gyx6s"]
+[ext_resource type="Texture2D" uid="uid://bm83m4npg23rd" path="res://assets/sprites/billy_icon.png" id="8_ywpxf"]
 [ext_resource type="Texture2D" uid="uid://dinwd5bslvnkk" path="res://assets/sprites/potato_seed_icon.png" id="10_b72wk"]
 [ext_resource type="Texture2D" uid="uid://bg71t453luea5" path="res://assets/sprites/potato_icon.png" id="11_n5xmd"]
 
@@ -55,17 +57,25 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+texture = ExtResource("6_0choy")
 stretch_mode = 2
 
 [node name="Info" type="VBoxContainer" parent="Willa/Header/Red/Head"]
 layout_mode = 2
 theme_override_constants/separation = 1
+alignment = 1
 
 [node name="Bar" parent="Willa/Header/Red/Head/Info" instance=ExtResource("2_wlwd5")]
 custom_minimum_size = Vector2(65, 6)
 layout_mode = 2
+gradient = true
 width = 65.0
 height = 6.0
+border_color = Color(1, 1, 1, 1)
+back_color = Color(0.75, 0.75, 0.75, 1)
+fake_color = Color(1, 1, 1, 1)
+value_color = Color(0.564706, 0.74902, 0.364706, 1)
+initial_color = Color(0.14902, 0.333333, 0.196078, 1)
 
 [node name="Billy" type="MarginContainer" parent="."]
 anchors_preset = 1
@@ -88,18 +98,24 @@ size_flags_horizontal = 0
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+texture = ExtResource("8_ywpxf")
 stretch_mode = 2
-flip_h = true
 
 [node name="Info" type="VBoxContainer" parent="Billy/Green/Head"]
 layout_mode = 2
 theme_override_constants/separation = 1
+alignment = 1
 
 [node name="Bar" parent="Billy/Green/Head/Info" instance=ExtResource("2_wlwd5")]
 custom_minimum_size = Vector2(65, 6)
 layout_mode = 2
 width = 65.0
 height = 6.0
+border_color = Color(1, 1, 1, 1)
+back_color = Color(0.74902, 0.74902, 0.74902, 1)
+fake_color = Color(1, 1, 1, 1)
+value_color = Color(0.564706, 0.74902, 0.364706, 1)
+initial_color = Color(0.14902, 0.333333, 0.196078, 1)
 
 [node name="FooterGradient" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 80)

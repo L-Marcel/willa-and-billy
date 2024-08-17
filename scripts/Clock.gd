@@ -24,11 +24,11 @@ var days : int = 0;
 var years : int = 0;
 #endregion
 
-func _init(days : int = 0, hours : int = 0):
-	self.days = days;
-	self.hours = hours;
+func _init(_days : int = 0, _hours : int = 0) -> void:
+	days = _days;
+	hours = _hours;
 
-func step(delta : float = 1.0):
+func step(delta : float = 1.0) -> void:
 	seconds += 60 * delta;
 	minutes += int(seconds / 60.0);
 	seconds = fmod(seconds, 60.0);
@@ -53,11 +53,11 @@ func step(delta : float = 1.0):
 	days = days % 365;
 
 #region Getters
-func get_day_progress():
+func get_day_progress() -> float:
 	return (hours + minutes/60.0) / 24.0;
-func get_progress_at(_minutes : int, _hours : int = 0):
+func get_progress_at(_minutes : int, _hours : int = 0) -> float:
 	return (_hours + _minutes/60.0) / 24.0;
-func get_time_by_progress(progress : float):
+func get_time_by_progress(progress : float) -> Dictionary:
 	var _hours : int = floor(24.0 * progress);
 	var _minutes : int = floor(60.0 * ((24.0 * progress) - _hours));
 	return {
@@ -66,9 +66,9 @@ func get_time_by_progress(progress : float):
 	};
 #endregion
 #region Other
-func has_sun():
+func has_sun() -> bool:
 	return ![DayStage.EVENING, DayStage.NIGHT].has(stage);
-func reset():
+func reset() -> void:
 	seconds = 0;
 	minutes = 0;
 	hours = 0;
@@ -76,5 +76,5 @@ func reset():
 	years = 0;
 #endregion
 
-func _to_string():
+func _to_string() -> String:
 	return "%s : %s : %s : %s : %f " % [years, days, hours, minutes, seconds];

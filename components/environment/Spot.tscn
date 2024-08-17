@@ -134,6 +134,7 @@ states = NodePath("StateMachine")
 left = NodePath("Left")
 right = NodePath("Right")
 center = NodePath("Center")
+initial_grow_level = 1.0
 
 [node name="Interaction" type="Node" parent="."]
 script = ExtResource("2_ahl32")
@@ -201,7 +202,6 @@ sprite_frames = SubResource("SpriteFrames_4j8k4")
 animation = &"closed_focused"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_0vb7f")
 

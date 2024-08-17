@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://chpv0hg3aqggr"]
+[gd_scene load_steps=21 format=3 uid="uid://chpv0hg3aqggr"]
 
 [ext_resource type="Texture2D" uid="uid://cnoi7aau8a28g" path="res://assets/sprites/potato.png" id="1_3f5cq"]
 [ext_resource type="Script" path="res://components/environment/Potato.gd" id="1_qxj1g"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="3_c3dme"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="4_5a1wm"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="5_nutmx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jos86"]
 atlas = ExtResource("1_3f5cq")
@@ -54,11 +57,77 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Potato" type="Node2D" node_paths=PackedStringArray("sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_j1w5u"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnvc2"]
+radius = 3.0
+
+[sub_resource type="Resource" id="Resource_ocfog"]
+script = ExtResource("4_5a1wm")
+position = Vector2(0, 2)
+disabled = false
+shape = SubResource("CircleShape2D_vnvc2")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqd1p"]
+radius = 3.0
+
+[sub_resource type="Resource" id="Resource_hi85n"]
+script = ExtResource("4_5a1wm")
+position = Vector2(0.5, 2)
+disabled = false
+shape = SubResource("CircleShape2D_uqd1p")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4s2x"]
+radius = 3.0
+
+[sub_resource type="Resource" id="Resource_iinia"]
+script = ExtResource("4_5a1wm")
+position = Vector2(0, 2)
+disabled = false
+shape = SubResource("CircleShape2D_d4s2x")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcu51"]
+radius = 4.0
+
+[sub_resource type="Resource" id="Resource_af5tu"]
+script = ExtResource("4_5a1wm")
+position = Vector2(0, 2)
+disabled = false
+shape = SubResource("CircleShape2D_gcu51")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_linua"]
+script = ExtResource("5_nutmx")
+data = {
+"1": [SubResource("Resource_ocfog")],
+"2": [SubResource("Resource_hi85n")],
+"3": [SubResource("Resource_iinia")],
+"4": [SubResource("Resource_af5tu")]
+}
+
+[node name="Potato" type="StaticBody2D" node_paths=PackedStringArray("sprite", "collision")]
 script = ExtResource("1_qxj1g")
 sprite = NodePath("Sprite")
+collision = NodePath("Collision")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-z_index = 5
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_akmt4")
 animation = &"1"
+offset = Vector2(0, 4)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_j1w5u")
+
+[node name="AnimatedCollision" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("3_c3dme")
+animated_sprite = NodePath("../Sprite")
+collision_shape = NodePath("../Collision")
+shape_frames = SubResource("Resource_linua")

@@ -11,7 +11,7 @@ var clock : Clock = Clock.new(1, 6);
 
 signal reset;
 
-func game_over(description : String, type : int = 0):
+func game_over(description : String, type : int = 0) -> void:
 	if !control.visible:
 		get_tree().paused = true;
 		match type:
@@ -35,14 +35,14 @@ func game_over(description : String, type : int = 0):
 		tween.tween_property(tip_label, "modulate", Color.WHITE, 0.5).set_delay(1.5);
 		tween.play();
 		can_reset = true;
-func start():
+func start() -> void:
 	tip_label.modulate.a = 0.0;
 	control.visible = false;
 	get_tree().paused = false;
-func _ready():
+func _ready() -> void:
 	start();
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if !control.visible:
 		pass;
 		#game_over("O alarme tocou! Os dados se perderam...", true);
@@ -54,7 +54,7 @@ func _process(_delta):
 		start();
 		get_tree().change_scene_to_file("res://Game.tscn");
 
-func flip(node : Node, left : bool):
+func flip(node : Node, left : bool) -> void:
 	if node is Node2D || node is Control:
 		if left:
 			node.scale.y = -abs(node.scale.y);
@@ -62,7 +62,7 @@ func flip(node : Node, left : bool):
 		else:
 			node.scale.y = abs(node.scale.y);
 			node.rotation_degrees = 0;
-func is_flipped(node : Node):
+func is_flipped(node : Node) -> bool:
 	if node is Node2D:
 		return node.scale.y < 0 && abs(node.rotation_degrees) == 180;
 	else:

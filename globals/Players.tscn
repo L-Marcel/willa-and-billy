@@ -10,14 +10,6 @@ billy_health = NodePath("BillyEnergy")
 
 [node name="WillaEnergy" type="Node" parent="."]
 script = ExtResource("1_it2b8")
-_total = 12.0
-_limit = 12.0
-_base = 16.0
-_invencible_duration = 0.5
 
 [node name="BillyEnergy" type="Node" parent="."]
 script = ExtResource("1_it2b8")
-_total = 24.0
-_limit = 24.0
-_base = 16.0
-_invencible_duration = 0.5

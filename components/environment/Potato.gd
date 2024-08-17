@@ -1,19 +1,17 @@
 class_name Potato
-extends Node2D
+extends StaticBody2D
 
 @export var sprite : AnimatedSprite2D;
+@export var collision : CollisionShape2D;
+
 var progress : float = 0.0 :
 	set(value):
-		progress = value;
-		if progress >= 0.25 && !visible:
-			visible = true;
-		elif progress >= 0.5 && int(str(sprite.animation)) < 2:
-			sprite.play("2");
-		elif progress >= 0.75 && int(str(sprite.animation)) < 3:
-			sprite.play("3");
-		elif progress >= 1.0 && int(str(sprite.animation)) < 4:
-			sprite.play("4");
+		progress = min(value, 1.0);
+		if progress >= 0.25 && !visible: visible = true;
+		if int(str(sprite.animation)) < int(progress * 4):
+			sprite.play(str(int(progress * 4)));
 
-func _ready():
+func _ready() -> void:
+	collision.shape = collision.shape.duplicate(true);
 	sprite.play("1");
 	visible = false;

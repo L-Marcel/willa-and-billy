@@ -28,7 +28,7 @@ window/size/mode=3
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/goutte.animated_shape_2d/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/goutte.animated_shape_2d/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [input]
 

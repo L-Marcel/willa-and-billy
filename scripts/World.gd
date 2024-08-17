@@ -18,14 +18,14 @@ var clock : Clock = Clock.new(1, 6);
 var day_colors = [
 	Color.html("#2e222f"),
 	Color.html("#694f62"),
-	Color.html("#7f708a"),
-	Color.html("#9babb2"),
-	Color.html("#c7dcd0"),
+	Color.html("#bfbfbf"),
+	Color.html("#cccccc"),
+	Color.html("#cccccc"),
 	Color.html("#ffffff")
 ];
 #endregion
 
-func update_sky_color():
+func update_sky_color() -> Color:
 	if day < clock.get_progress_at(0,6):
 		sky_color = day_colors[1];
 	elif day < clock.get_progress_at(0,9):
@@ -44,19 +44,19 @@ func update_sky_color():
 		sky_color = day_colors[0];
 	return sky_color;
 
-func _ready():
+func _ready() -> void:
 	if !Engine.is_editor_hint():
 		clock = Game.clock;
 	update_sky_color();
 	canvas_modulate.color = sky_color;
-func _process(delta):
+func _process(delta) -> void:
 	if !Engine.is_editor_hint() || clock_in_editor:
 		clock.step(delta * (clock_speed if !Engine.is_editor_hint() else Game.clock_speed));
 		day = clock.get_day_progress();
-		var current_time = clock.get_time_by_progress(day);
+		var current_time : Dictionary = clock.get_time_by_progress(day);
 		time = "%s : %s" % [current_time["hours"], current_time["minutes"]];
 	elif Engine.is_editor_hint() && !clock_in_editor:
-		var current_time = clock.get_time_by_progress(day);
+		var current_time : Dictionary = clock.get_time_by_progress(day);
 		time = "%s : %s" % [current_time["hours"], current_time["minutes"]];
 		clock.reset();
 		clock.hours = 6;

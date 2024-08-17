@@ -11,7 +11,7 @@ var action : String = "";
 var move_to : Vector2;
 var spot : Spot;
 
-func _ready():
+func _ready() -> void:
 	sprite.sprite_frames = data.sprite_frames;
 	damage = data.damage;
 	damage_reduction = data.energy_drop_on_damage;
@@ -23,19 +23,19 @@ func _ready():
 	else: 
 		health = Players.billy_health;
 		Players.billy = self;
+	health.death.connect(_on_death);
 	Game.clock.stage_changed.connect(_on_stage_changed);
 	
-func flip(left : bool):
+func flip(left : bool)  -> void:
 	Game.flip(self, left);
-
 func move(run : bool = false) -> bool:
-	var direction = Input.get_vector(control.left, control.right, control.up, control.down);
+	var direction : Vector2 = Input.get_vector(control.left, control.right, control.up, control.down);
 	if direction:
 		velocity = direction * data.speed * (1.5 if run else 1.0);
 		flip(direction.x < 0);
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, data.speed);
-	var in_movement = velocity != Vector2.ZERO;
+	var in_movement : bool = velocity != Vector2.ZERO;
 	if in_movement && Input.is_action_pressed(control.run):
 		states.send_event("to_run");
 		return true;
@@ -45,11 +45,11 @@ func move(run : bool = false) -> bool:
 	else:
 		states.send_event("to_idle");
 		return false;
-func follow(delta : float, at_position : Vector2 = move_to):
-	var diference = at_position - global_position;
-	var run = Input.is_action_pressed(control.run);
-	var bonus = 1.5 if run else 1.0;
-	var direction = diference.normalized();
+func follow(delta : float, at_position : Vector2 = move_to) -> void:
+	var diference : Vector2 = at_position - global_position;
+	var run : bool = Input.is_action_pressed(control.run);
+	var bonus : float = 1.5 if run else 1.0;
+	var direction : Vector2 = diference.normalized();
 	if direction:
 		velocity = direction * data.speed * bonus;
 		if diference.length() <= (velocity * delta).length():
@@ -65,81 +65,104 @@ func attack() -> bool:
 		states.send_event("to_attack");
 		return true;
 	return false;
-func interact():
+func interact() -> bool:
 	if Input.is_action_just_pressed(control.interact):
 		actor.interact_with_nearest(self);
 		return true;
 	return false;
 	
 #region Actions
-func stop():
+func stop(death : bool = false) -> void:
 	action_progress = 0;
 	action = "";
 	move_to = Vector2.ZERO;
 	spot = null;
-	states.send_event("stop");
-func sleep():
+	states.send_event("kill" if death else "stop");
+func sleep() -> void:
 	states.send_event("to_sleeping");
-func collect_water():
+func collect_water() -> void:
 	if Players.water < 10:
 		action = "water";
+		move_to = global_position;
 		states.send_event("to_doing");
-func dig(at : Spot, at_position : Vector2):
+func plant(at : Spot, at_position : Vector2) -> void:
 	spot = at;
-	spot.opened.connect(_on_spot_opened);
+	move_to = at_position;
+	action = "plant";
+	states.send_event("to_doing");
+func haverst(at : Spot, at_position : Vector2) -> void:
+	spot = at;
+	move_to = at_position;
+	action = "haverst";
+	states.send_event("to_doing");
+func dig(at : Spot, at_position : Vector2) -> void:
+	spot = at;
+	if !spot.opened.is_connected(_on_spot_opened):
+		spot.opened.connect(_on_spot_opened);
 	move_to = at_position;
 	states.send_event("to_dig");
-func water_plants(at : Spot, at_position : Vector2):
+func water_plants(at : Spot, at_position : Vector2) -> void:
 	spot = at;
 	move_to = at_position;
 	states.send_event("to_watering");
 #endregion
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	move_and_slide();
+func _process(delta) -> void:
+	if visible: health.hurt(Game.clock_speed * data.energy_drop * (delta / 48.0));
 
-func _on_idle_state_entered():
+func _on_idle_state_entered() -> void:
 	sprite.play("idle");
-func _on_walk_state_entered():
+func _on_walk_state_entered() -> void:
 	sprite.play("walk");
-func _on_run_state_entered():
+func _on_run_state_entered() -> void:
 	sprite.play("run");
-func _on_attack_state_entered():
+func _on_attack_state_entered() -> void:
 	sprite.play("attack");
-func _on_hurt_state_entered():
+	health.hurt(1);
+func _on_hurt_state_entered() -> void:
 	sprite.play("hurt");
-func _on_watering_state_entered():
+func _on_watering_state_entered() -> void:
 	sprite.play("walk");
-func _on_dig_state_entered():
+	health.hurt(1);
+func _on_dig_state_entered() -> void:
 	sprite.play("walk");
-func _on_doing_state_entered():
-	sprite.play("doing");
-func _on_sleeping_state_entered():
+func _on_doing_state_entered() -> void:
+	sprite.play("walk");
+func _on_doing_state_exited() -> void:
+	sprite.speed_scale = 1.0;
+func _on_sleeping_state_entered() -> void:
 	visible = false;
-func _on_sleeping_state_exited():
+func _on_sleeping_state_exited() -> void:
 	visible = true;
+func _on_death_state_entered() -> void:
+	velocity = Vector2.ZERO;
+	sprite.play("death");
 
-func _on_idle_state_processing(_delta):
+func _on_idle_state_processing(_delta) -> void:
 	if attack(): return;
 	interact();
 	move();
-func _on_walk_state_processing(_delta):
+func _on_walk_state_processing(_delta) -> void:
 	if attack(): return;
 	interact();
 	move();
-func _on_run_state_processing(_delta):
+func _on_run_state_processing(_delta) -> void:
 	if attack(): return;
 	interact();
 	move(true);
-func _on_attack_state_processing(_delta):
+func _on_attack_state_processing(_delta) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
 	hitbox.disabled = sprite.frame != 6;
-	var finished = !sprite.is_playing();
+	var finished : bool = !sprite.is_playing();
 	if finished && !attack(): states.send_event("to_idle");
-	elif finished: sprite.play("attack");
-func _on_hurt_state_processing(delta):
+	elif finished: 
+		sprite.play("attack");
+		health.hurt(1);
+func _on_hurt_state_processing(_delta) -> void:
 	pass;
-func _on_watering_state_processing(delta):
+func _on_watering_state_processing(delta) -> void:
 	if interact(): return;
 	if move_to != global_position:
 		follow(delta);
@@ -148,10 +171,11 @@ func _on_watering_state_processing(delta):
 		velocity = Vector2.ZERO;
 		flip(spot.global_position.x < global_position.x);
 		sprite.play("watering");
+		Players.water = max(0, Players.water - 1);
 	if spot && spot.states.get_state() == "closed" && sprite.frame == 4:
 		spot.states.send_event("to_wet");
 		stop();
-func _on_dig_state_processing(delta):
+func _on_dig_state_processing(delta) -> void:
 	if interact(): return;
 	if move_to != global_position:
 		follow(delta);
@@ -165,21 +189,51 @@ func _on_dig_state_processing(delta):
 		return;
 	if spot && spot.states.get_state() == "opening" && sprite.frame == 7:
 		spot.progress += productivity * 5 * delta;
-func _on_doing_state_processing(delta):
-	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
-	action_progress += productivity * 0.5 * delta;
+		health.hurt(1 * delta);
+func _on_doing_state_processing(delta) -> void:
+	if interact(): return;
+	if move_to != global_position:
+		follow(delta);
+		return;
+	elif sprite.animation != "doing":
+		velocity = Vector2.ZERO;
+		sprite.play("doing");
+		match action:
+			"plant":
+				flip(spot.global_position.x < global_position.x);
+				sprite.speed_scale = data.plant_speed;
+			_:
+				sprite.speed_scale = 1.0;
+	action_progress += productivity * 0.5 * delta * sprite.speed_scale;
 	if action_progress >= 1.0:
 		action_progress -= 1.0;
 		match action:
 			"water":
+				health.hurt(1);
 				Players.water = clamp(Players.water + 1, 0, 10);
 				if Players.water >= 10:
 					stop();
+			"plant":
+				if !spot || spot.potato: return;
+				Players.seeds = max(0, Players.seeds - 1);
+				health.hurt(1);
+				spot.plant();
+				stop();
+			"haverst":
+				health.hurt(1);
+				if spot && spot.potato:
+					spot.haverst();
+					if randf_range(0, 1) >= data.chance_of_losing_havest:
+						Players.potatoes += 1;
+						Players.seeds += randi_range(1, 2);
+					else:
+						Players.seeds += randi_range(0, 1);
+				stop();
+func _on_sleeping_state_processing(delta) -> void:
 	interact();
-func _on_sleeping_state_processing(delta):
-	interact();
+	health.heal(Game.clock_speed * data.energy_gain * (delta / 19.2));
 
-func _on_stage_changed(stage : Clock.DayStage):
+func _on_stage_changed(stage : Clock.DayStage) -> void:
 	match stage:
 		Clock.DayStage.DAWN:
 			productivity = data.night_productivity;
@@ -191,6 +245,8 @@ func _on_stage_changed(stage : Clock.DayStage):
 			productivity = data.night_productivity;
 		Clock.DayStage.NIGHT:
 			productivity = data.night_productivity;
-func _on_spot_opened():
+func _on_spot_opened() -> void:
 	await sprite.animation_looped;
 	stop();
+func _on_death() -> void:
+	stop(true);

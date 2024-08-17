@@ -7,7 +7,7 @@ extends Area2D
 		health = value;
 		update_configuration_warnings();
 
-func _get_configuration_warnings():
+func _get_configuration_warnings() -> PackedStringArray:
 	var errors : Array[String] = [];
 	
 	if !health:

@@ -46,38 +46,33 @@ extends MarginContainer
 var fake_value : float = 0;
 var can_update_fake_value : bool = false;
 
-func update(value : float, limit : float, base : float):
+func update(value : float, limit : float, base : float) -> void:
 	current_value_limit = limit;
 	current_value = value;
 	base_value = base;
 
-func _update_colors():
+func _update_colors() -> void:
 	if is_node_ready():
 		border_rect.modulate = border_color;
 		back_rect.color = back_color;
 		fake_rect.color = fake_color;
 		value_rect.color = value_color;
-func _ready():
+func _ready() -> void:
 	_update_colors();
 
-func start_fake_delay():
-	if is_inside_tree():
-		await get_tree().create_timer(0.5).timeout;
+func start_fake_delay() -> void:
+	if is_inside_tree(): await get_tree().create_timer(0.5).timeout;
 	can_update_fake_value = true;
 
-func _process(delta):
+func _process(delta) -> void:
 	if can_update_fake_value:
 		fake_value = clamp(fake_value, 0, current_value_limit);
 		fake_value = lerp(fake_value, current_value, fake_change_speed * delta);
 		if fake_value == current_value:
 			can_update_fake_value = false;
 			start_fake_delay();
-
-	if current_value_limit <= 0 || disabled:
-		hide();
-	else:
-		show();
-
+	if current_value_limit <= 0 || disabled: hide();
+	else: show();
 	custom_minimum_size.y = height * content_scale;
 	custom_minimum_size.x = (2 + ((width - 2) * (current_value_limit/base_value))) * content_scale;
 	value_rect.custom_minimum_size.x = (width - 2) * (current_value/base_value);
