@@ -1,0 +1,51 @@
+[gd_resource type="AudioStreamInteractive" load_steps=5 format=3 uid="uid://155y7s1dk5d5"]
+
+[ext_resource type="AudioStream" uid="uid://dcjo64cvi7x17" path="res://assets/sounds/Default.mp3" id="1_c288r"]
+[ext_resource type="AudioStream" uid="uid://el8e2wbhb2vk" path="res://assets/sounds/Action.mp3" id="2_hn7po"]
+[ext_resource type="AudioStream" uid="uid://bihhc7kum1ekt" path="res://assets/sounds/Fail.mp3" id="3_2udk0"]
+[ext_resource type="AudioStream" uid="uid://xcosbhvwxeix" path="res://assets/sounds/Death.mp3" id="4_tae2f"]
+
+[resource]
+clip_count = 4
+clip_0/name = &"Default"
+clip_0/stream = ExtResource("1_c288r")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
+clip_1/name = &"Action"
+clip_1/stream = ExtResource("2_hn7po")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1
+clip_2/name = &"Fail"
+clip_2/stream = ExtResource("3_2udk0")
+clip_2/auto_advance = 2
+clip_3/name = &"Death"
+clip_3/stream = ExtResource("4_tae2f")
+clip_3/auto_advance = 2
+_transitions = {
+Vector2i(0, -1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"filler_clip": 0,
+"from_time": 1,
+"to_time": 1,
+"use_filler_clip": true
+},
+Vector2i(1, -1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 5,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 2
+}
+}

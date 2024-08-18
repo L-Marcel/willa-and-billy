@@ -1,9 +1,73 @@
-[gd_scene load_steps=8 format=3 uid="uid://7pduy73gychv"]
+[gd_scene load_steps=14 format=3 uid="uid://7pduy73gychv"]
 
 [ext_resource type="FontFile" uid="uid://lpgtbhgxnix8" path="res://assets/font/PixeloidSans-Bold.ttf" id="1_0roo2"]
 [ext_resource type="Script" path="res://globals/Game.gd" id="1_ffpfp"]
 [ext_resource type="FontFile" uid="uid://cxvjks6oj5ios" path="res://assets/font/PixeloidSans.ttf" id="2_3kfj7"]
+[ext_resource type="AudioStream" uid="uid://ddmmtp6kyilmv" path="res://assets/sounds/effects/nature/Dawn.wav" id="2_8q15w"]
+[ext_resource type="AudioStream" uid="uid://155y7s1dk5d5" path="res://resources/Music.tres" id="2_jk2hh"]
 [ext_resource type="PackedScene" uid="uid://bpkae5agechp8" path="res://components/interface/Hud.tscn" id="2_p23xi"]
+[ext_resource type="Script" path="res://scripts/AudioPlayer.gd" id="3_jd2s8"]
+[ext_resource type="AudioStream" uid="uid://dfdyx32ejaa54" path="res://assets/sounds/effects/nature/Morning.wav" id="3_oblxd"]
+[ext_resource type="AudioStream" uid="uid://dq5jrbhmmgq37" path="res://assets/sounds/effects/nature/Night.wav" id="4_4ubef"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ahygu"]
+clip_count = 3
+clip_0/name = &"Dawn"
+clip_0/stream = ExtResource("2_8q15w")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
+clip_1/name = &"Morning"
+clip_1/stream = ExtResource("3_oblxd")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1
+clip_2/name = &"Night"
+clip_2/stream = ExtResource("4_4ubef")
+clip_2/auto_advance = 1
+clip_2/next_clip = 2
+_transitions = {
+Vector2i(0, 0): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(1, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 2): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(2, 0): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(2, 1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(2, 2): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7ghc"]
 font = ExtResource("1_0roo2")
@@ -17,7 +81,7 @@ font_size = 36
 font = ExtResource("2_3kfj7")
 font_size = 36
 
-[node name="Game" type="CanvasLayer" node_paths=PackedStringArray("control", "description_label", "tip_label", "title_label")]
+[node name="Game" type="CanvasLayer" node_paths=PackedStringArray("control", "description_label", "tip_label", "title_label", "nature", "music")]
 process_mode = 3
 script = ExtResource("1_ffpfp")
 clock_speed = 16.0
@@ -25,6 +89,20 @@ control = NodePath("Control")
 description_label = NodePath("Control/Margin/Center/Body/Description")
 tip_label = NodePath("Control/Margin/Center/Body/Tip")
 title_label = NodePath("Control/Margin/Center/Title")
+nature = NodePath("Nature")
+music = NodePath("Music")
+
+[node name="Nature" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_ahygu")
+volume_db = 10.0
+autoplay = true
+script = ExtResource("3_jd2s8")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jk2hh")
+volume_db = -5.0
+autoplay = true
+script = ExtResource("3_jd2s8")
 
 [node name="Hud" parent="." instance=ExtResource("2_p23xi")]
 

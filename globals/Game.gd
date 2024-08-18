@@ -5,6 +5,8 @@ extends CanvasLayer
 @export var description_label : Label;
 @export var tip_label : Label;
 @export var title_label : Label;
+@export var nature : AudioPlayer;
+@export var music : AudioPlayer;
 
 var can_reset : bool = false;
 var clock : Clock = Clock.new(1, 6);
@@ -18,9 +20,11 @@ func game_over(description : String, type : int = 0) -> void:
 			0:
 				tip_label.text = "Apertem Enter ou Select para tentar novamente ou F8 para fechar o jogo.";
 				title_label.text = "Tragédia";
+				music.switch_to("Death");
 			1:
 				tip_label.text = "Apertem Enter ou Select para jogar novamente ou F8 para fechar o jogo.";
 				title_label.text = "Fracasso";
+				music.switch_to("Fail");
 		description_label.modulate.a = 0.0;
 		tip_label.modulate.a = 0.0;
 		control.modulate.a = 0.0;
@@ -36,9 +40,10 @@ func start() -> void:
 	tip_label.modulate.a = 0.0;
 	control.visible = false;
 	get_tree().paused = false;
+	music.switch_to("Default");
 func _ready() -> void:
+	clock.stage_changed.connect(_on_stage_changed);
 	start();
-
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("close"):
 		get_tree().quit();
@@ -47,7 +52,19 @@ func _process(_delta) -> void:
 		reset.emit();
 		start();
 		get_tree().change_scene_to_file("res://Main.tscn");
-
+func _on_stage_changed(stage : Clock.DayStage) -> void:
+	match stage:
+		Clock.DayStage.DAWN:
+			nature.switch_to("Dawn");
+		Clock.DayStage.MORNING:
+			nature.switch_to("Morning");
+		Clock.DayStage.AFTERNOON:
+			nature.switch_to("Morning");
+		Clock.DayStage.EVENING:
+			nature.switch_to("Night");
+		Clock.DayStage.NIGHT:
+			nature.switch_to("Night");
+	
 func flip(node : Node, left : bool) -> void:
 	if node is Node2D || node is Control:
 		if left:

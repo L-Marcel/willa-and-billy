@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 android/
+assets/sounds/effects/Essentials_Series_NOX_SOUND
+assets/sprites/characters
+assets/sprites/elements
+assets/sprites/ui
