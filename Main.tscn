@@ -20,7 +20,6 @@ ease = 2
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_hufbt")
-clock_speed = 4.0
 time = "7 : 4"
 stage = 1
 day = 0.295
@@ -56,12 +55,12 @@ tile_set = ExtResource("1_mdvhw")
 position = Vector2(280, 144)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets")]
-position = Vector2(345, 246.545)
+position = Vector2(345, 192)
 script = ExtResource("3_udjtv")
 follow_mode = 3
 follow_target = NodePath("../Billy")
 follow_targets = [NodePath("../Billy"), NodePath("../Willa")]
-zoom = Vector2(1.1, 1.1)
+zoom = Vector2(1.49438, 1.49438)
 tween_resource = SubResource("Resource_1b16i")
 follow_damping = true
 auto_zoom = true
@@ -76,8 +75,8 @@ limit_bottom = 608
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(345, 246.545)
-zoom = Vector2(1.1, 1.1)
+position = Vector2(345, 192)
+zoom = Vector2(1.49438, 1.49438)
 limit_left = -288
 limit_top = -48
 limit_right = 880

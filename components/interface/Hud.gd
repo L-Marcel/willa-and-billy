@@ -7,8 +7,8 @@ extends CanvasLayer
 @export var time : Label;
 @export var time_icon : TextureRect;
 @export var water : Label;
-@export var seeds : Label;
 @export var potatoes : Label;
+@export var sprouts : Label;
 
 @export var night : Texture;
 @export var dawn : Texture;
@@ -38,5 +38,5 @@ func _on_stage_changed(stage : Clock.DayStage) -> void:
 			time_icon.texture = day;
 func _on_resources_changed() -> void:
 	water.text = "x" + str(Players.water);
-	seeds.text = "x" + str(Players.seeds);
 	potatoes.text = "x" + str(Players.potatoes);
+	sprouts.text = "x" + str(Players.sprouts);

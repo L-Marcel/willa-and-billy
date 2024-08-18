@@ -16,14 +16,11 @@ func game_over(description : String, type : int = 0) -> void:
 		get_tree().paused = true;
 		match type:
 			0:
-				tip_label.text = "Apertem Enter ou Select para tentar novamente";
-				title_label.text = "Fracasso";
+				tip_label.text = "Apertem Enter ou Select para tentar novamente ou F8 para fechar o jogo.";
+				title_label.text = "Tragédia";
 			1:
-				tip_label.text = "Apertem Enter ou Select para tentar novamente";
-				title_label.text = "Fracasso";
-			2:
 				tip_label.text = "Apertem Enter ou Select para jogar novamente ou F8 para fechar o jogo.";
-				title_label.text = "Vitória";
+				title_label.text = "Fracasso";
 		description_label.modulate.a = 0.0;
 		tip_label.modulate.a = 0.0;
 		control.modulate.a = 0.0;
@@ -43,16 +40,13 @@ func _ready() -> void:
 	start();
 
 func _process(_delta) -> void:
-	if !control.visible:
-		pass;
-		#game_over("O alarme tocou! Os dados se perderam...", true);
 	if Input.is_action_just_pressed("close"):
 		get_tree().quit();
 	if Input.is_action_just_pressed("start") && tip_label.modulate.a >= 0.25 && can_reset:
 		can_reset = false;
 		reset.emit();
 		start();
-		get_tree().change_scene_to_file("res://Game.tscn");
+		get_tree().change_scene_to_file("res://Main.tscn");
 
 func flip(node : Node, left : bool) -> void:
 	if node is Node2D || node is Control:

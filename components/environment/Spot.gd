@@ -27,6 +27,7 @@ func _ready() -> void:
 
 func haverst() -> void:
 	if potato:
+		Players.sprouts = max(Players.sprouts -1, 0);
 		potato.queue_free();
 		potato = null;
 		states.send_event("to_initial");
@@ -43,7 +44,7 @@ func use(by : Node) -> void:
 	if by is Player && !by.states.get_state() in ["dig", "doing", "watering"]:
 		match states.get_state():
 			"opened":
-				if Players.seeds > 0:
+				if Players.potatoes > 0:
 					if Game.is_flipped(by): by.plant(self, right.global_position);
 					else: by.plant(self, left.global_position);
 			"closed":

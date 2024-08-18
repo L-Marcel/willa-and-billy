@@ -11,14 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://cp5id3p3ynn0s" path="res://assets/sprites/willa_icon.png" id="6_0choy"]
 [ext_resource type="FontFile" uid="uid://dxsixc4mfm6gq" path="res://assets/font/PixeloidMono.ttf" id="6_gyx6s"]
 [ext_resource type="Texture2D" uid="uid://bm83m4npg23rd" path="res://assets/sprites/billy_icon.png" id="8_ywpxf"]
-[ext_resource type="Texture2D" uid="uid://dinwd5bslvnkk" path="res://assets/sprites/potato_seed_icon.png" id="10_b72wk"]
 [ext_resource type="Texture2D" uid="uid://bg71t453luea5" path="res://assets/sprites/potato_icon.png" id="11_n5xmd"]
+[ext_resource type="Texture2D" uid="uid://bo5uip781l83i" path="res://assets/sprites/potato_sprout_icon.png" id="13_o3on1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_64qft"]
 font = ExtResource("6_gyx6s")
 font_size = 9
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "date", "time", "time_icon", "water", "seeds", "potatoes")]
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "date", "time", "time_icon", "water", "potatoes", "sprouts")]
 script = ExtResource("1_u6win")
 willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
 billy_bar = NodePath("Billy/Green/Head/Info/Bar")
@@ -26,8 +26,8 @@ date = NodePath("FooterLeft/Info/Left/Calendar/Date")
 time = NodePath("FooterLeft/Info/Margin/Clock/Time")
 time_icon = NodePath("FooterLeft/Info/Margin/Clock/Icon")
 water = NodePath("FooterRight/Center/Water/Water")
-seeds = NodePath("FooterRight/Center/Seeds/Seeds")
 potatoes = NodePath("FooterRight/Center/Potatoes/Potatoes")
+sprouts = NodePath("FooterRight/Center/Sprouts/Sprouts")
 night = ExtResource("2_l07tq")
 dawn = ExtResource("4_ltjl1")
 day = ExtResource("4_ic5en")
@@ -167,22 +167,22 @@ size_flags_vertical = 4
 texture = ExtResource("4_gdoga")
 stretch_mode = 4
 
-[node name="Seeds" type="HBoxContainer" parent="FooterRight/Center"]
+[node name="Sprouts" type="HBoxContainer" parent="FooterRight/Center"]
 layout_mode = 2
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="Seeds" type="Label" parent="FooterRight/Center/Seeds"]
+[node name="Sprouts" type="Label" parent="FooterRight/Center/Sprouts"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "x0"
 label_settings = SubResource("LabelSettings_64qft")
 
-[node name="Icon" type="TextureRect" parent="FooterRight/Center/Seeds"]
+[node name="Icon" type="TextureRect" parent="FooterRight/Center/Sprouts"]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("10_b72wk")
-stretch_mode = 2
+texture = ExtResource("13_o3on1")
+stretch_mode = 4
 
 [node name="Potatoes" type="HBoxContainer" parent="FooterRight/Center"]
 layout_mode = 2

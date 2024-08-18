@@ -16,6 +16,7 @@ func _ready() -> void:
 func update() -> void:
 	willa_icon.visible = false;
 	billy_icon.visible = false;
+	Engine.time_scale = 20.0 if players.size() == 2 else 1.0;
 	for player in players:
 		if player.data.name == "Willa":
 			willa_icon.visible = true;

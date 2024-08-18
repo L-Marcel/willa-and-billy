@@ -139,6 +139,9 @@ func _on_sleeping_state_exited() -> void:
 func _on_death_state_entered() -> void:
 	velocity = Vector2.ZERO;
 	sprite.play("death");
+	await sprite.animation_finished;
+	if data.name == "Willa": Game.game_over("Willa não sobreviveu...");
+	else: Game.game_over("Billy não sobreviveu...");
 
 func _on_idle_state_processing(_delta) -> void:
 	if attack(): return;
@@ -215,19 +218,17 @@ func _on_doing_state_processing(delta) -> void:
 					stop();
 			"plant":
 				if !spot || spot.potato: return;
-				Players.seeds = max(0, Players.seeds - 1);
+				Players.sprouts += 1;
+				Players.potatoes = max(0, Players.potatoes - 1);
 				health.hurt(1);
 				spot.plant();
 				stop();
 			"haverst":
 				health.hurt(1);
 				if spot && spot.potato:
-					spot.haverst();
 					if randf_range(0, 1) >= data.chance_of_losing_havest:
-						Players.potatoes += 1;
-						Players.seeds += randi_range(1, 2);
-					else:
-						Players.seeds += randi_range(0, 1);
+						Players.potatoes += randi_range(2, 3);
+					spot.haverst();
 				stop();
 func _on_sleeping_state_processing(delta) -> void:
 	interact();
