@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2arj"]
 size = Vector2(98, 48)
 
-[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("layers")]
+[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("layers") groups=["obstacle"]]
 y_sort_enabled = true
 script = ExtResource("1_xgdfh")
 layers = [NodePath("Ceil"), NodePath("OverCeil")]
@@ -19,14 +19,8 @@ visible = false
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_b2arj")
 
-[node name="Bed" parent="." node_paths=PackedStringArray("sprite", "interaction", "willa_icon", "billy_icon", "willa_position", "billy_position") instance=ExtResource("2_wvqwu")]
+[node name="Bed" parent="." instance=ExtResource("2_wvqwu")]
 position = Vector2(-40, -37)
-sprite = NodePath("Sprite")
-interaction = NodePath("Interaction")
-willa_icon = NodePath("Control/HBoxContainer/Willa")
-billy_icon = NodePath("Control/HBoxContainer/Billy")
-willa_position = NodePath("WillaPoint")
-billy_position = NodePath("BillyPoint")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -60,7 +54,6 @@ tile_map_data = PackedByteArray("AAABAP//AAAOAA0AAAA=")
 tile_set = ExtResource("1_jidvx")
 
 [node name="WallsCollision" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(49, -41, 49, -9, 0, -9, 0, 0, 53, 0, 53, -57, -54, -57, -54, 0, -16, 0, -16, -9, -49, -9, -49, -37, -33, -48, -23.625, -48, 33, -48)
 
 [connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]

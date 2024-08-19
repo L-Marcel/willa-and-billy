@@ -1,0 +1,307 @@
+[gd_scene load_steps=16 format=3 uid="uid://da4m0wmi55aq5"]
+
+[ext_resource type="Script" path="res://components/entities/Goblin.gd" id="1_fhvpw"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_23vbu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_7oqxv"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_elhb1"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_5hfq8"]
+[ext_resource type="Script" path="res://components/entities/Health.gd" id="6_06wgq"]
+[ext_resource type="Script" path="res://components/entities/Actor.gd" id="7_0twv4"]
+[ext_resource type="Script" path="res://components/entities/Hurtbox.gd" id="8_4fpv8"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="9_6pji5"]
+[ext_resource type="Resource" uid="uid://rebgjts2t0u" path="res://resources/GlobinShapeFrames.tres" id="10_l46ph"]
+[ext_resource type="Script" path="res://components/entities/Hitbox.gd" id="11_ixrl6"]
+[ext_resource type="SpriteFrames" uid="uid://8j80lp4vgolq" path="res://resources/GoblinFrames.tres" id="12_0d47t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sd4l0"]
+radius = 2.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqqko"]
+radius = 5.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_geqx6"]
+radius = 8.0
+height = 20.0
+
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "sprite", "states", "health", "hurtbox", "hitbox", "collisions", "actor") groups=["obstacle"]]
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_fhvpw")
+navigation = NodePath("Navigation")
+sprite = NodePath("Sprite")
+states = NodePath("StateMachine")
+health = NodePath("Health")
+hurtbox = NodePath("Hurtbox")
+hitbox = NodePath("Hitbox")
+collisions = [NodePath("Collision"), NodePath("Actor/Collision"), NodePath("Hurtbox/Collision")]
+actor = NodePath("Actor")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_23vbu")
+
+[node name="Root" type="Node" parent="StateMachine"]
+script = ExtResource("3_7oqxv")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="ToWalk" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Walk")
+event = &"to_walk"
+delay_in_seconds = "0.0"
+
+[node name="ToRun" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Run")
+event = &"to_run"
+delay_in_seconds = "0.0"
+
+[node name="ToAttack" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Attack")
+event = &"to_attack"
+delay_in_seconds = "0.0"
+
+[node name="ToHurt" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Hurt")
+event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="ToDoing" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Doing")
+event = &"to_doing"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Idle"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Walk" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="ToIdle" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Idle")
+event = &"to_idle"
+delay_in_seconds = "0.0"
+
+[node name="ToRun" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Run")
+event = &"to_run"
+delay_in_seconds = "0.0"
+
+[node name="ToAttack" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Attack")
+event = &"to_attack"
+delay_in_seconds = "0.0"
+
+[node name="ToHurt" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Hurt")
+event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="ToDoing" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Doing")
+event = &"to_doing"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Walk"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Run" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="ToIdle" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Idle")
+event = &"to_idle"
+delay_in_seconds = "0.0"
+
+[node name="ToWalk" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Walk")
+event = &"to_walk"
+delay_in_seconds = "0.0"
+
+[node name="ToAttack" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Attack")
+event = &"to_attack"
+delay_in_seconds = "0.0"
+
+[node name="ToHurt" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Hurt")
+event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="ToDoing" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Doing")
+event = &"to_doing"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Run"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Attack" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="ToIdle" type="Node" parent="StateMachine/Root/Attack"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Idle")
+event = &"to_idle"
+delay_in_seconds = "0.0"
+
+[node name="ToHurt" type="Node" parent="StateMachine/Root/Attack"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Hurt")
+event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Attack"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Hurt" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="ToIdle" type="Node" parent="StateMachine/Root/Hurt"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Idle")
+event = &"to_idle"
+delay_in_seconds = "0.0"
+
+[node name="ToHurt" type="Node" parent="StateMachine/Root/Hurt"]
+script = ExtResource("5_5hfq8")
+to = NodePath("..")
+event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Hurt"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Doing" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="ToHurt" type="Node" parent="StateMachine/Root/Doing"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Hurt")
+event = &"to_hurt"
+delay_in_seconds = "0.0"
+
+[node name="Stop" type="Node" parent="StateMachine/Root/Doing"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Idle")
+event = &"stop"
+delay_in_seconds = "0.0"
+
+[node name="Kill" type="Node" parent="StateMachine/Root/Doing"]
+script = ExtResource("5_5hfq8")
+to = NodePath("../../Death")
+event = &"kill"
+delay_in_seconds = "0.0"
+
+[node name="Death" type="Node" parent="StateMachine/Root"]
+script = ExtResource("4_elhb1")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("6_06wgq")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_sd4l0")
+
+[node name="Actor" type="Area2D" parent="."]
+position = Vector2(11, 0)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("7_0twv4")
+
+[node name="Collision" type="CollisionShape2D" parent="Actor"]
+position = Vector2(-11, 0)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_tqqko")
+debug_color = Color(0, 0.643161, 0.305056, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+position = Vector2(0, -9)
+script = ExtResource("8_4fpv8")
+health = NodePath("../Health")
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_geqx6")
+debug_color = Color(0, 0.628329, 0.493411, 0.42)
+
+[node name="AnimatedHurtbox" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("9_6pji5")
+animated_sprite = NodePath("../Sprite")
+collision_shape = NodePath("../Hurtbox/Collision")
+shape_frames = ExtResource("10_l46ph")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
+visible = false
+script = ExtResource("11_ixrl6")
+character = NodePath("..")
+disabled = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 27, 2)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("12_0d47t")
+animation = &"walk"
+
+[node name="Obstacle" type="NavigationObstacle2D" parent="."]
+radius = 7.0
+vertices = PackedVector2Array(0, -5, -10, -5, -14, 0, -9, 5, 0, 5, 10, 5, 14, 0, 10, -5)
+affect_navigation_mesh = true
+
+[node name="Navigation" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+simplify_path = true
+simplify_epsilon = 1.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.913725, 0.619608, 1)
+debug_path_custom_point_size = 2.0
+debug_path_custom_line_width = 1.0
+
+[connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Walk" to="." method="_on_walk_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Walk" to="." method="_on_walk_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Run" to="." method="_on_run_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Run" to="." method="_on_run_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Attack" to="." method="_on_attack_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Attack" to="." method="_on_attack_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Hurt" to="." method="_on_hurt_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Hurt" to="." method="_on_hurt_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Doing" to="." method="_on_doing_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Doing" to="." method="_on_doing_state_processing"]
+[connection signal="state_entered" from="StateMachine/Root/Death" to="." method="_on_death_state_entered"]
+[connection signal="death" from="Health" to="." method="_on_death"]

@@ -3,20 +3,15 @@ extends Character
 
 @export var data : PlayerData;
 @export var control : ControlData;
-@export var actor : Actor;
-@export var collisions : Array[CollisionShape2D];
+
 var productivity : float = 1.0;
-var action_progress : float = 0;
-var action : String = "";
 var move_to : Vector2;
-var spot : Spot;
 
 func _ready() -> void:
+	super._ready();
 	sprite.sprite_frames = data.sprite_frames;
 	damage = data.damage;
 	damage_reduction = data.energy_drop_on_damage;
-	for collision in collisions:
-		collision.shape = collision.shape.duplicate(true);
 	if data.name == "Willa": 
 		health = Players.willa_health;
 		Players.willa = self;
@@ -26,8 +21,6 @@ func _ready() -> void:
 	health.death.connect(_on_death);
 	Game.clock.stage_changed.connect(_on_stage_changed);
 	
-func flip(left : bool)  -> void:
-	Game.flip(self, left);
 func move(run : bool = false) -> bool:
 	var direction : Vector2 = Input.get_vector(control.left, control.right, control.up, control.down);
 	if direction:

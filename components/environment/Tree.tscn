@@ -6,7 +6,7 @@
 radius = 6.0
 height = 14.0
 
-[node name="Tree" type="StaticBody2D"]
+[node name="Tree" type="StaticBody2D" groups=["obstacle"]]
 process_mode = 4
 y_sort_enabled = true
 disable_mode = 1

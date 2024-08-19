@@ -1,0 +1,920 @@
+[gd_resource type="Resource" script_class="ShapeFrames2D" load_steps=167 format=3 uid="uid://rebgjts2t0u"]
+
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frame_2d.gd" id="1_j0wrf"]
+[ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/shape_frames_2d.gd" id="2_663m3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pikdl"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_jldju"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_pikdl")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j6s01"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_3y8j2"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_j6s01")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4sa4"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_iquhd"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_x4sa4")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_813yq"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_mccn3"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-2, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_813yq")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_543kv"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_ay1yr"]
+script = ExtResource("1_j0wrf")
+position = Vector2(1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_543kv")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjsf3"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_c7cgb"]
+script = ExtResource("1_j0wrf")
+position = Vector2(1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_jjsf3")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cuv84"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_jwsyb"]
+script = ExtResource("1_j0wrf")
+position = Vector2(1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_cuv84")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ba76"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_pg5jv"]
+script = ExtResource("1_j0wrf")
+position = Vector2(2, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_5ba76")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xory8"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_dpy2j"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_xory8")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3muk"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_h6gmj"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_v3muk")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2scro"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_hakyf"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_2scro")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b67xe"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_1svto"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_b67xe")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gboi3"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_0drit"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_gboi3")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qc3q3"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_vjykd"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_qc3q3")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jnkqg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_r2pa5"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_jnkqg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkor5"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_wwvao"]
+script = ExtResource("1_j0wrf")
+position = Vector2(1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_rkor5")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ec6ao"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_wlvlx"]
+script = ExtResource("1_j0wrf")
+position = Vector2(1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_ec6ao")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2xgc"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_f2u67"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_g2xgc")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_86403"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_1v00t"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_86403")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e7cmf"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_n86b7"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_e7cmf")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mqkxc"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_20oa1"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_mqkxc")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cikec"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_8dcw8"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_cikec")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnj6a"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_b4pfe"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_lnj6a")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8e7jl"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_e4tul"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_8e7jl")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yo2sq"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_8tuh4"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_yo2sq")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l70l4"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_1yjq4"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_l70l4")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1kfk"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_bshap"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_e1kfk")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkk4j"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_e6lw8"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_qkk4j")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhlp7"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_hmk86"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_hhlp7")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnhne"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_1e7h8"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_nnhne")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8peh6"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_swmo7"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_8peh6")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u2tyw"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_jk54b"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_u2tyw")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_orkvw"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_0wht2"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_orkvw")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgmjq"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_jkodv"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_fgmjq")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tma6e"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_28lt4"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_tma6e")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oa8tp"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_prvbe"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_oa8tp")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnuja"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_ktolt"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-1, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_rnuja")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h83p8"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_p7k8u"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-2, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_h83p8")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lsk70"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_qyj5x"]
+script = ExtResource("1_j0wrf")
+position = Vector2(-2, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_lsk70")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3r56x"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_3pv7y"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_3r56x")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpfen"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_dto8s"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_tpfen")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vdehx"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_phnlw"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_vdehx")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta0r4"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_rpogy"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_ta0r4")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iokrg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_4ms0c"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_iokrg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhp8n"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_bnuae"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_hhp8n")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvyds"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_fpyv3"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_dvyds")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fysx"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_syipq"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_7fysx")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knwft"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_rbhva"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_knwft")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c1m5m"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_gw4jp"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_c1m5m")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br2if"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_8m2fh"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_br2if")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2vaqx"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_gs04f"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_2vaqx")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlp5g"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_ng51a"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_vlp5g")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k8vv6"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_rf86c"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_k8vv6")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iwyyx"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_sgssx"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_iwyyx")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgyg7"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_p3wfv"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_hgyg7")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a8teq"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_gvchk"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, -2)
+disabled = false
+shape = SubResource("CapsuleShape2D_a8teq")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yldnk"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_4rn3h"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_yldnk")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pngaw"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_rww74"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_pngaw")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbh2p"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_fxtu3"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, -1)
+disabled = false
+shape = SubResource("CapsuleShape2D_xbh2p")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atyxg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_crra7"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, -2)
+disabled = false
+shape = SubResource("CapsuleShape2D_atyxg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1j0fv"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_v0fub"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_1j0fv")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0dna"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_wvsdf"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_p0dna")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hvnd"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_2xorf"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_5hvnd")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7qi0r"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_se7aa"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_7qi0r")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_saljm"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_tmn37"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 1)
+disabled = false
+shape = SubResource("CapsuleShape2D_saljm")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7hn0"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_0dl8y"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_v7hn0")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txbns"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_e2vaj"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_txbns")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0oirl"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_66t5p"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_0oirl")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qkyps"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_1phcf"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_qkyps")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t7jo8"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_3ac7i"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_t7jo8")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_csw1d"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_2h5rr"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_csw1d")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8k343"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_0y6vu"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_8k343")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hije"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_436g3"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_4hije")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnphg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_bdi07"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_hnphg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewafg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_8jqwo"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_ewafg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bt3f"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_6cln2"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_5bt3f")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q15fg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_syniy"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_q15fg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnw4h"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_flamg"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_cnw4h")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3ux4"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_yktts"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_j3ux4")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arf0l"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_agb4h"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_arf0l")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yog8w"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_ufxd7"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_yog8w")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgo0t"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_pkdgn"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_sgo0t")
+debug_color = Color(0, 0, 0, 1)
+
+[resource]
+script = ExtResource("2_663m3")
+data = {
+"attack": [SubResource("Resource_jldju"), SubResource("Resource_3y8j2"), SubResource("Resource_iquhd"), SubResource("Resource_mccn3"), SubResource("Resource_ay1yr"), SubResource("Resource_c7cgb"), SubResource("Resource_jwsyb"), SubResource("Resource_pg5jv"), SubResource("Resource_dpy2j"), SubResource("Resource_h6gmj"), SubResource("Resource_hakyf"), SubResource("Resource_1svto")],
+"death": [SubResource("Resource_bdi07"), SubResource("Resource_8jqwo"), SubResource("Resource_6cln2"), SubResource("Resource_syniy"), SubResource("Resource_flamg"), SubResource("Resource_yktts"), SubResource("Resource_agb4h"), SubResource("Resource_ufxd7"), SubResource("Resource_pkdgn")],
+"dig": [SubResource("Resource_0drit"), SubResource("Resource_vjykd"), SubResource("Resource_r2pa5"), SubResource("Resource_wwvao"), SubResource("Resource_wlvlx"), SubResource("Resource_f2u67"), SubResource("Resource_1v00t"), SubResource("Resource_n86b7"), SubResource("Resource_20oa1"), SubResource("Resource_8dcw8"), SubResource("Resource_b4pfe"), SubResource("Resource_e4tul"), SubResource("Resource_8tuh4"), SubResource("Resource_1yjq4"), SubResource("Resource_bshap")],
+"doing": [SubResource("Resource_e6lw8"), SubResource("Resource_hmk86"), SubResource("Resource_1e7h8"), SubResource("Resource_swmo7"), SubResource("Resource_jk54b"), SubResource("Resource_0wht2"), SubResource("Resource_jkodv"), SubResource("Resource_28lt4")],
+"hurt": [SubResource("Resource_prvbe"), SubResource("Resource_ktolt"), SubResource("Resource_p7k8u"), SubResource("Resource_qyj5x"), SubResource("Resource_3pv7y"), SubResource("Resource_dto8s"), SubResource("Resource_phnlw"), SubResource("Resource_rpogy")],
+"idle": [SubResource("Resource_4ms0c"), SubResource("Resource_bnuae"), SubResource("Resource_fpyv3"), SubResource("Resource_syipq"), SubResource("Resource_rbhva"), SubResource("Resource_gw4jp"), SubResource("Resource_8m2fh"), SubResource("Resource_gs04f"), SubResource("Resource_ng51a")],
+"run": [SubResource("Resource_rf86c"), SubResource("Resource_sgssx"), SubResource("Resource_p3wfv"), SubResource("Resource_gvchk"), SubResource("Resource_4rn3h"), SubResource("Resource_rww74"), SubResource("Resource_fxtu3"), SubResource("Resource_crra7")],
+"walk": [SubResource("Resource_v0fub"), SubResource("Resource_wvsdf"), SubResource("Resource_2xorf"), SubResource("Resource_se7aa"), SubResource("Resource_tmn37"), SubResource("Resource_0dl8y"), SubResource("Resource_e2vaj"), SubResource("Resource_66t5p")],
+"watering": [SubResource("Resource_1phcf"), SubResource("Resource_3ac7i"), SubResource("Resource_2h5rr"), SubResource("Resource_0y6vu"), SubResource("Resource_436g3")]
+}
