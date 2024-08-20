@@ -13,7 +13,6 @@ script = ExtResource("1_xgdfh")
 layers = [NodePath("Ceil"), NodePath("OverCeil")]
 
 [node name="Zone" type="Area2D" parent="."]
-visible = false
 
 [node name="Collision" type="CollisionShape2D" parent="Zone"]
 position = Vector2(0, -24)
@@ -37,12 +36,14 @@ tile_map_data = PackedByteArray("AAAAAP//AAAFAAoAAAD+////AAAFAAoAAAABAP//AAAFAAo
 tile_set = ExtResource("1_jidvx")
 
 [node name="Ceil" type="TileMapLayer" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD8//v/AAAPAAkAAAD8//z/AAAPAAoAAAD8//3/AAAPAAsAAAD8//7/AAAPAAwAAAD9//v/AAAQAAkAAAD9//z/AAASAAoAAAD9//3/AAASAAoAAAD9//7/AAAQAAwAAAD9////AAAeAA8AAAACAPv/AAAQAAkAAAACAPz/AAASAAoAAAACAP3/AAASAAoAAAACAP7/AAAQAAwAAAACAP//AAAeAA8AAAADAPv/AAARAAkAAAADAPz/AAARAAoAAAADAP3/AAARAAsAAAADAP7/AAARAAwAAAADAP//AAAfAA8AAAD+//z/AAASAAoAAAD+//3/AAASAAoAAAD///z/AAASAAoAAAD///3/AAASAAoAAAAAAPz/AAASAAoAAAAAAP3/AAASAAoAAAABAPz/AAASAAoAAAABAP3/AAASAAoAAAD+//7/AAAQAAwAAAD+////AAAeAA8AAAD///7/AAAQAAwAAAAAAP7/AAAQAAwAAAABAP7/AAAQAAwAAAD+//v/AAAQAAkAAAD///v/AAAQAAkAAAAAAPv/AAAQAAkAAAABAPv/AAAQAAkAAAD/////AAAeAA8AAAAAAP//AAAeAA8AAAABAP//AAAeAA8AAAD8////AAAdAA8AAAA=")
 tile_set = ExtResource("1_jidvx")
 
 [node name="OverCeil" type="TileMapLayer" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAACAPz/AAAdAAUAAAA=")

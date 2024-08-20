@@ -135,6 +135,105 @@ disabled = false
 shape = SubResource("CapsuleShape2D_b67xe")
 debug_color = Color(0, 0, 0, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnphg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_bdi07"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_hnphg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewafg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_8jqwo"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_ewafg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bt3f"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_6cln2"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_5bt3f")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q15fg"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_syniy"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_q15fg")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnw4h"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_flamg"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_cnw4h")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3ux4"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_yktts"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_j3ux4")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arf0l"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_agb4h"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_arf0l")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yog8w"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_ufxd7"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_yog8w")
+debug_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgo0t"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="Resource" id="Resource_pkdgn"]
+script = ExtResource("1_j0wrf")
+position = Vector2(0, 0)
+disabled = false
+shape = SubResource("CapsuleShape2D_sgo0t")
+debug_color = Color(0, 0, 0, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gboi3"]
 radius = 8.0
 height = 20.0
@@ -804,105 +903,6 @@ script = ExtResource("1_j0wrf")
 position = Vector2(0, 0)
 disabled = false
 shape = SubResource("CapsuleShape2D_4hije")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnphg"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_bdi07"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_hnphg")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewafg"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_8jqwo"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_ewafg")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bt3f"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_6cln2"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_5bt3f")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q15fg"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_syniy"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_q15fg")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnw4h"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_flamg"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_cnw4h")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3ux4"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_yktts"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_j3ux4")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arf0l"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_agb4h"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_arf0l")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yog8w"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_ufxd7"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_yog8w")
-debug_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgo0t"]
-radius = 8.0
-height = 20.0
-
-[sub_resource type="Resource" id="Resource_pkdgn"]
-script = ExtResource("1_j0wrf")
-position = Vector2(0, 0)
-disabled = false
-shape = SubResource("CapsuleShape2D_sgo0t")
 debug_color = Color(0, 0, 0, 1)
 
 [resource]

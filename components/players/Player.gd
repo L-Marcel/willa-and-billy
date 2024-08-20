@@ -100,8 +100,6 @@ func water_plants(at : Spot, at_position : Vector2) -> void:
 	states.send_event("to_watering");
 #endregion
 
-func _physics_process(_delta) -> void:
-	move_and_slide();
 func _process(delta) -> void:
 	if visible: health.hurt(Game.clock_speed * data.energy_drop * (delta / 48.0));
 

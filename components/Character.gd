@@ -18,6 +18,11 @@ var spot : Spot;
 func _ready():
 	for collision in collisions:
 		collision.shape = collision.shape.duplicate(true);
+func _physics_process(_delta) -> void:
+	move_and_slide();
 
 func flip(left : bool) -> void:
 	Game.flip(self, left);
+func hurt(damage : float) -> void:
+	health.hurt(damage);
+	states.send_event("to_hurt");

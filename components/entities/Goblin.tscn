@@ -274,22 +274,27 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("12_0d47t")
-animation = &"walk"
-
-[node name="Obstacle" type="NavigationObstacle2D" parent="."]
-radius = 7.0
-vertices = PackedVector2Array(0, -5, -10, -5, -14, 0, -9, 5, 0, 5, 10, 5, 14, 0, 10, -5)
-affect_navigation_mesh = true
+animation = &"attack"
+frame = 12
+frame_progress = 1.0
 
 [node name="Navigation" type="NavigationAgent2D" parent="."]
-target_desired_distance = 20.0
+path_desired_distance = 4.0
+target_desired_distance = 1.0
+path_max_distance = 200.0
 simplify_path = true
 simplify_epsilon = 1.0
+avoidance_enabled = true
+radius = 7.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.913725, 0.619608, 1)
 debug_path_custom_point_size = 2.0
 debug_path_custom_line_width = 1.0
+
+[node name="Relay" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]
@@ -298,6 +303,7 @@ debug_path_custom_line_width = 1.0
 [connection signal="state_entered" from="StateMachine/Root/Run" to="." method="_on_run_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Run" to="." method="_on_run_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Attack" to="." method="_on_attack_state_entered"]
+[connection signal="state_exited" from="StateMachine/Root/Attack" to="." method="_on_attack_state_exited"]
 [connection signal="state_processing" from="StateMachine/Root/Attack" to="." method="_on_attack_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Hurt" to="." method="_on_hurt_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Hurt" to="." method="_on_hurt_state_processing"]
@@ -305,3 +311,5 @@ debug_path_custom_line_width = 1.0
 [connection signal="state_processing" from="StateMachine/Root/Doing" to="." method="_on_doing_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Death" to="." method="_on_death_state_entered"]
 [connection signal="death" from="Health" to="." method="_on_death"]
+[connection signal="velocity_computed" from="Navigation" to="." method="_on_navigation_velocity_computed"]
+[connection signal="timeout" from="Relay" to="." method="_on_relay_timeout"]

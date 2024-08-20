@@ -34,7 +34,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_of4ch"]
 height = 20.0
 
-[node name="WaterWell" type="StaticBody2D" node_paths=PackedStringArray("sprite", "interaction")]
+[node name="WaterWell" type="StaticBody2D" node_paths=PackedStringArray("sprite", "interaction") groups=["obstacle"]]
 y_sort_enabled = true
 script = ExtResource("1_sfn7a")
 sprite = NodePath("Sprite")

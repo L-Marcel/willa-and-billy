@@ -384,10 +384,15 @@ position = Vector2(0, -7)
 sprite_frames = ExtResource("14_ksjqj")
 animation = &"death"
 
-[node name="Obstacle" type="NavigationObstacle2D" parent="."]
-radius = 14.0
-vertices = PackedVector2Array(0, -5, -10, -5, -14, 0, -9, 5, 0, 5, 10, 5, 14, 0, 10, -5)
-affect_navigation_mesh = true
+[node name="Body" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -8)
+radius = 10.0
+carve_navigation_mesh = true
+
+[node name="Head" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -16)
+radius = 10.0
+carve_navigation_mesh = true
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]

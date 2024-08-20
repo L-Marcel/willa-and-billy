@@ -29,6 +29,6 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered);
 
 func _on_body_entered(body) -> void:
-	if body is Character: 
+	if body is Character && !disabled: 
 		if (body is Player && !character is Player) || (!body is Player && character is Player):
-			character.health.hurt(body.damage * character.damage_reduction);
+			character.hurt(body.damage * character.damage_reduction);
