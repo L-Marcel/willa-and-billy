@@ -2,8 +2,9 @@ class_name Goblin
 extends Character
 
 @export var navigation : NavigationAgent2D;
+@export var bar : Bar;
 const attack_distance : float = 20;
-const speed : float = 50.0;
+const speed : float = 25.0;
 
 var can_update_navigation : bool = true;
 var target : Node2D = null :
@@ -14,15 +15,20 @@ var target : Node2D = null :
 
 func _ready() -> void:
 	super._ready();
+	Master.amount += 1;
+	health.changed.connect(func(value : float): bar.update(value));
 
 #region Control
+func flip(left : bool) -> void:
+	super.flip(left);
+	Game.flip(bar.get_parent(), left);
 func move(run : bool = false) -> bool:
 	if navigation.is_navigation_finished(): 
 		velocity = velocity.move_toward(Vector2.ZERO, speed);
 	else:
 		var next_position: Vector2 = navigation.get_next_path_position();
 		var direction : Vector2 = global_position.direction_to(next_position);
-		var new_velocity : Vector2 = direction * speed * (1.5 if run else 1.0);
+		var new_velocity : Vector2 = direction * speed * (4.0 if run else 1.0);
 		if navigation.avoidance_enabled: navigation.set_velocity(new_velocity);
 		else: velocity = new_velocity;
 		flip(direction.x < 0);
@@ -116,6 +122,8 @@ func _on_hurt_state_entered() -> void:
 func _on_doing_state_entered() -> void:
 	sprite.play("walk");
 func _on_death_state_entered() -> void:
+	bar.visible = false;
+	Master.amount -= 1;
 	target = null;
 	velocity = Vector2.ZERO;
 	sprite.play("death");

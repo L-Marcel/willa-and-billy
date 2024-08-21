@@ -10,6 +10,7 @@ extends CanvasLayer
 
 var can_reset : bool = false;
 var clock : Clock = Clock.new(1, 6);
+var world : World = null;
 
 signal reset;
 

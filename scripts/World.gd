@@ -49,6 +49,10 @@ func _ready() -> void:
 		clock = Game.clock;
 	update_sky_color();
 	canvas_modulate.color = sky_color;
+	_setup_world.call_deferred();
+func _setup_world():
+	if !Game.is_node_ready(): await Game.ready;
+	Game.world = self;
 func _process(delta) -> void:
 	if !Engine.is_editor_hint() || clock_in_editor:
 		clock.step(delta * (clock_speed if !Engine.is_editor_hint() else Game.clock_speed));

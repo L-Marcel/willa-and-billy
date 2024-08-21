@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://da4m0wmi55aq5"]
+[gd_scene load_steps=17 format=3 uid="uid://da4m0wmi55aq5"]
 
 [ext_resource type="Script" path="res://components/entities/Goblin.gd" id="1_fhvpw"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_23vbu"]
+[ext_resource type="PackedScene" uid="uid://b1v58qfxxbw3r" path="res://components/interface/Bar.tscn" id="2_j5y5f"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_7oqxv"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_elhb1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_5hfq8"]
@@ -25,11 +26,12 @@ height = 28.0
 radius = 8.0
 height = 20.0
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "sprite", "states", "health", "hurtbox", "hitbox", "collisions", "actor")]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "bar", "sprite", "states", "health", "hurtbox", "hitbox", "collisions", "actor")]
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_fhvpw")
 navigation = NodePath("Navigation")
+bar = NodePath("Control/Bar")
 sprite = NodePath("Sprite")
 states = NodePath("StateMachine")
 health = NodePath("Health")
@@ -37,6 +39,30 @@ hurtbox = NodePath("Hurtbox")
 hitbox = NodePath("Hitbox")
 collisions = [NodePath("Collision"), NodePath("Actor/Collision"), NodePath("Hurtbox/Collision")]
 actor = NodePath("Actor")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Bar" parent="Control" instance=ExtResource("2_j5y5f")]
+custom_minimum_size = Vector2(16, 4)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -6.0
+offset_top = -21.0
+offset_right = 6.0
+offset_bottom = -21.0
+grow_horizontal = 2
+gradient = true
+width = 16.0
+height = 4.0
+border_color = Color(0.0898756, 0.0781567, 0.141176, 1)
+back_color = Color(0.148989, 0.360525, 0.258915, 1)
+fake_color = Color(1, 1, 1, 1)
+value_color = Color(0.388373, 0.780652, 0.3019, 1)
+initial_color = Color(0.242786, 0.537362, 0.282353, 1)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_23vbu")
@@ -249,6 +275,8 @@ debug_color = Color(0, 0.643161, 0.305056, 0.42)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -9)
+collision_mask = 0
+monitoring = false
 script = ExtResource("8_4fpv8")
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
@@ -263,6 +291,7 @@ shape_frames = ExtResource("10_l46ph")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
 visible = false
+collision_layer = 0
 script = ExtResource("11_ixrl6")
 character = NodePath("..")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpkae5agechp8"]
+[gd_scene load_steps=18 format=3 uid="uid://bpkae5agechp8"]
 
 [ext_resource type="Script" path="res://components/interface/Hud.gd" id="1_u6win"]
 [ext_resource type="Texture2D" uid="uid://hhjscotmuk5h" path="res://assets/sprites/moon.png" id="2_l07tq"]
@@ -10,18 +10,22 @@
 [ext_resource type="Texture2D" uid="uid://cxosexrkxr27r" path="res://assets/sprites/evening.png" id="5_kbocs"]
 [ext_resource type="Texture2D" uid="uid://cp5id3p3ynn0s" path="res://assets/sprites/willa_icon.png" id="6_0choy"]
 [ext_resource type="FontFile" uid="uid://dxsixc4mfm6gq" path="res://assets/font/PixeloidMono.ttf" id="6_gyx6s"]
+[ext_resource type="Texture2D" uid="uid://cg24qaoh2s2co" path="res://assets/sprites/normal.png" id="7_q40ci"]
+[ext_resource type="Texture2D" uid="uid://bmsjdy4yixt1o" path="res://assets/sprites/hard.png" id="8_41xvy"]
 [ext_resource type="Texture2D" uid="uid://bm83m4npg23rd" path="res://assets/sprites/billy_icon.png" id="8_ywpxf"]
 [ext_resource type="Texture2D" uid="uid://bg71t453luea5" path="res://assets/sprites/potato_icon.png" id="11_n5xmd"]
 [ext_resource type="Texture2D" uid="uid://bo5uip781l83i" path="res://assets/sprites/potato_sprout_icon.png" id="13_o3on1"]
+[ext_resource type="Texture2D" uid="uid://1hmkyriiu00w" path="res://assets/sprites/easy.png" id="14_ex47v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_64qft"]
 font = ExtResource("6_gyx6s")
 font_size = 9
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "date", "time", "time_icon", "water", "potatoes", "sprouts")]
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("willa_bar", "billy_bar", "alert", "date", "time", "time_icon", "water", "potatoes", "sprouts")]
 script = ExtResource("1_u6win")
 willa_bar = NodePath("Willa/Header/Red/Head/Info/Bar")
 billy_bar = NodePath("Billy/Green/Head/Info/Bar")
+alert = NodePath("Alert")
 date = NodePath("FooterLeft/Info/Left/Calendar/Date")
 time = NodePath("FooterLeft/Info/Margin/Clock/Time")
 time_icon = NodePath("FooterLeft/Info/Margin/Clock/Icon")
@@ -32,6 +36,9 @@ night = ExtResource("2_l07tq")
 dawn = ExtResource("4_ltjl1")
 day = ExtResource("4_ic5en")
 evening = ExtResource("5_kbocs")
+easy = ExtResource("14_ex47v")
+normal = ExtResource("7_q40ci")
+hard = ExtResource("8_41xvy")
 
 [node name="Willa" type="MarginContainer" parent="."]
 offset_right = 157.0
@@ -258,3 +265,15 @@ size_flags_vertical = 0
 text = "DIAS 01"
 label_settings = SubResource("LabelSettings_64qft")
 vertical_alignment = 1
+
+[node name="Alert" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_bottom = -64.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture = ExtResource("14_ex47v")
+stretch_mode = 2

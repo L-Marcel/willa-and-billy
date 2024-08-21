@@ -358,6 +358,8 @@ debug_color = Color(0, 0.643161, 0.305056, 0.42)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -9)
+collision_mask = 0
+monitoring = false
 script = ExtResource("9_4fn8f")
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
@@ -372,6 +374,7 @@ shape_frames = ExtResource("11_76v8q")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
 visible = false
+collision_layer = 0
 script = ExtResource("10_wlq5f")
 character = NodePath("..")
 

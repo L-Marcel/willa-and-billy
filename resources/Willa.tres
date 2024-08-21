@@ -7,13 +7,13 @@
 script = ExtResource("1_xlys8")
 name = &"Willa"
 sprite_frames = ExtResource("2_ocby6")
-speed = 150.0
+speed = 140.0
 plant_speed = 1.0
-damage = 15.0
+damage = 20.0
 chance_of_losing_havest = 0.15
 sow_productivity = 1.0
 morning_productivity = 1.0
 night_productivity = 1.0
 energy_drop = 1.0
 energy_gain = 1.0
-energy_drop_on_damage = 0.0
+damage_reduction = 0.75

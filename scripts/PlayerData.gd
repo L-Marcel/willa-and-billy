@@ -14,4 +14,4 @@ extends Resource
 @export var night_productivity : float = 1.0;
 @export var energy_drop : float = 1.0;
 @export var energy_gain : float = 1.0;
-@export var energy_drop_on_damage : float = 1.0;
+@export var damage_reduction : float = 0.0;

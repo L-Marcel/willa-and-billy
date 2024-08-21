@@ -12,11 +12,17 @@ var players : Array[Player] = [];
 func _ready() -> void:
 	sprite.play("unfocused");
 	interaction.registry(sleep);
+	Master.started.connect(_on_master_started);
+	Master.ended.connect(_on_master_ended);
 
 func update() -> void:
 	willa_icon.visible = false;
 	billy_icon.visible = false;
-	Engine.time_scale = 20.0 if players.size() == 2 else 1.0;
+	
+	if players.size() == 2 && Master.amount == 0 && Master.requested == 0:
+		Engine.time_scale = 20.0;
+	else: Engine.time_scale = 1.0;
+
 	for player in players:
 		if player.data.name == "Willa":
 			willa_icon.visible = true;
@@ -39,6 +45,10 @@ func sleep(by : Node) -> void:
 		interaction.add_focus();
 	update();
 
+func _on_master_started(_dificult : int) -> void:
+	update();
+func _on_master_ended() -> void:
+	update();
 func _on_interaction_focus() -> void:
 	sprite.play("focused");
 func _on_interaction_unfocus() -> void:

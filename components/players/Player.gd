@@ -11,7 +11,7 @@ func _ready() -> void:
 	super._ready();
 	sprite.sprite_frames = data.sprite_frames;
 	damage = data.damage;
-	damage_reduction = (1.0 - data.energy_drop_on_damage);
+	damage_reduction = data.damage_reduction;
 	if data.name == "Willa": 
 		health = Players.willa_health;
 		Players.willa = self;
@@ -131,9 +131,9 @@ func _on_doing_state_entered() -> void:
 func _on_doing_state_exited() -> void:
 	sprite.speed_scale = 1.0;
 func _on_sleeping_state_entered() -> void:
-	visible = false;
+	sprite.visible = false;
 func _on_sleeping_state_exited() -> void:
-	visible = true;
+	sprite.visible = true;
 func _on_death_state_entered() -> void:
 	velocity = Vector2.ZERO;
 	sprite.play("death");

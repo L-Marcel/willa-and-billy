@@ -21,7 +21,7 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 Game="*res://globals/Game.tscn"
 Scenes="*res://globals/Scenes.tscn"
 Players="*res://globals/Players.tscn"
-Master="*res://scripts/Master.gd"
+Master="*res://globals/Master.gd"
 
 [display]
 
