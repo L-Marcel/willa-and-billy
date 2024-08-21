@@ -23,6 +23,9 @@ func _physics_process(_delta) -> void:
 
 func flip(left : bool) -> void:
 	Game.flip(self, left);
-func hurt(damage : float) -> void:
-	health.hurt(damage);
-	states.send_event("to_hurt");
+func hurt(_damage : float) -> void:
+	health.hurt(_damage * (1.0  - damage_reduction));
+	if states.get_state() != "hurt":
+		states.send_event("to_hurt");
+	else:
+		sprite.frame = 0;

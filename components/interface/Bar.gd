@@ -46,7 +46,7 @@ extends MarginContainer
 var fake_value : float = 0;
 var can_update_fake_value : bool = false;
 
-func update(value : float, limit : float, base : float) -> void:
+func update(value : float, limit : float = current_value_limit, base : float = base_value) -> void:
 	current_value_limit = limit;
 	current_value = value;
 	base_value = base;

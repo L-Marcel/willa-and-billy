@@ -3,32 +3,23 @@ class_name Hitbox
 extends Area2D
 
 @export var character : Character;
-@export var disabled : bool = false : 
-	set(value):
-		disabled = value;
-		visible = !disabled;
-		if collision:
-			collision.disabled = disabled;
+var characters : Array[Character] = [];
 
-var collision : CollisionShape2D :
-	set(value):
-		collision = value;
-
-func update_collision(_child : Node = null) -> void:
-	if has_node("Collision"):
-		var _collision : Node = get_node("Collision");
-		if _collision is CollisionShape2D:
-			_collision.disabled = disabled;
-			collision = _collision;
-
+func hurt() -> void:
+	for body in characters:
+		body.hurt(character.damage);
 func _ready() -> void:
-	update_collision();
-	if Engine.is_editor_hint():
-		child_entered_tree.connect(update_collision);
-		return;
-	body_entered.connect(_on_body_entered);
+	area_entered.connect(_on_area_entered);
+	area_exited.connect(_on_area_exited);
+	set_collision_layer_value(1, false);
+	set_collision_mask_value(1, true);
 
-func _on_body_entered(body) -> void:
-	if body is Character && !disabled: 
-		if (body is Player && !character is Player) || (!body is Player && character is Player):
-			character.hurt(body.damage * character.damage_reduction);
+func _on_area_entered(area) -> void:
+	if area is Hurtbox:
+		var body : Node2D = area.get_parent();
+		if body != get_parent() && ((body is Player && character is not Player) || (body is Goblin && character is not Goblin)):
+			characters.append(body);
+func _on_area_exited(area) -> void:
+	if area is Hurtbox:
+		var body : Node2D = area.get_parent();
+		if body in characters: characters.erase(body);

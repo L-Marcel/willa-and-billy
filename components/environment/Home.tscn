@@ -55,7 +55,7 @@ tile_map_data = PackedByteArray("AAABAP//AAAOAA0AAAA=")
 tile_set = ExtResource("1_jidvx")
 
 [node name="WallsCollision" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(49, -41, 49, -9, 0, -9, 0, 0, 53, 0, 53, -57, -54, -57, -54, 0, -16, 0, -16, -9, -49, -9, -49, -37, -33, -48, -23.625, -48, 33, -48)
+polygon = PackedVector2Array(49, -41, 49, -9, 2, -9, 2, 0, 53, 0, 53, -57, -54, -57, -54, 0, -18, 0, -18, -9, -49, -9, -49, -37, -33, -48, -23.625, -48, 33, -48)
 
 [connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
 [connection signal="body_exited" from="Zone" to="." method="_on_zone_body_exited"]

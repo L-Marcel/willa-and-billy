@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvnw2i6qmtpes"]
+[gd_scene load_steps=3 format=3 uid="uid://bvnw2i6qmtpes"]
 
+[ext_resource type="PackedScene" uid="uid://da4m0wmi55aq5" path="res://components/entities/Goblin.tscn" id="1_meuvf"]
 [ext_resource type="PackedScene" uid="uid://chpv0hg3aqggr" path="res://components/environment/Potato.tscn" id="1_riyvt"]
 
 [node name="Scenes" type="ResourcePreloader"]
-resources = [PackedStringArray("Potato"), [ExtResource("1_riyvt")]]
+resources = [PackedStringArray("Goblin", "Potato"), [ExtResource("1_meuvf"), ExtResource("1_riyvt")]]

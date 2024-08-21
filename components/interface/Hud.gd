@@ -16,8 +16,8 @@ extends CanvasLayer
 @export var evening : Texture;
 
 func _ready() -> void:
-	Players.willa_health.changed.connect(willa_bar.update);
-	Players.billy_health.changed.connect(billy_bar.update);
+	Players.willa_health.changed.connect(func(value : float): willa_bar.update(value));
+	Players.billy_health.changed.connect(func(value : float): billy_bar.update(value));
 	Players.resources_changed.connect(_on_resources_changed);
 	Game.clock.stage_changed.connect(_on_stage_changed);
 	_on_resources_changed();

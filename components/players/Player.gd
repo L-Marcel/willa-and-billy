@@ -11,7 +11,7 @@ func _ready() -> void:
 	super._ready();
 	sprite.sprite_frames = data.sprite_frames;
 	damage = data.damage;
-	damage_reduction = data.energy_drop_on_damage;
+	damage_reduction = (1.0 - data.energy_drop_on_damage);
 	if data.name == "Willa": 
 		health = Players.willa_health;
 		Players.willa = self;
@@ -20,7 +20,8 @@ func _ready() -> void:
 		Players.billy = self;
 	health.death.connect(_on_death);
 	Game.clock.stage_changed.connect(_on_stage_changed);
-	
+
+#region Control
 func move(run : bool = false) -> bool:
 	var direction : Vector2 = Input.get_vector(control.left, control.right, control.up, control.down);
 	if direction:
@@ -63,7 +64,8 @@ func interact() -> bool:
 		actor.interact_with_nearest(self);
 		return true;
 	return false;
-	
+#endregion
+
 #region Actions
 func stop(death : bool = false) -> void:
 	action_progress = 0;
@@ -103,6 +105,7 @@ func water_plants(at : Spot, at_position : Vector2) -> void:
 func _process(delta) -> void:
 	if visible: health.hurt(Game.clock_speed * data.energy_drop * (delta / 48.0));
 
+#region Enter / Exit
 func _on_idle_state_entered() -> void:
 	sprite.play("idle");
 func _on_walk_state_entered() -> void:
@@ -112,8 +115,12 @@ func _on_run_state_entered() -> void:
 func _on_attack_state_entered() -> void:
 	sprite.play("attack");
 	health.hurt(1);
+func _on_attack_state_exited() -> void:
+	hitbox.visible = false;
 func _on_hurt_state_entered() -> void:
 	sprite.play("hurt");
+	await sprite.animation_finished;
+	states.send_event("to_idle");
 func _on_watering_state_entered() -> void:
 	sprite.play("walk");
 	health.hurt(1);
@@ -133,7 +140,9 @@ func _on_death_state_entered() -> void:
 	await sprite.animation_finished;
 	if data.name == "Willa": Game.game_over("Willa não sobreviveu...");
 	else: Game.game_over("Billy não sobreviveu...");
+#endregion
 
+#region Process
 func _on_idle_state_processing(_delta) -> void:
 	if attack(): return;
 	interact();
@@ -148,14 +157,19 @@ func _on_run_state_processing(_delta) -> void:
 	move(true);
 func _on_attack_state_processing(_delta) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
-	hitbox.disabled = sprite.frame != 6;
+	var attacked : bool = sprite.frame == 6;
+	if attacked && !hitbox.visible:
+		hitbox.visible = true;
+		hitbox.hurt();
+	elif !attacked:
+		hitbox.visible = false;
 	var finished : bool = !sprite.is_playing();
 	if finished && !attack(): states.send_event("to_idle");
 	elif finished: 
 		sprite.play("attack");
 		health.hurt(1);
 func _on_hurt_state_processing(_delta) -> void:
-	pass;
+	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
 func _on_watering_state_processing(delta) -> void:
 	if interact(): return;
 	if move_to != global_position:
@@ -224,7 +238,11 @@ func _on_doing_state_processing(delta) -> void:
 func _on_sleeping_state_processing(delta) -> void:
 	interact();
 	health.heal(Game.clock_speed * data.energy_gain * (delta / 19.2));
+func _on_death_state_processing(_delta: float) -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
+#endregion
 
+#region Special
 func _on_stage_changed(stage : Clock.DayStage) -> void:
 	match stage:
 		Clock.DayStage.DAWN:
@@ -242,3 +260,4 @@ func _on_spot_opened() -> void:
 	stop();
 func _on_death() -> void:
 	stop(true);
+#endregion

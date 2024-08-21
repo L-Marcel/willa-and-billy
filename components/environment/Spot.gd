@@ -11,7 +11,11 @@ extends StaticBody2D
 signal opened;
 
 var clock : Clock = Clock.new();
-var potato : Potato;
+var potato : Potato :
+	set(value):
+		potato = value;
+		if potato: Master.add_spot(self);
+		else: Master.remove_spot(self);
 var progress : float = 0 :
 	set(value):
 		progress = clamp(value, 0, 1);
@@ -27,7 +31,7 @@ func _ready() -> void:
 
 func haverst() -> void:
 	if potato:
-		Players.sprouts = max(Players.sprouts -1, 0);
+		Players.sprouts = max(Players.sprouts - 1, 0);
 		potato.queue_free();
 		potato = null;
 		states.send_event("to_initial");
@@ -61,6 +65,9 @@ func use(by : Node) -> void:
 				else: by.dig(self, left.global_position);
 	elif by is Player:
 		by.stop();
+	elif by is Goblin:
+		if Game.is_flipped(by): by.haverst(self, right.global_position);
+		else: by.haverst(self, left.global_position);
 
 func update_sprite() -> void:
 	var state : String = states.get_state();

@@ -390,6 +390,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_fkib3")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fkib3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkib3")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fm3x6")
 }, {
 "duration": 1.0,

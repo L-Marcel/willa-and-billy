@@ -26,7 +26,7 @@ height = 28.0
 radius = 8.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "states", "hurtbox", "hitbox", "collisions", "actor") groups=["obstacle"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "states", "hurtbox", "hitbox", "collisions", "actor")]
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_1p4qs")
@@ -346,7 +346,7 @@ shape = SubResource("CapsuleShape2D_5an6f")
 
 [node name="Actor" type="Area2D" parent="."]
 position = Vector2(11, 0)
-collision_layer = 0
+collision_layer = 3
 collision_mask = 3
 script = ExtResource("8_ehu42")
 
@@ -374,7 +374,6 @@ shape_frames = ExtResource("11_76v8q")
 visible = false
 script = ExtResource("10_wlq5f")
 character = NodePath("..")
-disabled = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Hitbox"]
 polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 27, 2)
@@ -383,16 +382,8 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 position = Vector2(0, -7)
 sprite_frames = ExtResource("14_ksjqj")
 animation = &"death"
-
-[node name="Body" type="NavigationObstacle2D" parent="."]
-position = Vector2(0, -8)
-radius = 10.0
-carve_navigation_mesh = true
-
-[node name="Head" type="NavigationObstacle2D" parent="."]
-position = Vector2(0, -16)
-radius = 10.0
-carve_navigation_mesh = true
+frame = 14
+frame_progress = 1.0
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]
@@ -401,6 +392,7 @@ carve_navigation_mesh = true
 [connection signal="state_entered" from="StateMachine/Root/Run" to="." method="_on_run_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Run" to="." method="_on_run_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Attack" to="." method="_on_attack_state_entered"]
+[connection signal="state_exited" from="StateMachine/Root/Attack" to="." method="_on_attack_state_exited"]
 [connection signal="state_processing" from="StateMachine/Root/Attack" to="." method="_on_attack_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Hurt" to="." method="_on_hurt_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Hurt" to="." method="_on_hurt_state_processing"]
@@ -415,3 +407,4 @@ carve_navigation_mesh = true
 [connection signal="state_exited" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_exited"]
 [connection signal="state_processing" from="StateMachine/Root/Sleeping" to="." method="_on_sleeping_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Death" to="." method="_on_death_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Death" to="." method="_on_death_state_processing"]

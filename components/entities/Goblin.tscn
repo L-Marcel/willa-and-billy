@@ -15,7 +15,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sd4l0"]
 radius = 2.0
-height = 14.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqqko"]
 radius = 5.0
@@ -25,7 +25,7 @@ height = 28.0
 radius = 8.0
 height = 20.0
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "sprite", "states", "health", "hurtbox", "hitbox", "collisions", "actor") groups=["obstacle"]]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "sprite", "states", "health", "hurtbox", "hitbox", "collisions", "actor")]
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_fhvpw")
@@ -247,10 +247,9 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_tqqko")
 debug_color = Color(0, 0.643161, 0.305056, 0.42)
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(0, -9)
 script = ExtResource("8_4fpv8")
-health = NodePath("../Health")
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_geqx6")
@@ -266,7 +265,6 @@ shape_frames = ExtResource("10_l46ph")
 visible = false
 script = ExtResource("11_ixrl6")
 character = NodePath("..")
-disabled = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Hitbox"]
 polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 27, 2)
@@ -274,23 +272,18 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("12_0d47t")
-animation = &"attack"
-frame = 12
-frame_progress = 1.0
+animation = &"doing"
 
 [node name="Navigation" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
-target_desired_distance = 1.0
-path_max_distance = 200.0
+target_desired_distance = 20.0
+path_max_distance = 300.0
 simplify_path = true
 simplify_epsilon = 1.0
 avoidance_enabled = true
-radius = 7.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0.913725, 0.619608, 1)
-debug_path_custom_point_size = 2.0
-debug_path_custom_line_width = 1.0
+radius = 6.0
+time_horizon_agents = 0.5
+max_speed = 200.0
 
 [node name="Relay" type="Timer" parent="."]
 wait_time = 0.1
@@ -310,6 +303,7 @@ autostart = true
 [connection signal="state_entered" from="StateMachine/Root/Doing" to="." method="_on_doing_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Doing" to="." method="_on_doing_state_processing"]
 [connection signal="state_entered" from="StateMachine/Root/Death" to="." method="_on_death_state_entered"]
+[connection signal="state_processing" from="StateMachine/Root/Death" to="." method="_on_death_state_processing"]
 [connection signal="death" from="Health" to="." method="_on_death"]
 [connection signal="velocity_computed" from="Navigation" to="." method="_on_navigation_velocity_computed"]
 [connection signal="timeout" from="Relay" to="." method="_on_relay_timeout"]

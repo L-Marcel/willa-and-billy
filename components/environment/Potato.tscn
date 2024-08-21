@@ -131,3 +131,7 @@ script = ExtResource("3_c3dme")
 animated_sprite = NodePath("../Sprite")
 collision_shape = NodePath("../Collision")
 shape_frames = SubResource("Resource_linua")
+
+[node name="Obstacle" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, 2)
+radius = 1.5
