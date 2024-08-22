@@ -12,7 +12,7 @@ A todo modo momento Goblins podem atacar sem muito aviso prévio e tentar levar 
 Quando ambos os jogadores estiverem dormindo o tempo é acelerado.
 
 ## Instalação
-Os binários do jogo estão disponível [aqui](https://github.com/L-Marcel/willa-and-billy/releases/tag/1.0.0).
+Os binários do jogo estão disponível [aqui](https://github.com/L-Marcel/willa-and-billy/releases/tag/1.0.1).
 
 Lembrando que você tem que ter permissão para executar o binário. Para fechar o jogo, basta apertar `F8`.
 
