@@ -4,15 +4,15 @@ Em síntese, é um protótipo de um jogo de sobrevivência cooperativo para exat
 
 Como é um protótipo tem pouca coisa!
 
+# Instalação
+Os binários do jogo estão disponível [aqui](https://github.com/L-Marcel/willa-and-billy/releases/tag/1.0.1). Lembrando que você tem que ter permissão para executar o binário. Para fechar o jogo, basta apertar `F8`.
+
 # Como jogar
 Os jogadores começam com 5 batatas, cada batata pode ser plantada para gerar mais batatas, mas isso exigirá energia dos personagens. A vida, dentro do jogo, é representada pela energia, se a energia de algum dos personagens chegar a 0 ou os jogadores ficarem sem batatas é fim de jogo.
 
 A todo modo momento Goblins podem atacar sem muito aviso prévio e tentar levar suas batatas, então descansar para recuperar energia nem sempre é uma opção. 
 
 Quando ambos os jogadores estiverem dormindo o tempo é acelerado.
-
-## Instalação
-Os binários do jogo estão disponível [aqui](https://github.com/L-Marcel/willa-and-billy/releases/tag/1.0.1). Lembrando que você tem que ter permissão para executar o binário. Para fechar o jogo, basta apertar `F8`.
 
 ## Willa
 - `w, a, s, d` - andar;
