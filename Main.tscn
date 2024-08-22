@@ -117,12 +117,12 @@ tile_set = ExtResource("1_mdvhw")
 navigation_enabled = false
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets")]
-position = Vector2(345, 204.21)
+position = Vector2(345, 192)
 script = ExtResource("3_udjtv")
 follow_mode = 3
 follow_target = NodePath("../Billy")
 follow_targets = [NodePath("../Billy"), NodePath("../Willa")]
-zoom = Vector2(1.28464, 1.28464)
+zoom = Vector2(1.75094, 1.75094)
 tween_resource = SubResource("Resource_1b16i")
 follow_damping = true
 auto_zoom = true
@@ -137,8 +137,8 @@ limit_bottom = 608
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(345, 204.21)
-zoom = Vector2(1.28464, 1.28464)
+position = Vector2(345, 192)
+zoom = Vector2(1.75094, 1.75094)
 limit_left = -288
 limit_top = -48
 limit_right = 880
