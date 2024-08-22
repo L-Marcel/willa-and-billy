@@ -30,11 +30,11 @@ func update_sky_color() -> Color:
 		sky_color = day_colors[1];
 	elif day < clock.get_progress_at(0,9):
 		sky_color = day_colors[4];
-	elif day < clock.get_progress_at(0,11):
-		sky_color = day_colors[5];
 	elif day < clock.get_progress_at(0,13):
+		sky_color = day_colors[5];
+	elif day < clock.get_progress_at(0,14):
 		sky_color = day_colors[4];
-	elif day < clock.get_progress_at(0,15):
+	elif day < clock.get_progress_at(0,16):
 		sky_color = day_colors[3];
 	elif day < clock.get_progress_at(0, 18):
 		sky_color = day_colors[2];

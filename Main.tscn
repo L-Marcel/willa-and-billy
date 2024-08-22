@@ -30,18 +30,19 @@ ease = 2
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_hufbt")
-time = "7 : 4"
-stage = 1
-day = 0.295
-sky_color = Color(0.8, 0.8, 0.8, 1)
+time = "24 : 0"
+stage = 4
+day = 1.0
+sky_color = Color(0.180392, 0.133333, 0.184314, 1)
 
 [node name="Navigation" type="NavigationRegion2D" parent="."]
+visible = false
 z_index = 100
 navigation_polygon = SubResource("NavigationPolygon_k2xxk")
 
 [node name="Modulate" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
-color = Color(0.8, 0.8, 0.8, 1)
+color = Color(0.180392, 0.133333, 0.184314, 1)
 
 [node name="Limits" type="StaticBody2D" parent="."]
 disable_mode = 1
