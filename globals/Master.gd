@@ -4,6 +4,7 @@ var _spots : Array[Spot] = [];
 var _targets : Array[Spot] = [];
 var _spawns : Array[Spawn] = [];
 
+var game_started_now : bool = true;
 var attack : bool = false;
 var dificult : int = 0;
 var amount : int = 0 :
@@ -76,6 +77,9 @@ func _on_relay_timeout() -> void:
 			goblin.global_position = target;
 			Game.world.add_child(goblin);
 func _on_stage_changed(_stage : Clock.DayStage) -> void:
+	if game_started_now:
+		game_started_now = false;
+		return;
 	requested = 0;
 	var _dificult : float = 0.0;
 	if !attack: attack = randf_range(0.0, 1.0) <= 0.8;
@@ -86,15 +90,15 @@ func _on_stage_changed(_stage : Clock.DayStage) -> void:
 	if !attack: return;
 	
 	if _dificult <= 0.25: dificult = 0;
-	elif _dificult <= 0.40: dificult = 1;
+	elif _dificult <= 0.35: dificult = 1;
 	elif _dificult <= 0.75: dificult = 2;
 	elif _dificult <= 0.9: dificult = 3;
 	else: dificult = 4;
 	
 	match dificult:
-		0, 1: requested = randi_range(2 + dificult, 4 - (1 - dificult));
-		2, 3: requested = randi_range(2 + dificult, 6 - (3 - dificult));
-		_: requested = randi_range(6, 7);
+		0, 1: requested = 1 + randi_range(2 + dificult, 4 - (1 - dificult));
+		2, 3: requested = 2 + randi_range(2 + dificult, 6 - (3 - dificult));
+		_: requested = randi_range(9, 10);
 	
 	relay.start(randf_range(3.0, 6.0));
 	started.emit(dificult);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://i8xki2p1wwxl"]
+[gd_scene load_steps=24 format=3 uid="uid://i8xki2p1wwxl"]
 
 [ext_resource type="Script" path="res://components/players/Player.gd" id="1_1p4qs"]
 [ext_resource type="Resource" uid="uid://4m8u1fahsxfp" path="res://resources/Billy.tres" id="2_kyuc1"]
@@ -12,7 +12,14 @@
 [ext_resource type="Script" path="res://components/entities/Hitbox.gd" id="10_wlq5f"]
 [ext_resource type="Script" path="res://addons/goutte.animated_shape_2d/animated_shape_2d.gd" id="10_y5764"]
 [ext_resource type="Resource" uid="uid://1cnnd1m50caq" path="res://resources/PlayersShapeFrames.tres" id="11_76v8q"]
+[ext_resource type="AudioStream" uid="uid://cjyspfb26f0ps" path="res://resources/Steps.tres" id="14_057s4"]
 [ext_resource type="SpriteFrames" uid="uid://chlwjrh3q88cx" path="res://resources/WillaFrames.tres" id="14_ksjqj"]
+[ext_resource type="AudioStream" uid="uid://bpj7cwe7xefv1" path="res://resources/GoblinVoice.tres" id="15_8qrlg"]
+[ext_resource type="AudioStream" uid="uid://vtvdbxqqx8gv" path="res://assets/sounds/effects/action/attack_01.wav" id="17_b4tui"]
+[ext_resource type="AudioStream" uid="uid://xqrdqhhxuryn" path="res://assets/sounds/effects/action/dig_01.wav" id="18_84ogo"]
+[ext_resource type="Script" path="res://scripts/AudioPlayer.gd" id="18_alxwn"]
+[ext_resource type="AudioStream" uid="uid://clgpypxfug5n5" path="res://assets/sounds/effects/action/dig_02.wav" id="19_8j1ja"]
+[ext_resource type="AudioStream" uid="uid://bkcwr1rkjjv0g" path="res://assets/sounds/effects/action/water_01.wav" id="20_ewqkg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5an6f"]
 radius = 2.0
@@ -26,18 +33,23 @@ height = 28.0
 radius = 8.0
 height = 20.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "states", "hurtbox", "hitbox", "collisions", "actor")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sound_attack", "sound_water", "sprite", "states", "hurtbox", "hitbox", "actor", "voice", "step", "sound_dig_start", "sound_dig_end")]
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_1p4qs")
 data = ExtResource("2_kyuc1")
 control = ExtResource("3_n0s5g")
+sound_attack = NodePath("Attack")
+sound_water = NodePath("Water")
 sprite = NodePath("Sprite")
 states = NodePath("StateMachine")
 hurtbox = NodePath("Hurtbox")
 hitbox = NodePath("Hitbox")
-collisions = [NodePath("Collision"), NodePath("Actor/Collision"), NodePath("Hurtbox/Collision")]
 actor = NodePath("Actor")
+voice = NodePath("Voice")
+step = NodePath("Step")
+sound_dig_start = NodePath("DigStart")
+sound_dig_end = NodePath("DigEnd")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_jxjrl")
@@ -341,10 +353,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("4_dmfve")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_5an6f")
 
 [node name="Actor" type="Area2D" parent="."]
+visible = false
 position = Vector2(11, 0)
 collision_layer = 3
 collision_mask = 3
@@ -357,6 +371,7 @@ shape = SubResource("CapsuleShape2D_0anfa")
 debug_color = Color(0, 0.643161, 0.305056, 0.42)
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -9)
 collision_mask = 0
 monitoring = false
@@ -384,9 +399,28 @@ polygon = PackedVector2Array(27, -8, 21, -20, 12, -29, 5, -31, -2, -31, -2, 2, 2
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("14_ksjqj")
-animation = &"death"
-frame = 14
-frame_progress = 1.0
+animation = &"dig"
+
+[node name="Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_057s4")
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_8qrlg")
+script = ExtResource("18_alxwn")
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_b4tui")
+
+[node name="DigStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_84ogo")
+volume_db = -5.0
+
+[node name="DigEnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_8j1ja")
+
+[node name="Water" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_ewqkg")
+volume_db = -8.0
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]

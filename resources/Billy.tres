@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://4m8u1fahsxfp"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3 uid="uid://4m8u1fahsxfp"]
 
 [ext_resource type="Script" path="res://scripts/PlayerData.gd" id="1_30vrm"]
 [ext_resource type="SpriteFrames" uid="uid://da1vp67jgjjob" path="res://resources/BillyFrames.tres" id="2_8s3mw"]
+[ext_resource type="AudioStream" uid="uid://do3gjw4y7sn6j" path="res://resources/BillyVoice.tres" id="3_ivfa6"]
 
 [resource]
 script = ExtResource("1_30vrm")
 name = &"Billy"
 sprite_frames = ExtResource("2_8s3mw")
+voice = ExtResource("3_ivfa6")
 speed = 120.0
 plant_speed = 2.0
 damage = 30.0

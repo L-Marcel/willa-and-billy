@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://da4m0wmi55aq5"]
+[gd_scene load_steps=21 format=3 uid="uid://da4m0wmi55aq5"]
 
 [ext_resource type="Script" path="res://components/entities/Goblin.gd" id="1_fhvpw"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_23vbu"]
@@ -13,6 +13,10 @@
 [ext_resource type="Resource" uid="uid://rebgjts2t0u" path="res://resources/GlobinShapeFrames.tres" id="10_l46ph"]
 [ext_resource type="Script" path="res://components/entities/Hitbox.gd" id="11_ixrl6"]
 [ext_resource type="SpriteFrames" uid="uid://8j80lp4vgolq" path="res://resources/GoblinFrames.tres" id="12_0d47t"]
+[ext_resource type="AudioStream" uid="uid://cjyspfb26f0ps" path="res://resources/Steps.tres" id="14_x7jop"]
+[ext_resource type="AudioStream" uid="uid://bpj7cwe7xefv1" path="res://resources/GoblinVoice.tres" id="15_aad6g"]
+[ext_resource type="Script" path="res://scripts/AudioPlayer.gd" id="16_negfg"]
+[ext_resource type="AudioStream" uid="uid://vtvdbxqqx8gv" path="res://assets/sounds/effects/action/attack_01.wav" id="17_rxsyf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sd4l0"]
 radius = 2.0
@@ -26,19 +30,21 @@ height = 28.0
 radius = 8.0
 height = 20.0
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "bar", "sprite", "states", "health", "hurtbox", "hitbox", "collisions", "actor")]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "bar", "sound_attack", "sprite", "states", "health", "hurtbox", "hitbox", "actor", "voice", "step")]
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_fhvpw")
 navigation = NodePath("Navigation")
 bar = NodePath("Control/Bar")
+sound_attack = NodePath("Attack")
 sprite = NodePath("Sprite")
 states = NodePath("StateMachine")
 health = NodePath("Health")
 hurtbox = NodePath("Hurtbox")
 hitbox = NodePath("Hitbox")
-collisions = [NodePath("Collision"), NodePath("Actor/Collision"), NodePath("Hurtbox/Collision")]
 actor = NodePath("Actor")
+voice = NodePath("Voice")
+step = NodePath("Step")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -317,6 +323,16 @@ max_speed = 200.0
 [node name="Relay" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_x7jop")
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_aad6g")
+script = ExtResource("16_negfg")
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_rxsyf")
 
 [connection signal="state_entered" from="StateMachine/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_processing" from="StateMachine/Root/Idle" to="." method="_on_idle_state_processing"]

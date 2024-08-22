@@ -3,6 +3,7 @@ extends Resource
 
 @export var name : StringName;
 @export var sprite_frames : SpriteFrames;
+@export var voice : AudioStreamInteractive;
 
 @export_group("atributes")
 @export var speed : float = 300;

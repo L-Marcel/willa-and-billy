@@ -117,12 +117,12 @@ tile_set = ExtResource("1_mdvhw")
 navigation_enabled = false
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets")]
-position = Vector2(345, 192)
+position = Vector2(345, 204.21)
 script = ExtResource("3_udjtv")
 follow_mode = 3
 follow_target = NodePath("../Billy")
 follow_targets = [NodePath("../Billy"), NodePath("../Willa")]
-zoom = Vector2(1.66854, 1.66854)
+zoom = Vector2(1.28464, 1.28464)
 tween_resource = SubResource("Resource_1b16i")
 follow_damping = true
 auto_zoom = true
@@ -137,8 +137,8 @@ limit_bottom = 608
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(345, 192)
-zoom = Vector2(1.66854, 1.66854)
+position = Vector2(345, 204.21)
+zoom = Vector2(1.28464, 1.28464)
 limit_left = -288
 limit_top = -48
 limit_right = 880
@@ -149,15 +149,13 @@ editor_draw_drag_margin = true
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("1_vjl8r")
 
-[node name="Willa" parent="." node_paths=PackedStringArray("collisions") instance=ExtResource("1_fjaox")]
+[node name="Willa" parent="." instance=ExtResource("1_fjaox")]
 position = Vector2(128, 192)
 data = ExtResource("8_5hie2")
-collisions = []
 
-[node name="Billy" parent="." node_paths=PackedStringArray("collisions") instance=ExtResource("1_fjaox")]
+[node name="Billy" parent="." instance=ExtResource("1_fjaox")]
 position = Vector2(512, 192)
 control = ExtResource("9_rfrkg")
-collisions = []
 
 [node name="WaterWell" parent="." instance=ExtResource("10_antpy")]
 position = Vector2(408, 120)

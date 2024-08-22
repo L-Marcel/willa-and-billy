@@ -92,6 +92,6 @@ func _on_wet_state_entered() -> void:
 
 func _on_wet_state_processing(delta) -> void:
 	clock.step(delta * Game.clock_speed);
-	if clock.hours >= 12:
+	if clock.hours >= 18:
 		states.send_event("to_closed");
 		if potato: potato.progress += 0.25;

@@ -3,6 +3,7 @@ extends Character
 
 @export var navigation : NavigationAgent2D;
 @export var bar : Bar;
+@export var sound_attack : AudioStreamPlayer;
 const attack_distance : float = 20;
 const speed : float = 25.0;
 
@@ -154,6 +155,8 @@ func _on_attack_state_processing(_delta) -> void:
 	velocity = Vector2.ZERO;
 	var attacked : bool = sprite.frame == 13;
 	if attacked && !hitbox.visible:
+		voice.switch_to("Attack " + str(randi_range(1, 3)));
+		sound_attack.play();
 		hitbox.visible = true;
 		hitbox.hurt();
 	elif !attacked:
@@ -178,6 +181,7 @@ func _on_doing_state_processing(delta) -> void:
 			"haverst":
 				if spot && spot.potato: spot.haverst();
 				target = null;
+				voice.switch_to("Laugh " + str(randi_range(1, 3)));
 				health.heal(50);
 				stop();
 func _on_death_state_processing(_delta: float) -> void:

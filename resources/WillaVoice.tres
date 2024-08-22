@@ -1,0 +1,251 @@
+[gd_resource type="AudioStreamInteractive" load_steps=11 format=3 uid="uid://ctyghakkisfrm"]
+
+[ext_resource type="AudioStream" uid="uid://31afcj48rtyf" path="res://assets/sounds/effects/none.wav" id="1_q7ft0"]
+[ext_resource type="AudioStream" uid="uid://blchhirw1bab" path="res://assets/sounds/effects/willa/willa_deafult.wav" id="1_v2j1m"]
+[ext_resource type="AudioStream" uid="uid://cv51x7eia6c5j" path="res://assets/sounds/effects/willa/willa_attack_03.wav" id="2_ea2mx"]
+[ext_resource type="AudioStream" uid="uid://chi3tirmbekfk" path="res://assets/sounds/effects/willa/willa_attack_02.wav" id="3_oru5d"]
+[ext_resource type="AudioStream" uid="uid://bg667oigjjhc1" path="res://assets/sounds/effects/willa/willa_attack_01.wav" id="4_6jpnu"]
+[ext_resource type="AudioStream" uid="uid://dmltje82wb3u4" path="res://assets/sounds/effects/willa/willa_breath.wav" id="5_vx1tt"]
+[ext_resource type="AudioStream" uid="uid://dxbvshu7812wq" path="res://assets/sounds/effects/willa/willa_hurt_03.wav" id="6_ltcql"]
+[ext_resource type="AudioStream" uid="uid://bcqb1kcrq8tqx" path="res://assets/sounds/effects/willa/willa_hurt_02.wav" id="7_3kequ"]
+[ext_resource type="AudioStream" uid="uid://dagmvfcv24vje" path="res://assets/sounds/effects/willa/willa_hurt_01.wav" id="8_bbkuu"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_xx446"]
+stream_count = 1
+stream_0 = ExtResource("5_vx1tt")
+
+[resource]
+clip_count = 9
+clip_0/name = &"None"
+clip_0/stream = ExtResource("1_q7ft0")
+clip_0/auto_advance = 0
+clip_1/name = &"Default"
+clip_1/stream = ExtResource("1_v2j1m")
+clip_1/auto_advance = 0
+clip_2/name = &"Attack 1"
+clip_2/stream = ExtResource("4_6jpnu")
+clip_2/auto_advance = 2
+clip_3/name = &"Attack 2"
+clip_3/stream = ExtResource("3_oru5d")
+clip_3/auto_advance = 2
+clip_4/name = &"Attack 3"
+clip_4/stream = ExtResource("2_ea2mx")
+clip_4/auto_advance = 2
+clip_5/name = &"Hurt 1"
+clip_5/stream = ExtResource("8_bbkuu")
+clip_5/auto_advance = 2
+clip_6/name = &"Hurt 2"
+clip_6/stream = ExtResource("7_3kequ")
+clip_6/auto_advance = 2
+clip_7/name = &"Hurt 3"
+clip_7/stream = ExtResource("6_ltcql")
+clip_7/auto_advance = 2
+clip_8/name = &"Breath"
+clip_8/stream = SubResource("AudioStreamPlaylist_xx446")
+clip_8/auto_advance = 0
+_transitions = {
+Vector2i(1, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 2): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(2, 3): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(2, 4): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(2, 8): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+},
+Vector2i(3, 2): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(3, 3): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(3, 4): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(3, 8): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+},
+Vector2i(4, 2): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(4, 3): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(4, 4): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(4, 8): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+},
+Vector2i(5, 5): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 2,
+"to_time": 1
+},
+Vector2i(5, 6): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(5, 7): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(5, 8): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+},
+Vector2i(6, 5): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(6, 6): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(6, 7): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(6, 8): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+},
+Vector2i(7, 5): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(7, 6): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(7, 7): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 1
+},
+Vector2i(7, 8): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+},
+Vector2i(8, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(8, 2): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(8, 3): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(8, 4): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(8, 5): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(8, 6): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(8, 7): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(8, 8): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}

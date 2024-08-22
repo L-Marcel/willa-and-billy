@@ -3,13 +3,21 @@ extends Character
 
 @export var data : PlayerData;
 @export var control : ControlData;
+@export var sound_attack : AudioStreamPlayer;
+@export var sound_water : AudioStreamPlayer;
 
 var productivity : float = 1.0;
 var move_to : Vector2;
+var breath : bool = false :
+	set(value):
+		if breath != value && value: voice.switch_to("Breath");
+		elif breath != value: voice.switch_to("Default");
+		breath = value;
 
 func _ready() -> void:
 	super._ready();
 	sprite.sprite_frames = data.sprite_frames;
+	voice.set_stream(data.voice);
 	damage = data.damage;
 	damage_reduction = data.damage_reduction;
 	if data.name == "Willa": 
@@ -19,6 +27,7 @@ func _ready() -> void:
 		health = Players.billy_health;
 		Players.billy = self;
 	health.death.connect(_on_death);
+	health.changed.connect(_on_health_changed);
 	Game.clock.stage_changed.connect(_on_stage_changed);
 
 #region Control
@@ -114,7 +123,7 @@ func _on_run_state_entered() -> void:
 	sprite.play("run");
 func _on_attack_state_entered() -> void:
 	sprite.play("attack");
-	health.hurt(1);
+	health.hurt(2);
 func _on_attack_state_exited() -> void:
 	hitbox.visible = false;
 func _on_hurt_state_entered() -> void:
@@ -123,7 +132,7 @@ func _on_hurt_state_entered() -> void:
 	states.send_event("to_idle");
 func _on_watering_state_entered() -> void:
 	sprite.play("walk");
-	health.hurt(1);
+	health.hurt(2);
 func _on_dig_state_entered() -> void:
 	sprite.play("walk");
 func _on_doing_state_entered() -> void:
@@ -159,6 +168,8 @@ func _on_attack_state_processing(_delta) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
 	var attacked : bool = sprite.frame == 6;
 	if attacked && !hitbox.visible:
+		voice.switch_to("Attack " + str(randi_range(1, 3)));
+		sound_attack.play();
 		hitbox.visible = true;
 		hitbox.hurt();
 	elif !attacked:
@@ -167,7 +178,7 @@ func _on_attack_state_processing(_delta) -> void:
 	if finished && !attack(): states.send_event("to_idle");
 	elif finished: 
 		sprite.play("attack");
-		health.hurt(1);
+		health.hurt(2);
 func _on_hurt_state_processing(_delta) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, data.speed);
 func _on_watering_state_processing(delta) -> void:
@@ -179,6 +190,7 @@ func _on_watering_state_processing(delta) -> void:
 		velocity = Vector2.ZERO;
 		flip(spot.global_position.x < global_position.x);
 		sprite.play("watering");
+		sound_water.play();
 		Players.water = max(0, Players.water - 1);
 	if spot && spot.states.get_state() == "closed" && sprite.frame == 4:
 		spot.states.send_event("to_wet");
@@ -197,7 +209,6 @@ func _on_dig_state_processing(delta) -> void:
 		return;
 	if spot && spot.states.get_state() == "opening" && sprite.frame == 7:
 		spot.progress += productivity * 5 * delta;
-		health.hurt(1 * delta);
 func _on_doing_state_processing(delta) -> void:
 	if interact(): return;
 	if move_to != global_position:
@@ -217,20 +228,23 @@ func _on_doing_state_processing(delta) -> void:
 		action_progress -= 1.0;
 		match action:
 			"water":
-				health.hurt(1);
+				health.hurt(4);
 				Players.water = clamp(Players.water + 1, 0, 10);
+				sound_water.play();
 				if Players.water >= 10:
 					stop();
 			"plant":
 				if !spot || spot.potato: return;
+				sound_dig_start.play();
 				Players.sprouts += 1;
 				Players.potatoes = max(0, Players.potatoes - 1);
-				health.hurt(1);
+				health.hurt(2);
 				spot.plant();
 				stop();
 			"haverst":
 				health.hurt(1);
 				if spot && spot.potato:
+					sound_dig_start.play();
 					if randf_range(0, 1) >= data.chance_of_losing_havest:
 						Players.potatoes += randi_range(2, 3);
 					spot.haverst();
@@ -260,4 +274,12 @@ func _on_spot_opened() -> void:
 	stop();
 func _on_death() -> void:
 	stop(true);
+func _on_health_changed(value : float) -> void:
+	breath = value <= 40;
+func _on_frame_changed() -> void:
+	super._on_frame_changed();
+	match sprite.animation:
+		"dig":
+			if spot && spot.states.get_state() == "opening" && sprite.frame == 7:
+				health.hurt(5);
 #endregion
