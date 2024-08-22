@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwc67efq3jaky"]
+
+[ext_resource type="Texture2D" uid="uid://dx0ohvv2vqgko" path="res://assets/sprites/docaration.png" id="1_ck5nf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u4mf"]
+size = Vector2(16, 9)
+
+[node name="Decoration" type="StaticBody2D" groups=["obstacle"]]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_5u4mf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -8)
+texture = ExtResource("1_ck5nf")

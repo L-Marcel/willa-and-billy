@@ -1,25 +1,35 @@
-[gd_scene load_steps=5 format=4 uid="uid://d1l2bql2u7e4n"]
+[gd_scene load_steps=7 format=4 uid="uid://d1l2bql2u7e4n"]
 
 [ext_resource type="TileSet" uid="uid://cjkp0e42yl357" path="res://resources/TileSet.tres" id="1_jidvx"]
 [ext_resource type="Script" path="res://components/environment/Home.gd" id="1_xgdfh"]
 [ext_resource type="PackedScene" uid="uid://cujowbvf3kb2e" path="res://components/environment/Bed.tscn" id="2_wvqwu"]
+[ext_resource type="PackedScene" uid="uid://dwc67efq3jaky" path="res://components/environment/Decoration.tscn" id="3_ektrw"]
+[ext_resource type="AudioStream" uid="uid://ljtu5su5y42o" path="res://assets/sounds/effects/door.wav" id="5_qnwxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2arj"]
 size = Vector2(98, 48)
 
-[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("layers") groups=["obstacle"]]
+[node name="Home" type="StaticBody2D" node_paths=PackedStringArray("layers", "sound_door") groups=["obstacle"]]
 y_sort_enabled = true
 script = ExtResource("1_xgdfh")
 layers = [NodePath("Ceil"), NodePath("OverCeil")]
+sound_door = NodePath("Door")
 
 [node name="Zone" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="Zone"]
+visible = false
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_b2arj")
 
 [node name="Bed" parent="." instance=ExtResource("2_wvqwu")]
 position = Vector2(-40, -37)
+
+[node name="Decoration" parent="." instance=ExtResource("3_ektrw")]
+position = Vector2(16, -40)
+
+[node name="Decoration2" parent="." instance=ExtResource("3_ektrw")]
+position = Vector2(34, -40)
 
 [node name="Floor" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -36,14 +46,12 @@ tile_map_data = PackedByteArray("AAAAAP//AAAFAAoAAAD+////AAAFAAoAAAABAP//AAAFAAo
 tile_set = ExtResource("1_jidvx")
 
 [node name="Ceil" type="TileMapLayer" parent="."]
-visible = false
 z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD8//v/AAAPAAkAAAD8//z/AAAPAAoAAAD8//3/AAAPAAsAAAD8//7/AAAPAAwAAAD9//v/AAAQAAkAAAD9//z/AAASAAoAAAD9//3/AAASAAoAAAD9//7/AAAQAAwAAAD9////AAAeAA8AAAACAPv/AAAQAAkAAAACAPz/AAASAAoAAAACAP3/AAASAAoAAAACAP7/AAAQAAwAAAACAP//AAAeAA8AAAADAPv/AAARAAkAAAADAPz/AAARAAoAAAADAP3/AAARAAsAAAADAP7/AAARAAwAAAADAP//AAAfAA8AAAD+//z/AAASAAoAAAD+//3/AAASAAoAAAD///z/AAASAAoAAAD///3/AAASAAoAAAAAAPz/AAASAAoAAAAAAP3/AAASAAoAAAABAPz/AAASAAoAAAABAP3/AAASAAoAAAD+//7/AAAQAAwAAAD+////AAAeAA8AAAD///7/AAAQAAwAAAAAAP7/AAAQAAwAAAABAP7/AAAQAAwAAAD+//v/AAAQAAkAAAD///v/AAAQAAkAAAAAAPv/AAAQAAkAAAABAPv/AAAQAAkAAAD/////AAAeAA8AAAAAAP//AAAeAA8AAAABAP//AAAeAA8AAAD8////AAAdAA8AAAA=")
 tile_set = ExtResource("1_jidvx")
 
 [node name="OverCeil" type="TileMapLayer" parent="."]
-visible = false
 z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAACAPz/AAAdAAUAAAA=")
@@ -56,6 +64,10 @@ tile_set = ExtResource("1_jidvx")
 
 [node name="WallsCollision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(49, -41, 49, -9, 2, -9, 2, 0, 53, 0, 53, -57, -54, -57, -54, 0, -18, 0, -18, -9, -49, -9, -49, -37, -33, -48, -23.625, -48, 33, -48)
+
+[node name="Door" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qnwxd")
+volume_db = -5.0
 
 [connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
 [connection signal="body_exited" from="Zone" to="." method="_on_zone_body_exited"]
