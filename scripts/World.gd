@@ -45,6 +45,7 @@ func update_sky_color() -> Color:
 	return sky_color;
 
 func _ready() -> void:
+	randomize();
 	if !Engine.is_editor_hint():
 		clock = Game.clock;
 	update_sky_color();
