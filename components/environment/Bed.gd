@@ -24,6 +24,7 @@ func update() -> void:
 	else: Engine.time_scale = 1.0;
 
 	for player in players:
+		player.voice.switch_to("None");
 		if player.data.name == "Willa":
 			willa_icon.visible = true;
 			player.global_position = willa_position.global_position;

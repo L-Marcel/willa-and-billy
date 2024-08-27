@@ -24,6 +24,9 @@ func _ready() -> void:
 	resources_changed.connect(_on_resources_changed);
 
 func reset() -> void:
+	water = 0;
+	sprouts = 0;
+	potatoes = 5;
 	willa_health.reset();
 	billy_health.reset();
 	

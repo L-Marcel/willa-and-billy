@@ -8,6 +8,8 @@ signal death;
 signal changed(value : float);
 signal damaged;
 
+func reset() -> void:
+	total = 100;
 func hurt(amount : float) -> void:
 	if amount <= 0: return;
 	damaged.emit();

@@ -40,6 +40,7 @@ func game_over(description : String, type : int = 0) -> void:
 func start() -> void:
 	tip_label.modulate.a = 0.0;
 	control.visible = false;
+	Players.reset();
 	get_tree().paused = false;
 	music.switch_to("Default");
 func _ready() -> void:
